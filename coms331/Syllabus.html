@@ -1,0 +1,358 @@
+
+<!-- saved from url=(0090)http://web.cs.iastate.edu/~ciardo/teaching/ComS331-2017Fall/ComS331-2017Fall-syllabus.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>ComS 331 Syllabus</title> </head>
+<body bgcolor="#FFFFFF" style=""><font face="helvetica">
+
+<center>
+<h2>
+ComS 331 --- Theory of Computing --- 3 Credits
+<br>
+Fall 2017
+</h2></center>
+
+<hr size="2">
+
+<p>&nbsp;
+<table border="1" cellspacing="3" cellpadding="4" width="100%">
+<tbody><tr><td><b>Instructor:              </b></td><td>Gianfranco Ciardo (ciardo@iastate.edu)</td></tr>
+<tr><td><b>Lectures:                </b></td><td>Mon/Wed/Fri 9:00am - 9:50am, Room: MOL-BIO 1414</td></tr>
+<tr><td><b>Recitations:             </b></td><td>Thu         8:00am - 8:50am, Room: PEARSON 1105
+                                             <br>Wed 	     2:10pm - 3:00pm, Room: GILMAN 1051
+                                             <br>Thu         3:10pm - 4:00pm, Room: GILMAN 2109
+                                    </td></tr>
+<tr><td><b>Textbook:                </b></td><td><i>Introduction to Automata Theory, Languages, and Computation (3rd Edition)</i>
+                                                <br>by John E. Hopcroft, Rajeev Motwani, and Jeffrey D. Ullman (Addison Wesley)
+                                                <br><b>Important note: </b>
+                                                    An international paperback version of the textbook is available,
+                                                    at a much lower price than the harcopy.
+                                                    However, reviews on Amazon.com state that the
+                                                    two editions contain different exercises at the end of each chapter.
+                                                    I do not assign exercises from the textbook, so this may not be an issue,
+                                                    but you should be aware of this fact.
+                                    </td></tr>
+<tr><td><b>Instructor office hours: </b></td><td>Thu 2:10pm-3:00pm, Room: Atanasoff 226</td></tr>
+<tr><td><b>TAs:                     </b></td><td>Andrei Nikolai Migunov (amigunov@iastate.edu)
+                                             <br>Kiana Mousavi Hanjani (kmousavi@iastate.edu)
+                                             <br>Seyedehzahra Hosseini (hosseini@iastate.edu)
+ </td></tr>
+<tr><td><b>TA office hours:         </b></td><td>Tue 1:00pm-2:00pm, Room PEARSON 0145 <br> 
+                                                 Wed 12:00pm-1:00pm, Room PEARSON 0145 <br>
+                                                 Thu 10:00am-11:00am, Room PEARSON 0145 <br>
+                                                 Thu 2:00pm-3:00pm, Room PEARSON 0145 <br>
+                                                 Fri 1:00pm-2:00pm, Room PEARSON 0145 <br>
+                                                 Fri 3:00pm-4:00pm, Room: PEARSON 0145</td></tr>
+<tr><td><b>Final examination:       </b></td><td>TBD </td></tr>
+<tr><td><b>Prerequisites:           </b></td><td>Minimum of C- in ComS 228, Math 166, and in ComS 230 or CprE 310; ENGL 250</td></tr>
+<tr><td><b>Catalog description:     </b></td><td>Models of computation: finite state automata, pushdown automata and Turing machines.
+                                                 Study of grammars and their relation to automata.
+                                                 Limits of digital computation, unsolvability and Church-Turing thesis.
+                                                 Chomsky hierarchy and relations between classes of languages.
+                                    </td></tr>
+</tbody></table>
+</p>
+
+<p>
+The contents of this course are fundamental to computer science.
+The course is typically considered challenging, but also highly rewarding.
+For the homework exercisess, you must think both logically and creatively.
+The best way to do well in this course is to attack each exercise set as
+soon as it is handed out. After you consider various approaches to an exercise
+for a while, you might want to put it down and come back to it a day or two later.
+The right solution might just jump at you.
+Above all, realize that the best way to fail this course is to start working on
+your homeworks the night before they are due!
+</p>
+
+<p>
+After briefly reviewing basic background and introductory notions,
+the rest of the course can be divided into three main portions,
+each of them requiring approximately one month:
+regular languages, context-free languages, and Turing machines.
+</p>
+
+<hr size="2"><h3>Attendance and basic etiquette</h3>
+<p>
+You are required to attend, follow, and actively participate
+in all lectures and discussions.
+Lectures, discussions, and exams start at the stated time.
+Avoid being late coming to class, as this is very disruptive
+to the instructor and to your fellow students.
+</p>
+
+<p>
+You are requested to refrain from using electronic devices
+(laptops, cell phones, music players, etc.) during lectures
+and exams.
+If, <b>for some compelling reason</b>, you need to be on call,
+be sure to put your cell phone in silent mode,
+and excuse yourself from the class if you need to take a call.
+</p>
+
+<p>
+Analogously, when you come see me or a TA,
+please <b>turn your cell phone off</b>,
+and be sure to <b>bring paper and pen</b> to take notes.
+</p>
+
+<p>
+The best way to reach a TA is to go to recitations or to their office hours.
+The second best way is to send them an email.
+<br>
+
+The best way to reach me is to come during office hours
+(I will be there, barring emergencies).
+The second best way is to send me an email
+(I check it quite frequently).
+The third best way is to try to see if I am available in my office
+(I am almost always on campus during the work week, but I am often in meetings).
+
+
+</p><hr size="2"><h3>Homeworks</h3>
+<p>
+Weekly homework sets will be assigned (usually on Fridays) and will
+be due every Friday night at 11:59pm.
+(this includes the last Friday of classes, during Dead Week).
+Overall, they account for 40% of your grade.
+Both posting of the assignments and turn-in will be through Canvas.
+</p>
+<p>
+One of the goals of this course is to learn how
+to write high-quality technical prose. To improve the terseness and readability
+of your homeworks, I am requiring you to typeset your homeworks in LaTeX,
+which is freely available. I provide examples of LaTeX files for you
+to learn how to format particular equations. Pictures, diagrams, and graphs
+can be drawn using <tt>tgif</tt> or any other drawing tool that can generate
+"eps" or "pdf" files, which can then be included into LaTeX.
+You can also create beautiful pictures directly in LaTeX using the TikZ package,
+but it does have a learning curve and it is not a WYSIWYG editor,
+so this approach requires more effort.
+</p>
+<p>
+Students in the class are allowed to discuss the homework problems
+among themselves and with me and the TAs, <b>but not with anybody else</b>.
+An <b>empty hand policy</b> must
+be observed when you meet with other classmates: you are free
+to discuss any aspect of the homework, but you must leave the meeting without
+any record (on paper, magnetic tape, digital storage, or other means) of these discussions.
+This is because the actual writing of the detailed homework answers must be
+an individual activity, so that each student can receive an individual
+grade for each homework.
+</p>
+<p>
+<b>Unless stated otherwise, sharing of information
+in permanent format (such as accessing someone else's files, hardcopy outputs,
+or handwritten notes), will be considered cheating.
+If you have even the slightest doubt about whether a certain activity is
+admissible, <i>ask me before you do it!</i></b>
+</p>
+<p>
+<b>You are of course allowed, actually encouraged,
+to consult other reference material in addition to your textbook and class
+notes. However, if you used this reference to derive the answer to an exercise,
+you should give it proper credit in your write-up. In no case you should
+copy verbatim from a reference without proper attribution, as this is
+plagiarism.</b>
+</p>
+<p><b>It is a bad idea to search for homework solutions on the web:
+you might find the answer, but you will have not learned
+how to come up with the answer by yourself.</b>
+</p><p>
+<b>I do not accept late homeworks except for
+justifiable reasons, such as an illness with a doctor's written note.</b>
+</p>
+
+<hr size="2"><h3>Homework grading method</h3>
+<p>
+Each homework consists of one or more exercises.
+Each exercises carries
+a weight (usually 10, 25, 50, 75, or 100 points) and students are required to solve all exercises.
+The grade on each exercise is a number between 0 and its weight.
+The overall grade for the homeworks as a whole, on a scale
+of 0 to 1, is determined by summing the grades of all the exercises and dividing
+the result by the sum of all the weights.
+Occasionally there may be extra-credit exercises, which you might
+attempt in order to boost your grade
+(their grade is added to the sum of the grades but their weight is not added to the sum of weights).
+</p>
+<p>
+While I may choose to give you partial credit on an exercise,
+almost always an answer is either "right" (perhaps
+with minor notational errors or problems that can be easily fixed) or "wrong"
+(completely incorrect because of some fundamental flaw in your reasoning).
+Thus, the grade you receive on each individual exercise is usually either
+close to the maximum or close to zero. However, there are multiple exercises in
+a homework set, so the overall grades can, and usually do, span a wide range.
+</p>
+
+<hr size="2"><h3>In class examinations</h3>
+<p>
+I believe that exams should be administered to test
+your understanding of the material, not your memorization skills.
+Thus, you can use your textbook and your class notes during in-class exams.
+However, you must check with me before consulting any additional references
+(and my answer will be negative, usually).
+<br>
+<b>Of course, no laptops, tablets, phones, pagers, or similar devices
+can be used for the duration of an exam.</b>
+</p>
+<p>
+There will be two in-class exams during the course
+(after completing lectures on regular languages and on context-free languages, respectively),
+each accounting for 15% of your grade,
+and a final exam covering the entire course material,
+accounting for 30% of your grade.
+</p>
+
+<p>
+You <b>must</b> do at least somewhat well in these in-class
+exams in order to pass the course.
+The exercises in these exams are similar to those in the homeworks;
+thus, you should be able to gauge how you will do in the in-class exams
+by your comfort level in solving the homework exercises.
+</p>
+
+<hr size="2"><h3>Final grade policy</h3>
+<p>
+An overall grade of at least 90% results in a final grade <i>A</i>.
+<br>An overall grade of at least 80% but less than 90% results in a final grade
+<i>B</i>.
+<br>An overall grade of at least 70% but less than 80% results in a final grade
+<i>C</i>.
+<br>An overall grade of at least 60% but less than 70% results in a final grade
+<i>D</i>.
+<br>An overall grade of less than 60% results in a final grade
+<i>F</i>.
+</p><p>I reserve the right to raise the final grade,
+but not to lower it: if your overall grade is 89%, I might decide to give
+you an <i>A-</i> or a <i>B+</i>, but if it is 80% you are guaranteed at
+least a <i>B</i>.
+</p>
+
+<hr size="2">
+<h3> Detailed schedule</h3>
+
+<p>
+This schedule is not written in stone, I expect that deviations
+from it will occur over the course of the semester.
+The dates of the exams, however, will not change.
+</p>
+
+<p>&nbsp;
+<b></b><table border="0" cellspacing="3" cellpadding="0" width="100%">
+<tbody><tr><td>Week</td><td> 1</td><td>Mon</td><td>Aug</td><td>21</td><td>Background: set, relation, function, contradiction, induction.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Aug</td><td>23</td><td>New concepts: languages, grammars, automata.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Aug</td><td>25</td><td>Regular expressions. <b>[HW 0 due]</b></td></tr>
+<tr><td>Week</td><td> 2</td><td>Mon</td><td>Aug</td><td>28</td><td>Deterministic finite automata (DFA).</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Aug</td><td>30</td><td>Nondeterministic finite automata (NFA).</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Sep</td><td> 1</td><td>Equivalence of DFA and NFA. <b>[HW 1 due]</b></td></tr>
+<tr><td>Week</td><td> 3</td><td>Mon</td><td>Sep</td><td> 4</td><td><i>University holiday</i></td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Sep</td><td> 6</td><td>DFA minimization.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Sep</td><td> 8</td><td>Closure properties of regular languages. <b>[HW 2 due]</b></td></tr>
+<tr><td>Week</td><td> 4</td><td>Mon</td><td>Sep</td><td>11</td><td>Equivalence or regular expressions and finite automata.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Sep</td><td>13</td><td>Pumping lemma for regular languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Sep</td><td>15</td><td>Regular grammars. <b>[HW 3 due]</b></td></tr>
+<tr><td>Week</td><td> 5</td><td>Mon</td><td>Sep</td><td>18</td><td>BONUS: Decision diagrams </td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Sep</td><td>20</td><td>Review and exercises on regular languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Sep</td><td>22</td><td><b>In-class exam on regular languages.</b> <b>[HW 4 due]</b></td></tr> 
+<tr><td>Week</td><td> 6</td><td>Mon</td><td>Sep</td><td>25</td><td>Context-free grammars (CFG). </td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Sep</td><td>27</td><td>Derivations and parse trees.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Sep</td><td>29</td><td>Ambiguous grammars and languages. <b>[HW 5 due]</b></td></tr>
+<tr><td>Week</td><td> 7</td><td>Mon</td><td>Oct</td><td> 2</td><td>Grammar transformations.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Oct</td><td> 4</td><td>Chomsky and Greibach normal forms.  The CYK algorithm.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Oct</td><td> 6</td><td>Nondeterministic pushdown automata (NPDA). <b>[HW 6 due]</b></td></tr>
+<tr><td>Week</td><td> 8</td><td>Mon</td><td>Oct</td><td> 9</td><td>Equivalence of CFG and NPDA.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Oct</td><td>11</td><td>Pumping lemma for context-free languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Oct</td><td>13</td><td>Properties of context-free languages. <b>[HW 7 due]</b></td></tr>
+<tr><td>Week</td><td> 9</td><td>Mon</td><td>Oct</td><td>16</td><td>Deterministic pushdown automata.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Oct</td><td>18</td><td>BONUS: Petri net languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Oct</td><td>20</td><td>Turing machines. <b>[HW 8 due]</b></td></tr>
+<tr><td>Week</td><td>10</td><td>Mon</td><td>Oct</td><td>23</td><td>Review and exercises on context-free languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Oct</td><td>25</td><td><b>In-class exam on context-free languages.</b></td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Oct</td><td>27</td><td>Turing-decidable languages, Turing-acceptable languages, and Turing-computable functions. <b>[HW 9 due]</b></td></tr>
+<tr><td>Week</td><td>11</td><td>Mon</td><td>Oct</td><td>30</td><td>Turing's thesis and Turing machine variants.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Nov</td><td> 1</td><td>Nondeterministic Turing machines.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Nov</td><td> 3</td><td>A universal Turing machine. <b>[HW 10 due]</b></td></tr>
+<tr><td>Week</td><td>12</td><td>Mon</td><td>Nov</td><td> 6</td><td>Turing-decidable vs. Turing-acceptable languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Nov</td><td> 8</td><td>The halting problem and its implications.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Nov</td><td>10</td><td>Unrestricted grammars. <b>[HW 11 due]</b></td></tr>
+<tr><td>Week</td><td>13</td><td>Mon</td><td>Nov</td><td>13</td><td>Context-sensitive languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Nov</td><td>15</td><td>Linear-bounded automata.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Nov</td><td>17</td><td>Recursive and recursively-enumerable sets. <b>[HW 12 due]</b></td></tr>
+<tr><td>    </td><td>  </td><td>Mon</td><td>Nov</td><td>20</td><td><i>Thanksgiving break.</i></td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Nov</td><td>22</td><td><i>Thanksgiving break.</i></td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Nov</td><td>24</td><td><i>Thanksgiving break.</i></td></tr>
+<tr><td>Week</td><td>14</td><td>Mon</td><td>Nov</td><td>27</td><td>The Post correspondence problem.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Nov</td><td>29</td><td>Undecidable problems for context-free languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Dec</td><td> 1</td><td>The language hierarchy. <b>[HW 13 due]</b></td></tr>
+<tr><td>Week</td><td>15</td><td>Mon</td><td>Dec</td><td> 4</td><td>Review and exercises on Turing-decidable and Turing-acceptable languages.</td></tr>
+<tr><td>    </td><td>  </td><td>Wed</td><td>Dec</td><td> 6</td><td>Review and exercises on the entire course material.</td></tr>
+<tr><td>    </td><td>  </td><td>Fri</td><td>Dec</td><td> 8</td><td>Review and exercises on the entire course material. <b>[HW 14 due]</b></td></tr>
+</tbody></table>
+</p>
+
+
+
+<hr size="2">
+<h3>Academic dishonesty</h3>
+
+The class will follow Iowa State University's policy on academic dishonesty.
+Anyone suspected of academic dishonesty will be reported to the Dean of Students Office.
+See <a href="http://www.dso.iastate.edu/ja/academic/misconduct.html">http://www.studentconduct.dso.iastate.edu/</a>.
+
+
+<hr size="2">
+<h3>Disability accommodation</h3>
+
+Iowa State University complies with the Americans with Disabilities Act and Sect 504 of the Rehabilitation Act.
+If you have a disability and anticipate needing accommodations in this course, please contact
+me to set up a meeting within the first two weeks of the semester or as soon as you become aware of your need.
+Before meeting with me, you will need to obtain a SAAR form with recommendations for accommodations from the
+Disability Resources Office, located in Room 1076 on the main floor of the Student Services Building.
+Their telephone number is 515-294-7220 and their email is disabilityresources@iastate.edu.
+Retroactive requests for accommodations will not be honored.
+
+
+<hr size="2">
+<h3>Dead week</h3>
+
+This class follows the Iowa State University Dead Week guidelines as outlined in
+<a href="http://catalog.iastate.edu/academics/#examinationstext">http://catalog.iastate.edu/academics/#examinationstext</a>.
+
+
+<hr size="2">
+<h3>Harassment and discrimination</h3>
+
+Iowa State University strives to maintain our campus as a place of work and study for faculty, staff, and students that
+is free of all forms of prohibited discrimination and harassment based upon race, ethnicity, sex (including sexual assault),
+pregnancy, color, religion, national origin, physical or mental disability, age, marital status, sexual orientation,
+gender identity, genetic information, or status as a U.S. veteran.
+Any student who has concerns about such behavior should contact me, Student Assistance at 515-294-1020,
+or email dso-sas@iastate.edu, or the Office of Equal Opportunity and Compliance at 515-294-7612.
+
+
+<hr size="2">
+<h3>Religious accommodation</h3>
+
+If an academic requirement conflicts with your religious practices and/or observances, you may request
+reasonable accommodations.
+Your request must be in writing, and I will review the request.
+You may also seek assistance from the Dean of Students Office or the Office of Equal Opportunity and Compliance.
+
+
+
+<br>
+
+<hr size="2">
+<hr size="2">
+<center>
+Last updated: August 17, 2017
+<br>
+Report suggestions and problems to
+<a href="mailto:ciardo@iastate.edu">ciardo@iastate.edu</a>
+<br>
+URL: http://web.cs.iastate.edu/~ciardo/teaching/ComS-331/ComS-331-syllabus.html
+</center>
+
+</font>
+
+</body></html>
