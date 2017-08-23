@@ -1,4 +1,41 @@
-website: http://web.cs.iastate.edu/~ciardo/
+formal language.
+has a alphabet that is a finite set.
+strings are a sequence of elements in the alphabet
+\sigma ^n is the set of stings of length n
+\lamda is the empty string
+so \sigma ^0 = {\lamda}
+\sigma ^* is the set of all strings over \sigma
+\sigma ^0 \union \sigma ^1 ...
+\sigma ^+ is the set of all strings over \sigma that are not empty
+\sigma ^1 \union \sigma ^2 ...
+--------------------------------------------------------------------------------
+one-to-one: each element in the range has at most one element in the domain that
+corresponds to it. f(1) = 5 so f(!1) != 5.
+
+onto: each element in the range has at least one element in the domain that
+corresponds to it.
+
+bijection: a function is a bijection iff it is one-to-one, and onto, that is,
+each element in the domain has exactly one corresponding element and vise versa.
+
+two sets are equinumarious if there is a bijection between them.
+
+look up countably vs uncountably infinite.
+
+proof strategies:
+  contradiction
+  induction
+    1) explicitly write doing induction on a variable
+    2) the basis
+    3) the hypothesis
+    4) the inductive step
+  pigeonhole principle
+  diagonalization
+
+prove if a graph has finite nodes and arbitrarily long paths it must contain
+cycles, using pigeonhole principle.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first day~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+website: http://web.cs.iastate.edu/~ciardo/
 proof based class.
 must use latex for all homework.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

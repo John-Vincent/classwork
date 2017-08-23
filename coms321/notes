@@ -1,0 +1,34 @@
+Merge Sort: O(n log n).
+Quick Sort: O(n^2).
+but still quick sort is on average the fastest algorithm.
+big O shows the function asymptotically approaches not, the actual time.
+
+Definition #1
+a program X is N times faster than a program Y.
+(Y Execution Time) / (x Execution Time) = N
+
+Definition #2
+a program X is N% faster than a program Y
+(Y Execution Time) / (X Execution Time) = 1 + N/100
+
+using these values you can estimate the gain in performance for any specific change, then consider the cost of making the change, which allows you to find performance gain per $
+
+----------------------------------------------------------------------------------
+we need to replace system A
+
+System       Exec. Time     Cost
+  A             150          X
+  B             120          3X
+  C             135          2X
+
+B is 1.25 times faster than A | (3X) / 1.25 = 2.4x cost/speedup
+C is 1.11 times faster than A | (2x) / 1.11 = 1.8x cost/speedup
+so C is the best replacement option because it has the most performance increase per dollar spent.
+-----------------------------------------------------------------------------------
+we need to make some changes to a program with 3 modules
+Modules     Lines
+   A         100
+   B        1000
+   C          20
+the number of line can be misleading an a execution tracing tool should be used to monitor where the program is spending most of its time
+-----------------------------------------------------------------------------------
