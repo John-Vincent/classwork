@@ -1,0 +1,32 @@
+cpre 592 reference # 3546117
+register for course
+
+types of security problems: CIA
+confidentiality, integrity, availability.
+
+some issues are hard to catch and only occur under very specific conditions.
+
+fork bomb - 1978
+
+an algorithm that can detect all viruses can be proven to not exist.
+
+may 13 1988 Jerusalem virus corrupted all executable files on infected machines.
+
+1989 AIDS Trojan lies dormant for 90 boot cycles
+
+2000 ILOVEYOU
+
+2016 WannaCry
+
+Ukraine power gird attack December 23, 2015 and December 17 2016
+
+BLAST - Linux formal verification tool
+
+this course is about analyzing software not monitoring networks or administrating networks.
+
+
+main attributes of software issues.
+
+Damage,
+trigger,
+Program construct (what in the program allows for the vulnerability)

@@ -2,6 +2,7 @@
 \usepackage{mathtools}
 \usepackage{mdframed}
 \usepackage{fullpage}
+\usepackage{amsfonts}
 \usepackage{tikz}            % if you delete this, you will have trouble with the included picture. You can delete the picture.
 
 
@@ -37,7 +38,7 @@
 \vskip 2em
 
 
-%\question{}
+\question{}
 
 \begin{mdframed}
   This is an inline equation: $x + y = 3$.\\
@@ -64,7 +65,7 @@
         \end{tabular}
       \end{center}
     \egroup
-  This is a figure incorporated in a LaTeX file
+  \noindent This is a figure incorporated in a LaTeX file
   \begin{center}
     \begin{tikzpicture}
       \node[shape=circle,draw=black,minimum size=1cm] (A) at (0,2) {};
@@ -78,4 +79,12 @@
   \end{center}
 \end{mdframed}
 
+\question{}
+  consider the function $ f(x) = \begin{cases}
+                                  x/2 & \text{if $x$ is even}\\
+                                  -\frac{x+1}{2} & \text{if $x$ is odd}\\
+                                  0 & \text{if $x=0$}
+                               \end{cases}
+                     $
+  where $x\in \mathbb{N}$ and $f(x)\in \mathbb{Z}$. this function
 \end{document}
