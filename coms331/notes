@@ -1,3 +1,21 @@
+regular languages
+  regular expressions:
+  we define the language of regular expressions over \sigma recursively as:
+    \null is a regular expression
+--------------------------------------------------------------------------------
+Automata plural automatan singular
+something that reads an input and determains if it is within the language
+an automota can be deterministic or nondeterministic based on whether in each
+configuration exactly or at most one move is possible or not.
+--------------------------------------------------------------------------------
+grammers
+a grammer G is defined as G = (V,T,S,P) where
+V is a alphabet, called the variables,
+T is an alphabet, v \and T = \null, called the terminal symbols
+S\in V is the start variable
+P \subseteq ((V\unionT)*\T*)x(V\untion T)*
+grammers are how to define what is valid in a language
+--------------------------------------------------------------------------------
 formal language.
 has a alphabet that is a finite set.
 strings are a sequence of elements in the alphabet

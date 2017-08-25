@@ -28,6 +28,8 @@
 \lhead{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
 
 
@@ -90,8 +92,23 @@
     since there is a bijection between them they must be equinumerious.
 
   \question{}
-    prove that $f(x) = x^2$ is one-to-one but not onto for $\mathbb{N}$ and that $f(x) = x + x mod 2$ is onto but not
-    one-to-one for $\mathbb{Z}$
+    assume that if a set $S$ is infinte that there can not exist a function $f$
+    such that $f: S\to S$ and $f$ is surjective but not injective, or injective
+    but not surjective. consider the function $g(x)=x^2$ over the the infinite
+    set $f: \mathbb{N}\to\mathbb{N}$. the element $3$ in the set $\mathbb{N}$
+    is a counter example to $g(x)$ being onto since $\sqrt{3}$ is not in $\mathbb{N}$.
+    assume that there is some $x \ne y$ where $g(x) = g(y)$, that would mean
+    that $x^2 = y^2$, but there are not values in $\mathbb{N}$ for which this is
+    true since they are all positive proving that $g$ is one-to-one by contradicton.
+    This makes $g$ an example of a function from and infinite set to itself
+    that is one-to-one yet not onto. Now consider the function $h=x+2\floor{x/2}$ for
+    $h: \mathbb{R}\to\mathbb{R}$ this function is not one-to-one and
+    $x=1$ and $x=2$ are a counter example. It is onto though because every value
+    in the range has two values in the domain that equal it. This makes $h$
+    and example of a function that is onto, but not one-to-to. proving that
+    an infinite set $S$ can have a fuction $f: S\to S$ that is injective but not
+    surjective, and surjective but not injective by contradiction.
+
   \question{}
     $R$ is reflexive since if $m = n$ then $m-n = 0$ and $0 mod 3$ will always be $0$.\\
     $R$ can be shown to be symetric by direct proof.\\
