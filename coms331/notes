@@ -1,3 +1,45 @@
+finite automata
+--------------------------------------------------------------------------------
+  Non-Deterministic Finite Automaton (NDFA)
+--------------------------------------------------------------------------------
+  Deterministic finite Automaton (DFA)
+    deterministic finite automaton is a touple M = (Q,\Sigma, \delta, s_0, F) where
+      Q is a finite set of states
+      \Sigma is an alphabet
+      \delta (Q x \Sigma) \to Q is the transition function
+      s_0 \in Q is the initial state
+      F \subeq Q is the set of final States(accepting states)
+    \delta defines what is the next state, usually requires a table to define, basically a transition matrix.
+    a directed graph is the best depiction of \delta
+
+    look at prof notes for example of how to write the decomposition of a string for a DFA.
+
+    language of dfa
+      dfa's are used most often to define a language
+      any language that is regular can be parsed by a DFA
+
+    limits of DFA
+      DFAs can not count, so they cant parse a language the requires n a's then m b's (n,m\in\mathbb{N})
+      since they can not count they also can't match '()' or '{}'
+--------------------------------------------------------------------------------
+regular languages
+  regular expressions:
+  we define the language of regular expressions over \sigma recursively as:
+    \null is a regular expression
+--------------------------------------------------------------------------------
+Automata plural automatan singular
+something that reads an input and determains if it is within the language
+an automota can be deterministic or nondeterministic based on whether in each
+configuration exactly or at most one move is possible or not.
+--------------------------------------------------------------------------------
+grammers
+a grammer G is defined as G = (V,T,S,P) where
+V is a alphabet, called the variables,
+T is an alphabet, v \and T = \null, called the terminal symbols
+S\in V is the start variable
+P \subseteq ((V\unionT)*\T*)x(V\untion T)*
+grammers are how to define what is valid in a language
+--------------------------------------------------------------------------------
 formal language.
 has a alphabet that is a finite set.
 strings are a sequence of elements in the alphabet
