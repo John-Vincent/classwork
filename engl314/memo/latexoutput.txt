@@ -160,3 +160,53 @@ s/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.
 pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
 Output written on memo.pdf (1 page, 46721 bytes).
 Transcript written on memo.log.
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Arch Linux) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./memo.tex
+LaTeX2e <2017-04-15>
+Babel <3.12> and hyphenation patterns for 84 language(s) loaded.
+(./texMemo.cls
+Document Class: texMemo 2010/07/31 - Simple Memo Class, Including Logo
+(/usr/share/texmf-dist/tex/latex/psnfss/palatino.sty)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifpdf.sty)
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifvtex.sty)
+(/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty)))
+(/usr/share/texmf-dist/tex/latex/parskip/parskip.sty) (./memo.aux)
+(/usr/share/texmf-dist/tex/latex/psnfss/ot1ppl.fd)
+(/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+(/usr/share/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty))))
+(/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty)
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 41--41
+[][] 
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./logo.png>] (./memo.aux
+) )
+(see the transcript file for additional information){/usr/share/texmf-dist/font
+s/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fonts/type1/urw/palatino/uplb8a.
+pfb></usr/share/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on memo.pdf (1 page, 42564 bytes).
+Transcript written on memo.log.

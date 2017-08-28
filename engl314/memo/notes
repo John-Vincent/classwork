@@ -1,0 +1,33 @@
+4 main forms of communication
+
+  email
+    audience
+      usually people in your team, or in teams related to the project
+    structure
+      should look like a formal letter
+    purpose
+      main avenue of communication
+
+  documentation
+    audience
+      anyone who has a copy of the code base
+    structure
+      language specific but normal contains short discriptions of publicly accessible methods
+    purpose
+      inform users how to properly use your code
+
+  stackoverflow
+    audience
+      Software Developer community
+    structure
+      short post with snippets of code and descriptions of problems
+    purpose
+      find solutions to unsolved problems amoungst your coworkers
+
+  project request
+    audience
+      your development team
+    structure
+      varies on tools used and workplace norms
+    purpose
+      defined requirements and specifications for new developments projects as well as changes to existing products
