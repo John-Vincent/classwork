@@ -1,4 +1,4 @@
 
 
 default: memo.tex
-	@pdflatex memo.tex >> latexoutput.txt
+	@pdflatex -interaction=nonstopmode memo.tex >> latexoutput.txt
