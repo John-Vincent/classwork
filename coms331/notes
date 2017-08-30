@@ -1,9 +1,26 @@
 finite automata
 --------------------------------------------------------------------------------
-  Non-Deterministic Finite Automaton (NDFA)
+  Non-Deterministic Finite Automaton (NFA)
+    same as dfa excetipn \delta type is different
+      \delta : (Q x (\Sigma\union {\epsilon}))\to 2^Q
+    basically an input can have multiple transitions associated with it
+    from any given stage. basically whenever there is an input that could
+    go multiple ways a head is created for each option and the string is valid
+    as long as one of the clones ends in a valid end state.
+  NFA are convenient but they aren't really any more powerful than a DFA,
+    since any NFA can be represented by a DFA with more states
+  NFA's are for people to easily understand, since computers are by definition
+    deterministic all NFA's will be converted into a DFA to actually run in
+    software
+  NFA's dont really have a minimization, so if you want a minimal automaton you
+    need to convert to DFA than minimize
+  non-determinism right now is just theoretical, but some day if quantum computers
+    become a real thing then they will be the first real non-deterministic computer
+  maximum nummber of states of a DFA representation of a NFA is 2^{n} where n is the number
+    of states in the NFA
 --------------------------------------------------------------------------------
   Deterministic finite Automaton (DFA)
-    deterministic finite automaton is a touple M = (Q,\Sigma, \delta, s_0, F) where
+    deterministic finite automaton is a tuple M = (Q,\Sigma, \delta, s_0, F) where
       Q is a finite set of states
       \Sigma is an alphabet
       \delta (Q x \Sigma) \to Q is the transition function

@@ -1,3 +1,18 @@
+--------------------------------------------------------------------------------
+cpu execution time
+  factors
+    instruction count
+    CPI (average number of clock Cycles Per Instruction)
+      -type of operations can affect how accurate cpi is since if you have high number of square roots it will take longer than the average and if you have high number of
+        adds it will take less than average
+      -Memory latency will also affect cpi because the memory frequency because a limiting factor
+    1/(clock rate)
+
+Complex Instruction Set Computers (CISC)
+  old trend where instruction sets where complex but very efficient at a specific task
+ Reduced Instruction Set Computer (RISC)
+  more general purpose instructions, limited number of instructions. this gives it a higher instruction count, but a lower average cycle per instruction
+--------------------------------------------------------------------------------
 Merge Sort: O(n log n).
 Quick Sort: O(n^2).
 but still quick sort is on average the fastest algorithm.
@@ -9,7 +24,7 @@ a program X is N times faster than a program Y.
 
 Definition #2
 a program X is N% faster than a program Y
-N% = 1 + N/100 = 1 + (Y Execution Time) / 100(X Execution Time)
+(y Execution Time)/(X Execution Time) = 1 + N/100
 
 Andahls law for overall speedup =
 1/(time for unimproved fraction + time for improved fraction)

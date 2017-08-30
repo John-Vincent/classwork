@@ -3,6 +3,7 @@
 \usepackage{mdframed}
 \usepackage{fullpage}
 \usepackage{amsfonts}
+\usepackage{marginnote}
 \usepackage{tikz}            % if you delete this, you will have trouble with the included picture. You can delete the picture.
 
 
@@ -14,7 +15,7 @@
 
 \newcounter{excounter}
 \setcounter{excounter}{1}
-\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}:} \emph{#1} \noindent#2}
+\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1})} \emph{#1} \noindent#2}
 
 
 % You can also erase this if you do not have package hancyhdr
@@ -41,6 +42,70 @@
 
 
   \question{}
+    \begin{align*}
+      \frac{B_{time}}{A_{time}} &= 1 + \frac{n}{100}\\
+      \frac{40}{20} &= 1 + \frac{n}{100}\\
+      100 &= n
+    \end{align*}
+    \indent b is the correct answer
 
+  \question{}
+    \begin{align*}
+      \text{speedup} &= \frac{1}{(1-f_1-f_2...-f_n)+\frac{f_1}{s_1}...+\frac{f_n}{s_n}}\\
+                     &= \frac{1}{(1-.35) + \frac{.35}{15}}\\
+                     &= 1.48
+    \end{align*}
+
+  \question{}\\
+    \indent a)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.8 + \frac{.8}{20}}\\
+                       &= 4.16
+      \end{align*}
+    \indent b)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.2 + \frac{.2}{80}}\\
+                       &= 1.24
+      \end{align*}
+    \indent c)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.9 + \frac{.9}{10}}\\
+                       &= 5.26
+      \end{align*}
+    \indent d)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.1 + \frac{.1}{90}}\\
+                       &= 1.1
+      \end{align*}
+    \indent the best option for improving the overall speedup of the program
+    is option c.
+
+  \question{}\\
+    \begin{equation*}
+      \text{module speedup} = 1 + \frac{\text{percent speedup of module}}{100}
+    \end{equation*}
+    \indent a)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.8 + \frac{.8}{1 + .2}}\\
+                       &= 1.15
+      \end{align*}
+    \indent b)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.2 + \frac{.2}{1 + .8}}\\
+                       &= 1.09
+      \end{align*}
+    \indent c)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.9 + \frac{.9}{1 + .1}}\\
+                       &= 1.08
+      \end{align*}
+    \indent d)
+      \begin{align*}
+        \text{speedup} &= \frac{1}{1-.1 + \frac{.1}{1 + .9}}\\
+                       &= 1.04
+      \end{align*}
+    \indent a is the best option for overall speedup.
+
+  \question{}
 
 \end{document}
