@@ -9,8 +9,8 @@
 
 %edit this for each class
 \newcommand\name{John Vincent} %%%%%%%%%%%%%%  WRITE YOUR NAME HERE
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{COMS 331}
+\newcommand\assignment{homework 1}
 
 
 
@@ -43,6 +43,32 @@
 
 
   \question{}
+  $b^*(a^{*}c^{+}b^{*})^{*}a^{*}$
+
+  \question{}
+  $(a+(bb)+c)^*$
+
+  \question{}
+  $(a+b+c)^*$\\
+  this language is any string that contains the letters a, b, and c in any order
+  of any length
+
+  \question{}
+  $(a+b)^*c^*(a+b)^*$\\
+  the expression can not be simplified, the language consist of strings that
+  have any amount and any order of a's and b's followed by any amount of c's
+  followed again by and amount and any order of a's and b's
+
+  \question{}
+  \begin{tikzpicture}
+    \node[shape=circle,draw=black,minimum size=1cm] (S) at (0,2) {};
+    \node[shape=circle,draw=black,minimum size=1cm] (2) at (5,2) {};
+    \node[shape=circle,draw=black,minimum size=1cm] (3) at (2.5,0) {};
+
+    \path [->] (A) edge node[below] {$t_{1}$} (B);
+    \path [->] (B) edge[bend left=20] node[left] {$t_{a}$} (C);
+    \path [->] (C) edge[bend left=20] node[right] {$t_{2}$} (A);
+  \end{tikzpicture}
 
 
 \end{document}

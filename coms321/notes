@@ -1,3 +1,4 @@
+comparing system times through number of instructions of a given type and number of cycles per each type of instruction.
 --------------------------------------------------------------------------------
 cpu execution time
   factors

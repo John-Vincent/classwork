@@ -1,5 +1,9 @@
 finite automata
 --------------------------------------------------------------------------------
+  Proving NFA and DFA are equivalent
+    if there is a NFA then there is a DFA that defines the same language
+    look at lecuter notes for 9/1 for the full proof its pretty extensive
+--------------------------------------------------------------------------------
   Non-Deterministic Finite Automaton (NFA)
     same as dfa excetipn \delta type is different
       \delta : (Q x (\Sigma\union {\epsilon}))\to 2^Q
