@@ -4,7 +4,7 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{tikz}            % if you delete this, you will have trouble with the included picture. You can delete the picture.
-
+\usetikzlibrary{automata, positioning}
 
 
 %edit this for each class
@@ -60,15 +60,34 @@
   followed again by and amount and any order of a's and b's
 
   \question{}
-  \begin{tikzpicture}
-    \node[shape=circle,draw=black,minimum size=1cm] (S) at (0,2) {};
-    \node[shape=circle,draw=black,minimum size=1cm] (2) at (5,2) {};
-    \node[shape=circle,draw=black,minimum size=1cm] (3) at (2.5,0) {};
 
-    \path [->] (A) edge node[below] {$t_{1}$} (B);
-    \path [->] (B) edge[bend left=20] node[left] {$t_{a}$} (C);
-    \path [->] (C) edge[bend left=20] node[right] {$t_{2}$} (A);
-  \end{tikzpicture}
+  \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+   \node[state,initial,accepting] (q_0)   {$q_0$};
+   \node[state,accepting] (q_1) [above right=of q_0] {$q_1$};
+   \node[state](q_2) [below right=of q_1] {$q_2$};
+    \path[->]
+    (q_0) edge [bend right=20] node [right] {a} (q_1)
+          edge [loop below] node {b,c} ()
+    (q_1) edge node  {b} (q_2)
+          edge [loop above] node {a} ()
+          edge [bend right=20] node [left] {c} (q_0)
+    (q_2) edge [loop below] node {a,b,c} ();
+\end{tikzpicture}
+
+\question{}
+
+\begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+ \node[state,initial,accepting] (q_0)   {$q_0$};
+ \node[state] (q_1) [right=of q_0] {$q_1$};
+ \node[state](q_2) [right=of q_1] {$q_2$};
+  \path[->]
+  (q_0) edge node [below] {a} (q_1)
+        edge [loop below] node {b} ()
+  (q_1) edge node [below] {a} (q_2)
+        edge [loop below] node {b} ()
+  (q_2) edge [bend right=60] node {a} (q_0)
+        edge [loop below] node {b} ();
+\end{tikzpicture}
 
 
 \end{document}
