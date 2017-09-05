@@ -9,23 +9,15 @@
 
 %edit this for each class
 \newcommand\name{John Vincent} %%%%%%%%%%%%%%  WRITE YOUR NAME HERE
-<<<<<<< HEAD
 \newcommand\classname{COMS 311 Algorithms}
 \newcommand\assignment{HW 1}
-=======
-\newcommand\classname{}
-\newcommand\assignment{}
->>>>>>> 4bbfb4e1b44f49c7309c90fd18cf39d6418fbbe0
+
 
 
 
 \newcounter{excounter}
 \setcounter{excounter}{1}
-<<<<<<< HEAD
 \newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1})} \emph{#1} \noindent#2}
-=======
-\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}:} \emph{#1} \noindent#2}
->>>>>>> 4bbfb4e1b44f49c7309c90fd18cf39d6418fbbe0
 
 
 % You can also erase this if you do not have package hancyhdr
@@ -51,21 +43,74 @@
   \vskip 2em
 
 
-<<<<<<< HEAD
-  \question{} induction on upper bound of summation
-
-  a)
-  \begin{quote}
-    \textit{Basis:} when $n=1, \sum_{i=1}^{n}i^3 = 1, (\sum_{i=1}^{n}i)^2 = 1$\\
-    \textit{Inductive Hypothesis: } $\sum_{i=1}^{n}i^3 = (\sum_{i=1})^{n})^2$\\
-    \textit{Inductive Step: }
-    \begin{align*}
-      \sum{i=1}^{n}i^3 &=
-    \end{align*}
-  \end{quote}
-=======
   \question{}
-
->>>>>>> 4bbfb4e1b44f49c7309c90fd18cf39d6418fbbe0
+  \begin{quote}
+    a) induction on upper bound of summation
+    \begin{quote}
+      \textit{\textbf{Basis:}} when $n=1, \sum_{i=1}^{n}i^3 = 1, (\sum_{i=1}^{n}i)^2 = 1$\\
+      \textit{\textbf{Inductive Hypothesis: }} $\forall n \ge 1, \sum_{i=1}^{n}i^3 = (\sum_{i=1}^{n}i)^2$\\
+      \textit{\textbf{Inductive Step: }}
+      \begin{align*}
+        \sum_{i=1}^{n+1}i^3 &= \left(\sum_{i=1}^{n+1}i\right)^2\\
+        (n+1)^3 + \sum_{i=1}^{n}i^3 &= (n+1 + \sum_{i=1}^{n}i)(n+1 + \sum_{i=1}^{n}i)\\
+        (n+1)^3 + \left(\sum_{i=1}^{n}i\right)^2 &= (n+1)^2 + 2(n+1)\sum_{i=1}^{n}i + \left(\sum_{i=1}^{n}i\right)^2\\
+        (n+1)^3 &= (n+1)^2 + 2(n+1)(\frac{n(n+1)}{2})\\
+        (n+1)(n+1)^2 &= (n+1)^2 + n(n+1)^2\\
+        n+1 &= 1+n
+      \end{align*}
+      proving $\sum_{i=1}^{n}i^3 = (\sum_{i=1}^{n}i)^2, \forall n\ge1$ through mathematical induction
+    \end{quote}
+    b) induction on the term $n$
+    \begin{quote}
+      \textit{\textbf{Basis: }} when $n = 4, 2^n = 16, n! = 24$\\
+      \textit{\textbf{Inductive Hypothesis: }} $\forall n \ge 4, 2^n < n!$\\
+      \textit{\textbf{Inductive Step: }}
+      \begin{align*}
+        2^{n+1} &< (n+1)!\\
+        2 * 2^{n} &< n! * (n+1)\\
+        2 * 2^{n} &< n! * (n+1)
+      \end{align*}
+      since $2^{n}$ is always less than $n!$ by the Inductive Hypothesis the equation only depends on the following
+      \begin{align*}
+        2 &\le (n+1)\\
+        1 &\le n
+      \end{align*}
+      since $n$ was defined as being greater than equal to 4, $n$ will always be greater than $1$ so this proves the claim
+      by induction
+    \end{quote}
+  \end{quote}
+  \vspace{2cm}
+  \question{}
+  \begin{quote}
+    a)
+    \begin{quote}
+      \textit{\textbf{Claim:}} For every Full b-tree $T, n(T) \ge h(T).$\\
+      \textit{\textbf{Base Case:}} The b-tree with only one node has $n(T) = 1$ and $h(T) = 1$ so the claim holds.\\
+      \textit{\textbf{Inductive Hypothesis:}} assume $X, Y$ are two B-Trees such that $n(X) \ge h(X), n(X) \ge n(Y), h(X) \ge h(Y)$\\
+      \textit{\textbf{Inductive Step:}} by the definition of a full b-tree we can create a new full b-tree $Z$
+      by adding a new node, and making $X$ the right child of this node and $Y$ the left child of this node.
+      this would make $n(Z) = 1 + n(X) + n(Y), h(Z) = 1 + h(X)$, and since $n(x) \ge h(X), n(Y) \ge h(X)$ this would make
+      $n(Z) > h(Z)$\\
+      this proves the claim by structural induction.
+    \end{quote}
+    b)
+    \begin{quote}
+      \textit{\textbf{Claim:}} For every Full Binary Tree $T, i(T) \ge h(T) - 1$\\
+      \textit{\textbf{Base Case:}} consider the B-Tree $T$ with one node $i(T) = 0, h(T) = 1, i(T) = h(T) -1$\\
+      \textit{\textbf{Inductive Hypothesis:}} assume $X, Y$ are two B-Trees such that $i(X) \ge h(X)-1, i(Y) \ge h(Y)-1, h(X) \ge h(Y)$\\
+      \textit{\textbf{Inductive Step:}} a new full b-tree $Z$ can be constructed by adding a new node and make $X$ the right
+      child of this node, and $Y$ the left child of this node. $h(Z) = h(X) + 1, i(Z) = i(X) + i(Y) + 1$, since $i(X) \ge h(X)-1$
+      $i(X) \ge H(X) -1$\\
+      this proves the claim by structural induction
+    \end{quote}
+    c)
+    \begin{quote}
+      \textit{\textbf{Claim:}} For every Full Binary Tree $T, \mathbb{l}(T) = (n(T) + 1)/2$\\
+      \textit{\textbf{Base Case:}} consider the B-Tree $T$ with one node $\mathbb{l}(T) = 1, \frac{n(T)+1}{2} = 1$\\
+      \textit{\textbf{Inductive Hypothesis:}} assume $X, Y$ are two B-Trees such that $\ell(X) = (n(X) + 1)/2, \ell(Y) = (n(Y) + 1)/2,
+       n(X) \ge n(Y)$\\
+      \textit{\textbf{Inductive Step:}}
+    \end{quote}
+  \end{quote}
 
 \end{document}
