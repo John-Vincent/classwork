@@ -1,10 +1,12 @@
+--------------------------------------------------------------------------------
+matrix operations
 -------------------------------------class 3------------------------------------
 talked about some method for determining if a number is prime.
 correctness
  internal scheduling
   when events overlap in a time line internal scheduling can maximize output
   pick event with shortest time then remove all conflicts - not the best possible solution always
- 
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~first day~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 attendance to lectures is optional.
 java projects - implementation of algorithms 20%.
