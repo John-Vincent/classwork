@@ -105,12 +105,24 @@
     \end{quote}
     c)
     \begin{quote}
-      \textit{\textbf{Claim:}} For every Full Binary Tree $T, \mathbb{l}(T) = (n(T) + 1)/2$\\
-      \textit{\textbf{Base Case:}} consider the B-Tree $T$ with one node $\mathbb{l}(T) = 1, \frac{n(T)+1}{2} = 1$\\
-      \textit{\textbf{Inductive Hypothesis:}} assume $X, Y$ are two B-Trees such that $\ell(X) = (n(X) + 1)/2, \ell(Y) = (n(Y) + 1)/2,
-       n(X) \ge n(Y)$\\
-      \textit{\textbf{Inductive Step:}}
+      \textit{\textbf{Claim:}} For every Full Binary Tree $T, \ell(T) = (n(T) + 1)/2$\\
+      \textit{\textbf{Base Case:}} consider the B-Tree $T$ with one node $\ell(T) = 1, \frac{n(T)+1}{2} = 1$\\
+      \textit{\textbf{Inductive Hypothesis:}} assume $X, Y$ are two B-Trees such that $\ell(X) = (n(X) + 1)/2, \ell(Y) = (n(Y) + 1)/2$\\
+      \textit{\textbf{Inductive Step:}} a b-tree $Z$ can be constructed with one new node that has $X$ as the right child and $Y$ as the
+      left child.
+      \begin{align*}
+        \ell(Z) &= \frac{n(Z)+1}{2}\\
+        \ell(X) + \ell(Y) &= \frac{n(X) + n(Y) + 2}{2}\\
+        \ell(X) + \ell(Y) &= \frac{n(X) + 1}{2} + \frac{n(Y)+ 1}{2}\\
+        \ell(X) + \ell(Y) &= \ell(X) + \ell(Y)
+      \end{align*}
+      proving the claim by structural induction
     \end{quote}
+  \end{quote}
+
+  \question{}
+  \begin{quote}
+    
   \end{quote}
 
 \end{document}
