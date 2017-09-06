@@ -1,4 +1,6 @@
 finite automata
+  DFA minimization (NFA are turn into DFA's to minimize so its reall FA minimization)
+  
 --------------------------------------------------------------------------------
   Proving NFA and DFA are equivalent
     if there is a NFA then there is a DFA that defines the same language

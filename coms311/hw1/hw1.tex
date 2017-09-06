@@ -47,8 +47,10 @@
   \begin{quote}
     a) induction on upper bound of summation
     \begin{quote}
+      \textit{\textbf{Claim:}} \[ \forall n \ge 1, \sum_{i=1}^{n}i^3 = (\sum_{i=1}^{n}i)^2 \]\\
       \textit{\textbf{Basis:}} when $n=1, \sum_{i=1}^{n}i^3 = 1, (\sum_{i=1}^{n}i)^2 = 1$\\
-      \textit{\textbf{Inductive Hypothesis: }} $\forall n \ge 1, \sum_{i=1}^{n}i^3 = (\sum_{i=1}^{n}i)^2$\\
+      \textit{\textbf{Inductive Hypothesis: }} assume the claim, $\sum_{i=1}^{n}i^3 =
+      (\sum_{i=1}^{n}i)^2$ holds true up to some value $n$\\
       \textit{\textbf{Inductive Step: }}
       \begin{align*}
         \sum_{i=1}^{n+1}i^3 &= \left(\sum_{i=1}^{n+1}i\right)^2\\
@@ -62,8 +64,10 @@
     \end{quote}
     b) induction on the term $n$
     \begin{quote}
+      \textit{\textbf{Claim:}} \[\forall n \ge 4, 2^n < n!\]\\
       \textit{\textbf{Basis: }} when $n = 4, 2^n = 16, n! = 24$\\
-      \textit{\textbf{Inductive Hypothesis: }} $\forall n \ge 4, 2^n < n!$\\
+      \textit{\textbf{Inductive Hypothesis: }} assume the claim $2^n < n!$ holds
+      true up to some value $n$\\
       \textit{\textbf{Inductive Step: }}
       \begin{align*}
         2^{n+1} &< (n+1)!\\
@@ -79,7 +83,7 @@
       by induction
     \end{quote}
   \end{quote}
-  \vspace{2cm}
+
   \question{}
   \begin{quote}
     a)
@@ -122,7 +126,50 @@
 
   \question{}
   \begin{quote}
-    
+    \textit{\textbf{Claim:}} At the start of evey loop the $i^{\text{th}}$ term is
+    always the largest from $\{0,\ldots, i\}$\\
+    \textit{\textbf{Base Case:}} when $i=0$ there is only one index so it must
+    then also be the largest index\\
+    \textit{\textbf{Inductive Hypothesis:}} assume in the set $S=\{a[0], \ldots, a[i]\},
+    \alpha(S) = a[i]$, where $\alpha$ is a function that returns the max value of a set,
+    up to some value $i = n$.\\
+    \textit{\textbf{Inductive Step:}} show the claim holds for $i = n + 1$.\\
+    by the inductive hypothesis $alpha(\{0,\ldots,a[n]\})= a[n]$. durring the logic
+    in the last loop $a[n]$ and $a[n+1]$ where compared and the larger value
+    was placed in the $a[n+1]$ index. So $a[n+1] > a[n]$, and $\alpha(\{0,\ldots, a[n+1]\})
+    = a[n+1]$ logically follows
   \end{quote}
+
+  \question{}
+  \begin{quote}
+    \textit{\textbf{Claim 1:}} $a[n-j]\le a[n-j+1]\le a[n-1]$\\
+    \textit{\textbf{Claim 2:}} $a[n-j], a[n-j+1],\ldots a[n-1]$ are the
+    $j$ largest elements in $a$\\
+    \textit{\textbf{Base Case:}} when $j=0, a[n-j]$ is not within the bounds
+    of the array, so the set $\{a[n-j], \ldots a[n-1]\} = \theta$, so the
+    2 claims follow, since the 0 largest elements are in the set, and each
+    element of the set is smaller than the next since there are no elements\\
+    \textit{\textbf{Inductive Hypothesis:}} suppose the claims hold up to
+    some $j$, that $a[n-j]\le a[n-j+1]\le\ldots a[n-1]$, and $\{a[n-j], a[n-j+1],
+    \ldots a[n-1]\}$\\
+    \textit{\textbf{Inductive Step:}} it has been proven that the inner loop
+    will place the largest value in $\{a[0],\ldots a[i]\}$ at $a[i]$. so
+    when the inner loop exits the largest value in $\{a[0],\ldots a[n-j-2]\}$
+    at $a[n-j-2]$, if the loop was to continue for another iteration then it would
+    start at $a[n-j-1]$, and that would mean that $a[n-j-1]$ must be the largest
+    value in the set $a[0],\ldots a[n-j-1]$. proving $\{a[n-(j+1)],\ldots a[n-1]\}$
+    would contain the $j+1$ largest elements in $a$ by induction\\
+    by the induction hypothesis the set $\{a[n-j],\ldots a[n-1]\}$ contains the $j$
+    largest elements in $a$, so $a[n-j-1]\le a[n-j]$ must follow. So
+    $a[n-(j+1)]\le a[n-j]\le\ldots a[n-1]$, is true proving claim 1 by induction.
+  \end{quote}
+  \vspace{2cm}
+  \question{}
+    in the inductive step they argue that since the size of the subset of $S$
+    is $m$ that every element in the subset must have the same population by
+    the hypothesis. This howevery is not true, because the hypothesis only
+    actually supports the claim that $\{c_1,\ldots,c_m\}$ are the same size.
+    in other words its not the size of the set that matters its the actual
+    first $m$ elements of the set that the hypothesis speaks to.
 
 \end{document}
