@@ -51,8 +51,8 @@
       B number in millions &   30 &   60 &     30 & 120\\ \hline
             A\% occurences &   20 &   50 &     30 & 100\\ \hline
             B\% occurences &   25 &   50 &     25 & 100\\ \hline
-                     A CPI &   NA &   NA &     NA & 2.4\\ \hline
-                     B CPI &   NA &   NA &     NA & 2.25\\ \hline
+                     A CPI &      &      &        & 2.4\\ \hline
+                     B CPI &      &      &        & 2.25\\ \hline
     \end{tabular}
   \end{center}
   \begin{center}\underline{\% Occurences}\end{center}\vspace{-.5cm}
@@ -76,5 +76,15 @@
     \text{CPI}_{B} &= 1(.25) + 2(.5) + 4(.25)\\
                    &= .25 + 1 + 1\\
                    &= 2.25\\\\
+  \end{align*}
+  \begin{center}\underline{Execution Time}\end{center}\vspace{-.5cm}
+  \begin{align*}
+    \text{E.T.} &= \text{CPI} * \text{Instructions} * \frac{\text{Time}}{\text{Cycle}}\\\\
+    \text{E.T.}_{A} &= 2.4 * 150,000,000 * \frac{\text{Time}}{\text{Cycle}}_{A}\\
+                    &= 360,000,000 * \frac{\text{Time}}{\text{Cycle}}_{A}\\\\
+    \text{E.T.}_{B} &= 2.25 * 120,000,000 * \frac{\text{Time}}{1.2 * \text{Cycle}}_{A}\\
+                    &= \frac{270,000,000}{1.2} * \frac{\text{Time}}{\text{Cycle}}_{A}\\
+                    &= 225,000,000 * \frac{\text{Time}}{\text{Cycle}}_{A}\\\\
+    \text{E.T.}_{B} &< \text{E.T.}_{A}
   \end{align*}
 \end{document}

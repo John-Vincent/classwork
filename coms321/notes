@@ -25,7 +25,7 @@ a program X is N times faster than a program Y.
 
 Definition #2
 a program X is N% faster than a program Y
-(y Execution Time)/(X Execution Time) = 1 + N/100
+(Y Execution Time)/(X Execution Time) = 1 + N/100
 
 Andahls law for overall speedup =
 1/(time for unimproved fraction + time for improved fraction)
