@@ -1,0 +1,4 @@
+problem 1: students struggle with getting started in a linux environment
+problem 2: students don't understand command line environments
+problem 3: students are too relient on powerful IDE's making it hard for them to change environments
+problem 4: students don't know what courses are offered or what learning options there actually are
