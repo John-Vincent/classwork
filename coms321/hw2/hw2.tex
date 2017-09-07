@@ -46,7 +46,7 @@
   \begin{center}
     \begin{tabular}{r | c | c | c | c}
                            &  ALU & load & branch & total\\ \hline
-                    cycles &    1 &    2 &      4 & NA\\ \hline
+                    cycles &    1 &    2 &      4 & \\ \hline
       A number in millions &   30 &   75 &     45 & 150\\ \hline
       B number in millions &   30 &   60 &     30 & 120\\ \hline
             A\% occurences &   20 &   50 &     30 & 100\\ \hline
@@ -66,10 +66,12 @@
         1 &= .25 + .5 + .25\\
       100 &= 25 + 50 + 25
   \end{align*}\\
-  \begin{center}\underline{CPI}\end{center}\vspace{-.5cm}
+  \begin{center}\underline{CPI}\end{center}
+  \[
+    \text{CPI}     = \text{Cycles}_{\text{ALU}}(\text{ALU}\%) + \text{Cycles}_{\text{load}}(\text{load}\%) +
+        \text{Cycles}_{\text{branch}}(\text{branch}\%)
+  \]
   \begin{align*}
-    \text{CPI}     &= \text{Cycles}_{\text{ALU}}(\text{ALU}\%) + \text{Cycles}_{\text{load}}(\text{load}\%) +
-        \text{Cycles}_{\text{branch}}(\text{branch}\%)\\\\
     \text{CPI}_{A} &= 1(.2) + 2(.5) + 4(.3)\\
                    &= .2 + 1 + 1.2\\
                    &= 2.4\\\\
@@ -86,5 +88,66 @@
                     &= \frac{270,000,000}{1.2} * \frac{\text{Time}}{\text{Cycle}}_{A}\\
                     &= 225,000,000 * \frac{\text{Time}}{\text{Cycle}}_{A}\\\\
     \text{E.T.}_{B} &< \text{E.T.}_{A}
+  \end{align*}
+
+  \question{}
+  \begin{center}
+    \begin{tabular}{r | c | c | c | c}
+                           &  ALU & load & branch & total\\ \hline
+                    cycles &    2 &    4 &      6 & \\ \hline
+      A number in millions &   20 &   40 &     30 & 90\\ \hline
+      B number in millions &   25 &   50 &     20 & 95\\ \hline
+            A\% occurences &   $22.\overline{2}$ &   $44.\overline{4}$ &     $33.\overline{3}$ & 100\\ \hline
+            B\% occurences &   26 &   53 &     21 & 100\\ \hline
+                     A CPI &      &      &        & $4.\overline{2}$\\ \hline
+                     B CPI &      &      &        & 3.9\\ \hline
+    \end{tabular}
+  \end{center}
+  \begin{center}\underline{\% Occurences}\end{center}\vspace{-.5cm}
+  \begin{align*}
+  total_A &= ALU_A + load_A + branch_A\\
+       90 &= 20 + 40 + 30\\
+        1 &= .\overline{2} + .\overline{4} + .\overline{3}\\
+      100 &= 22.\overline{2} + 44.\overline{4} + 33.\overline{3}\\\\
+  total_B &= ALU_B + load_B + branch_B\\
+       95 &= 25 + 50 + 20\\
+        1 &= .26 + .53 + .21\\
+      100 &= 25 + 50 + 25
+  \end{align*}\\
+  \begin{center}\underline{CPI}\end{center}
+  \[
+    \text{CPI}     = \text{Cycles}_{\text{ALU}}(\text{ALU}\%) + \text{Cycles}_{\text{load}}(\text{load}\%) +
+        \text{Cycles}_{\text{branch}}(\text{branch}\%)
+  \]
+  \begin{align*}
+    \text{CPI}_{A} &= 2(.\overline{2}) + 4(.\overline{4}) + 6(.\overline{3})\\
+                   &= .\overline{4} + 1.\overline{7} + 1.\overline{9}\\
+                   &= 4.\overline{2}\\\\
+    \text{CPI}_{B} &= 2(.26) + 4(.53) + 6(.21)\\
+                   &= .52 + 2.12 + 1.26\\
+                   &= 3.9\\\\
+  \end{align*}
+  \begin{center}\underline{Execution Time}\end{center}\vspace{-.5cm}
+  \begin{align*}
+    \text{E.T.} &= \text{CPI} * \text{Instructions} * \frac{\text{Time}}{\text{Cycle}}\\\\
+    \text{E.T.}_{A} &= 4.\overline{2} * 90,000,000 * \frac{\text{Time}}{1.15 * \text{Cycle}}_{B}\\
+                    &= \frac{380,000,000}{1.15} * \frac{\text{Time}}{\text{Cycle}}_{B}\\
+                    &= 330,434,793 * \frac{\text{Time}}{\text{Cycle}}_{B}\\
+    \text{E.T.}_{B} &= 3.9 * 95,000,000 * \frac{\text{Time}}{\text{Cycle}}_{B}\\
+                    &= 370,500,000 * \frac{\text{Time}}{\text{Cycle}}_{B}\\\\
+    \text{E.T.}_{A} &< \text{E.T.}_{B}
+  \end{align*}
+
+  \question{}\\
+  \indent a)\\
+  \begin{align*}
+    \text{CPI} &= \frac{\text{price}_A * \text{quantity}_A + \text{price}_B * \text{quantity}_B + \text{price}_C * \text{quantity}_C}{\text{Quantity}_{\text{total}}}\\
+               &= \frac{100 * 4 + 200 * 4 + 300 * 7}{15}\\
+               &= 220
+  \end{align*}
+  \indent b)\\
+  \begin{align*}
+    \text{CPI} &= 100 * \frac{3}{12} + 200 * \frac{3}{12} + 300 * \frac{6}{12}\\
+               &= 225
   \end{align*}
 \end{document}
