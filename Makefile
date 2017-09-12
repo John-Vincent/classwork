@@ -7,7 +7,10 @@ COMS331_FILE = hw3
 COMS311_DIR = ./coms311/hw2/
 COMS311_FILE = hw2
 
-CURRENT = COMS331
+ENG314_DIR = ./engl314/problem/
+ENG314_FILE = problem
+
+CURRENT = ENG314
 
 default: $(CURRENT)
 
@@ -22,3 +25,7 @@ COMS321: $(COMS321_DIR)$(COMS321_FILE).tex
 COMS331: $(COMS331_DIR)$(COMS331_FILE).tex
 	@pdflatex -interaction=nonstopmode -output-directory $(COMS331_DIR) $(COMS331_DIR)$(COMS331_FILE).tex >> $(COMS331_DIR)latexgarbage.txt
 	@rm $(COMS331_DIR)$(COMS331_FILE).log $(COMS331_DIR)latexgarbage.txt
+
+ENG314: $(ENG314_DIR)$(ENG314_FILE).tex
+	@pdflatex -interaction=nonstopmode -output-directory $(ENG314_DIR) $(ENG314_DIR)$(ENG314_FILE).tex >> $(ENG314_DIR)latexgarbage.txt
+	@rm $(ENG314_DIR)$(ENG314_FILE).log $(ENG314_DIR)latexgarbage.txt
