@@ -1,31 +1,38 @@
-COMS321_DIR = ./coms321/hw2/
-COMS321_FILE = hw2
+CURRENT = COMS321
+
+COMS321_DIR = ./coms321/hw3/
+COMS321_FILE = hw3
+COMS321_MODE = pdf
 
 COMS331_DIR = ./coms331/hw3/
 COMS331_FILE = hw3
+COMS321_MODE = pdf
 
 COMS311_DIR = ./coms311/hw2/
 COMS311_FILE = hw2
+COMS321_MODE = pdf
 
 ENG314_DIR = ./engl314/problem/
 ENG314_FILE = problem
+COMS321_MODE = pdf
 
-CURRENT = ENG314
+default: $($(CURRENT)_DIR)$($(CURRENT)_FILE).$($(CURRENT)_MODE)
 
-default: $(CURRENT)
+engl314: CURRENT = ENG314
+engl314: $($(CURRENT)_DIR)$($(CURRENT)_FILE).$($(CURRENT)_MODE)
 
-COMS311: $(COMS311_DIR)$(COMS311_FILE).tex
-	@pdflatex -interaction=nonstopmode -output-directory $(COMS311_DIR) $(COMS311_DIR)$(COMS311_FILE).tex >> $(COMS311_DIR)latexgarbage.txt
-	@rm $(COMS311_DIR)$(COMS311_FILE).log $(COMS311_DIR)latexgarbage.txt
+coms331: CURRENT = COMS331
+coms331: $($(CURRENT)_DIR)$($(CURRENT)_FILE).$($(CURRENT)_MODE)
 
-COMS321: $(COMS321_DIR)$(COMS321_FILE).tex
-	@pdflatex -interaction=nonstopmode -output-directory $(COMS321_DIR) $(COMS321_DIR)$(COMS321_FILE).tex >> $(COMS321_DIR)latexgarbage.txt
-	@rm $(COMS321_DIR)$(COMS321_FILE).log $(COMS321_DIR)latexgarbage.txt
+coms321: CURRENT = COMS321
+coms321: $($(CURRENT)_DIR)$($(CURRENT)_FILE).$($(CURRENT)_MODE)
 
-COMS331: $(COMS331_DIR)$(COMS331_FILE).tex
-	@pdflatex -interaction=nonstopmode -output-directory $(COMS331_DIR) $(COMS331_DIR)$(COMS331_FILE).tex >> $(COMS331_DIR)latexgarbage.txt
-	@rm $(COMS331_DIR)$(COMS331_FILE).log $(COMS331_DIR)latexgarbage.txt
+coms311: CURRENT = COMS311
+coms311: $($(CURRENT)_DIR)$($(CURRENT)_FILE).$($(CURRENT)_MODE)
 
-ENG314: $(ENG314_DIR)$(ENG314_FILE).tex
-	@pdflatex -interaction=nonstopmode -output-directory $(ENG314_DIR) $(ENG314_DIR)$(ENG314_FILE).tex >> $(ENG314_DIR)latexgarbage.txt
-	@rm $(ENG314_DIR)$(ENG314_FILE).log $(ENG314_DIR)latexgarbage.txt
+%.pdf: $($(CURRENT)_DIR)$($(CURRENT)_FILE).tex
+	@pdflatex -interaction=nonstopmode -output-directory $($(CURRENT)_DIR) $($(CURRENT)_DIR)$($(CURRENT)_FILE).tex >> $($(CURRENT)_DIR)latexgarbage.txt
+	@rm $($(CURRENT)_DIR)$($(CURRENT)_FILE).log $($(CURRENT)_DIR)latexgarbage.txt
+	@echo "making $@"
+
+.PHONY: default coms321 coms331 coms311 engl314
