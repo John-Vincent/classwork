@@ -4,13 +4,14 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{tikz}
+\usetikzlibrary{automata, positioning}
 
 
 
 %edit this for each class
 \newcommand\name{John Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S 331}
+\newcommand\assignment{Homework 3}
 
 
 
@@ -43,6 +44,55 @@
 
 
   \question{}
+  \begin{quote}
+    Assume there is some finite language $L$. A finite automata with states $S$, initial state $s_0$, and final states $F$ can be constructed
+    where $|L| = |F|, \forall w \in L, \exists s_{i} \in S\hspace{1mm} \forall a_{i} \in w, s_{|w|} \in F \wedge
+    (s_{i}, a_{i}a_{i+1}\ldots a_{|w|})\vdash(s_{i+1}, a_{i+1}\ldots a_{|w|})$ basically for every string
+    in the language you can add a state for each character in the string, to the FA and then make the
+    last character's corresponding state final. Ensuring that each string will end in a final state.
+  \end{quote}
+
+  \question{}
+  \begin{quote}
+    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+      \node[state,initial, accepting] (q_0) {$q_0$};
+      \node[state, accepting] (q_1) [right=of q_0] {$q_1$};
+      \node[state, accepting] (q_2) [right=of q_1] {$q_2$};
+      \node[state, accepting] (q_3) [right=of q_2] {$q_3$};
+      \node[state] (q_4) [right=of q_3] {$q_4$};
+      \path[->]
+      (q_0) edge [loop above] node [above] {b} ()
+        edge node [below] {a} (q_1)
+      (q_1) edge node [below] {b} (q_2)
+            edge [loop below] node [below] {a} ()
+      (q_2) edge node [below] {b} (q_3)
+            edge [bend right=40] node [above] {a} (q_1)
+      (q_3) edge node [below] {a} (q_4)
+            edge [bend right=40] node [above] {b} (q_0)
+      (q_4) edge [loop right] node [right] {a,b} ();
+    \end{tikzpicture}
+  \end{quote}
+
+  \question{}
+  \begin{quote}
+    \begin{tikzpicture}[shorten >=1pt,node distance=2cm,on grid,auto]
+      \node[state] (q_0) {$S$};
+      \node[state, accepting] (q_1) [below left= of q_0] {$R_0$};
+        \node[state] (q_3) [below=of q_1] {$R_00$};
+          \node[state] (q_5) [below=of q_3] {$R_000$};
+          \node[state] (q_6) [left=of q_5] {$R_001$};
+        \node[state] (q_4) [left=of q_3] {$R_01$};
+          \node[state] (q_7) [left=of q_6] {$R_010$};
+          \node[state] (q_8) [left=of q_7] {$R_011$};
+      \node[state, accepting] (q_2) [below right=of q_0] {$R_1$};
+        \node[state] (q_9) [below=of q_2] {$R_10$};
+          \node[state] (q_11) [below=of q_9] {$R_100$};
+          \node[state] (q_12) [right=of q_11] {$R_101$};
+        \node[state] (q_10) [right=of q_9] {$R_11$};
+          \node[state] (q_13) [right=of q_12] {$R_110$};
+          \node[state] (q_14) [right=of q_13] {$R_111$};
+    \end{tikzpicture}
+  \end{quote}
 
 
 \end{document}
