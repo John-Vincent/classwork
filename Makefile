@@ -1,4 +1,4 @@
-CUR = COMS331
+CUR = COMS311
 
 COMS321_DIR = ./coms321/hw3/
 COMS321_FILE = hw3
@@ -23,4 +23,4 @@ default: $($(CUR)_DIR)$($(CUR)_FILE).$($(CUR)_MODE)
 	@rm $($(CUR)_DIR)$($(CUR)_FILE).log $($(CUR)_DIR)latexgarbage.txt
 	@echo "making $@"
 
-.PHONY:
+.PHONY: default
