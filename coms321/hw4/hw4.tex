@@ -1,0 +1,79 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+
+
+%edit this for each class
+\newcommand\name{John Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 4}
+
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+
+
+% You can also erase this if you do not have package fancyhdr
+% Fancy footnote.........
+\usepackage{fancyhdr}  %% If it does not work with your latex installation, you may just delete this...
+\pagestyle{fancy}
+\usepackage{lastpage}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \question{}
+  M2 is 100\% faster than M1 on program 1.\\
+  \indent M1 is 33\% faster than M2 on program 2.
+
+  \question{}
+  \begin{align*}
+    \text{MIPS}_{\text{M1}} &= \frac{200}{10} = 20\\
+    \text{MIPS}_{\text{M2}} &= \frac{160}{5} = 32\\
+  \end{align*}
+
+  \question{}
+  \begin{align*}
+    \text{Time} &= \text{CPI} * \text{Instructions} * \frac{1}{\text{Clock Rate}}\\\\
+    10 &= \text{CPI}_{\text{M1}} * 200*10^6 * \frac{1}{200*10^6}\\
+    \text{CPI}_{\text{M1}} &= 10\\\\
+    5 &= \text{CPI}_{\text{M2}} * 160*10^6 * \frac{1}{300*10^6}\\
+    9.375 &= \text{CPI}_{\text{M2}}
+  \end{align*}
+
+  \question{}
+  \begin{align*}
+    \text{Time} &= \text{CPI} * \text{Instructions} * \frac{1}{\text{Clock Rate}}\\\\
+    3 &= 10 * \text{Instructions}_{\text{M1}} * \frac{1}{200*10^6}\\
+    60*10^6 &=  \text{Instructions}_{\text{M1}}\\\\
+    4 &= 9.375 *\text{Instructions}_{\text{M2}} * \frac{1}{300*10^6}\\
+    128*10^6 &= \text{Instructions}_{\text{M2}}
+  \end{align*}
+
+  \question{}
+  \begin{align*}
+    \frac{\text{Cost}_{\text{M1}}}{\text{Time}_{\text{M1}}} &= \frac{10000}{10} &= 1000\\
+    \frac{\text{Cost}_{\text{M2}}}{\text{Time}_{\text{M2}}} &= \frac{15000}{5} &= 3000
+  \end{align*}
+  \indent I would buy M2 in bulk because the
+\end{document}
