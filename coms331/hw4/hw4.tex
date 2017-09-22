@@ -9,8 +9,8 @@
 
 %edit this for each class
 \newcommand\name{John Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S 331}
+\newcommand\assignment{Homework 4}
 
 
 
@@ -41,8 +41,34 @@
   {\bf \classname \hspace{1cm} \assignment\hfill \name}
   \vskip 2em
 
+  \question{}\\
+  \begin{quote}
+    Assume that L is regular, then
+    $\exists m\in \mathbb{N}, \forall x\in L, |x|>m, \exists u,v,w\in \{0,1\}^*, |uv| \le m, |v| > 0, \forall k\in \mathbb{N}, uv^kw\in L.$.
+    Consider the String $0^{\frac{m}{2}}1^{\frac{m}{2}}0^{\frac{m}{2}}1^{\frac{m}{2}}$, then
+    $u = 0^{\frac{m}{2}-i}1^{\frac{m}{2}-j}, v= 0^i1^j, w=0^{\frac{m}{2}}1^{\frac{m}{2}}: i>0\implies j=\frac{m}{2}$. since $|v| > 0$ that
+    means $j\ge 0$. When $k=0$ the first half of the string will contain
+    $0^{\frac{m}{2}-i}1^{\frac{m}{2}-j}0^{\frac{m}{2}}1^{\frac{m}{2}}$. if $j<\frac{m}{2}$ then the first half of the string will contain a run of 0's
+    a run of 1's and then another run of 0's, while the second half only contains a run of 0's followed by a run of 1's so
+    $k=0,j<\frac{m}{2}\implies uvw\not\in L$. When $j=\frac{m}{2}, i<\frac{m}{2}$ the first half of the string will only contain 0's while the second half
+    will contain both 0's and 1's, so $k=0, j=\frac{m}{2}, i<\frac{m}{2}\implies uvw\not\in L$. When $j=\frac{m}{2}, i=\frac{m}{2}$ the first half of the string
+    will contain only 0's and the second half will contain only 1's, so $k=0, j=\frac{m}{2}, i=\frac{m}{2}\implies uvw\not\in L$. Since for all values for $i,j$ cause
+    $uvw\not\in L$ when $k=0$, this valid string does not pump $\forall k\in\mathbb{N}$, which means that $L$ can not be regular.
+  \end{quote}
 
-  \question{}
-
+  \question{}\\
+  \begin{quote}
+    Assume that L is regualr, then
+    $\exists m\in \mathbb{N}, \forall x\in L, |x|>m, \exists u,v,w\in \{0,1\}^*, |uv| \le m, |v| > 0, \forall k\in \mathbb{N}, uv^kw\in L.$.
+    Consider the String $a^mb^{m+m!}$ then $u = a^{m-i}, v= a^{i}, w = b^mb^{m!}, |uv|\ne |w|$. Now consider $uv^kw$ when
+    $k=\frac{m!}{i}+1$.
+    \begin{align*}
+      |uv^k| &\ne |w|\\
+      |a^{m-i}(a^{i})^{\frac{m!}{i}+1}| &\ne |b^{m}b^{m!}|\\
+      |a^{m-i}a^{m!+i}| &\ne |b^{m}b^{m!}|\\
+      |a^{m}a^{m!}| &= |b^{m}b^{m!}|\\
+    \end{align*}
+    So this string is not in the language $\forall i,m,k\in\mathbb{N}: i\le m, k=\frac{m!}{i}+1$ which is a contradiction proving that L is not regular.
+  \end{quote}
 
 \end{document}

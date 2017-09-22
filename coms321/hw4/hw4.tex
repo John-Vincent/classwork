@@ -72,8 +72,49 @@
 
   \question{}
   \begin{align*}
-    \frac{\text{Cost}_{\text{M1}}}{\text{Time}_{\text{M1}}} &= \frac{10000}{10} &= 1000\\
-    \frac{\text{Cost}_{\text{M2}}}{\text{Time}_{\text{M2}}} &= \frac{15000}{5} &= 3000
+    \frac{\text{Cost}_{\text{M2}}}{\text{Cost}_{\text{M1}}} &= \frac{15000}{10000} = 1.5\\
+    \frac{\text{Time}_{\text{M1}}}{\text{Time}_{\text{M2}}} &= \frac{10}{5} = 2\\
+    \frac{\text{Cost}_{\text{M2}}*\text{Time}_{\text{M2}}}{\text{Cost}_{\text{M1}}*\text{Time}_{\text{M1}}} &= 1.33
   \end{align*}
-  \indent I would buy M2 in bulk because the
+  \indent I would buy M2 in bulk because it is 100\% faster than M1, and its only 50\% more expensive than M1. so the cost/preformance is 33\% better with M2.
+
+  \question{}
+  \begin{align*}
+    \text{MIPS}_{\text{peak-M1}} &= 500 \div 1\\
+    \text{MIPS}_{\text{peak-M2}} &= 750 \div 2 =375\\
+  \end{align*}
+
+  \question{}
+  \begin{align*}
+    \text{Time}_{\text{M1}} &= 2.5 * 200 * 10^6 * \frac{1}{500*10^6} = 1\\
+    \text{Time}_{\text{M2}} &= 3 * 160 * 10^6 * \frac{1}{750*10^6} = .64\\
+    \frac{1}{.64} &= 1.56
+  \end{align*}
+  \indent M2 is 56\% faster than M1.
+
+  \question{}
+  \begin{align*}
+    .64 &= 2.5 * 200 * 10^6 * \frac{1}{\text{Clock Rate}}\\
+    \text{Clock Rate} &= 781.25\text{MHz}
+  \end{align*}
+
+  \question{}\\
+  \indent a)\\
+  \begin{align*}
+    \text{MIPS}_{\text{MNFP}} &= \frac{1000}{2} = 500\\
+    \text{MIPS}_{\text{MFP}} &= \frac{1000}{.1*6 + .15*4 + .05*20 + .7*2} = \frac{1000}{3.6} = 277
+  \end{align*}
+  \indent b)
+  \begin{align*}
+    \text{Instructions} &= 300(.1*30 + .15 *20 + .5*50 + .7)\\
+    &= 9510 \text{million instructions}
+  \end{align*}
+  \indent c)
+  \begin{align*}
+    \text{Time}_{\text{MFP}} &= \frac{300}{277}\\
+    &= 1.08\\\\
+    \text{Time}_{\text{MFP}} &= \frac{9510}{500}\\
+    &= 19
+  \end{align*}
+
 \end{document}
