@@ -1,4 +1,4 @@
-CUR = ENG314
+CUR = COMS311
 
 COMS321_DIR = ./coms321/hw4/
 COMS321_FILE = hw4
@@ -8,8 +8,8 @@ COMS331_DIR = ./coms331/hw4/
 COMS331_FILE = hw4
 COMS331_MODE = pdf
 
-COMS311_DIR = ./coms311/hw2/
-COMS311_FILE = hw2
+COMS311_DIR = ./coms311/hw3/
+COMS311_FILE = jvincent-HW3
 COMS311_MODE = pdf
 
 ENG314_DIR = ./engl314/proposal/
