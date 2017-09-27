@@ -178,7 +178,25 @@
   \end{quote}
   \null\hspace{.5cm}b)
   \begin{quote}
-    
+    I would make an altered B-Tree where each node contains 5 values;
+    \begin{enumerate}
+      \item Sum of left children $S_l$.
+      \item Sum of right children $S_r$.
+      \item Number of left children $C_l$.
+      \item Number of right children $C_r$.
+      \item value $v$.
+    \end{enumerate}
+    The increment function would then have an algorithm that does the following. starting at the root $v = v+val$, then if $C_l + C_r = i$ return, else
+    if $C_r > i$ go to right child, else $i = i-C_r$ and go to left child. SS would then have the following algorithm where $T$
+    is the sum that will be returned. starting at the root node, for all nodes until an end is reached, $T = T+v$ then if $\ell = 0: T= T+S_l+S_r$ and
+    end, else if $\ell = C_r + C_l$ end, else if $\ell \ge C_r: \ell = \ell-C_r$ go to left child, else go to right child.
+    Both operations reduce the passed in index by the largest factor of 2 possible and run until the index is zero, which means they are both bounded by
+    the function $C+\log n$ where $C$ is some constant.
+  \end{quote}
+
+  \question{}\\
+  \begin{quote}
+    A standard B-Tree supports all of these operations in $O(\log n)$ time so I would just make a textbook B-Tree
   \end{quote}
 
 \end{document}
