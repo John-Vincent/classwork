@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+
+
+%edit this for each class
+\newcommand\name{John Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 5}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newcommand\op[1]{\makebox[1.5cm]{\textbf{#1}}}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+
+% You can also erase this if you do not have package fancyhdr
+% Fancy footnote.........
+\usepackage{fancyhdr}  %% If it does not work with your latex installation, you may just delete this...
+\pagestyle{fancy}
+\usepackage{lastpage}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \op{add} \$t0, \$t1, 100
+  \end{question}
+
+  \begin{question}
+    \op{lw} \$t0, 56(\$s1)\\
+    \op{add} \$t0, \$t0, \$t1
+  \end{question}
+
+  \begin{question}
+    \op{lw} \$t1, 1100(\$s1)\\
+    \op{add} \$t1, \$t1, \$t0\\
+    \op{sw} \$t1, 1100(\$s1)
+  \end{question}
+
+  \begin{question}
+    \op{add} \$s2, \$s2, \$s2\\
+    \op{add} \$s2, \$s2, \$s2\\
+    \op{lw} \$t0, 0(\$s2)\\
+    \op{add} \$t0, \$t0, \$t1
+  \end{question}
+
+  \begin{question}
+    \op{lui} \$t1, 0x003D\\
+    \op{lw} \$t2, 0x092C(\$t1)\\
+    \op{add} \$t2, \$t2, \$t0\\
+    \op{sw} \$t2, 0x0928(\$t1)
+  \end{question}
+
+  \clearpage
+
+  \begin{question}
+    a)
+    \begin{quote}
+      \op{lw} \$t1, 1400(\$s2)\\
+      \op{add} \$t1, \$t1, \$s1\\
+      \op{sw} \$t1, 1400(\$s2)
+    \end{quote}
+    b)
+    \begin{center}\begin{tabular}{ |c|c|c|c|c|c|c| }
+      \hline
+      lw & 35 & 18 & 9 & \multicolumn{3}{|c|}{1400}\\\hline
+      add & 0 & 9 & 17 & 9 & 0 & 32\\\hline
+      sw & 43 & 18 & 9 & \multicolumn{3}{|c|}{1400}\\\hline
+    \end{tabular}\end{center}
+    c)
+    \begin{center}\begin{tabular}{ |c|c|c|c|c|c|c| }
+      \hline
+      lw & 100011 & 10010 & 01001 & \multicolumn{3}{|c|}{0000010101111000}\\\hline
+      add & 000000 & 01001 & 10001 & 01001 & 000000 & 100000\\\hline
+      sw & 101011 & 10010 & 01001 & \multicolumn{3}{|c|}{0000010101111000}\\\hline
+    \end{tabular}\end{center}
+    d)
+    \begin{center}\begin{tabular}{ |c|c|c|c|c|c|c| }
+      \hline
+      lw & 23 & 12 & 9 & \multicolumn{3}{|c|}{578}\\\hline
+      add & 0 & 9 & 11 & 9 & 0 & 20\\\hline
+      sw & 23 & 12 & 9 & \multicolumn{3}{|c|}{578}\\\hline
+    \end{tabular}\end{center}
+  \end{question}
+
+\end{document}

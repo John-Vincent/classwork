@@ -4,23 +4,26 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{tikz}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
+
 
 
 %edit this for each class
-\newcommand\name{John Collin Vincent}
+\newcommand\name{John Vincent}
 \newcommand\classname{}
 \newcommand\assignment{}
 
 
+
 \newcounter{excounter}
 \setcounter{excounter}{1}
-\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
-\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}
+\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
 
 
+% You can also erase this if you do not have package fancyhdr
+% Fancy footnote.........
+\usepackage{fancyhdr}  %% If it does not work with your latex installation, you may just delete this...
 \pagestyle{fancy}
+\usepackage{lastpage}
 \rfoot{\name, page \thepage/\pageref{LastPage}}
 \cfoot{}
 \rhead{}
@@ -29,6 +32,7 @@
 \renewcommand{\footrulewidth}{0pt}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
 
 
 \begin{document}
