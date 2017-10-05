@@ -9,15 +9,15 @@
 
 %edit this for each class
 \newcommand\name{John Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S 331}
+\newcommand\assignment{Homework 6}
 
 
 
 \newcounter{excounter}
 \setcounter{excounter}{1}
-\newcommand\question[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
-
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
 
 % You can also erase this if you do not have package fancyhdr
 % Fancy footnote.........
@@ -42,7 +42,30 @@
   \vskip 2em
 
 
-  \question{}
+  \begin{question}
+    \vspace{-1cm}
+    \begin{align*}
+      S \Rightarrow (0 S 1) | E\\
+      E \Rightarrow (1 E 0) | \epsilon
+    \end{align*}
+  \end{question}
+
+  \begin{question}
+    \vspace{-1cm}
+    \begin{align*}
+      S \Rightarrow \text{a S bbb }| \text{ S b }|\text{ } \epsilon
+    \end{align*}
+  \end{question}
+
+  \begin{question}
+    \vspace{-1cm}
+    \begin{align*}
+      S &\Rightarrow \text{T = t  $|$  F = f}\\
+      T &\Rightarrow \text{(T $\vee$ A) $|$ $\neg$(F) $|$ (T $\wedge$ T) $|$ t}\\
+      F &\Rightarrow \text{(F $\vee$ F) $|$ $\neg$(T) $|$ (F $\wedge$ A) $|$ f}\\
+      A &\Rightarrow F | T
+    \end{align*}
+  \end{question}
 
 
 \end{document}
