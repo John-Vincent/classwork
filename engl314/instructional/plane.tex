@@ -7,13 +7,14 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{graphicx}
+\usepackage{subfig}
+
+\graphicspath{{engl314/instructional/}}
 
 
 %edit this for each class
 \newcommand\name{How to fold a paper plane}
 \newcommand\head[1]{\noindent{\large\textbf{#1}}:\newline}
-
-\graphicspath{{/home/collin/Documents/classwork/engl314/instructional/}}
 
 \pagestyle{fancy}
 \rfoot{\name, page \thepage/\pageref{LastPage}}
@@ -32,6 +33,7 @@
 If you throw this plane in a lecture hall or classroom your instructor will see it, and will confiscate it.
 No patent exists for paper airplane design. \label{fnt1}}
 
+
 \begin{document}
 \maketitle
 
@@ -45,8 +47,11 @@ stealth paper plane design you can\footnotemark[\ref{fnt1}]! Watch as your steal
 
 \head{Instructions}
 \begin{figure}[h]
+  \centering
   \caption{Fold the paper in half vertically (hotdog style).}
-  \center\includegraphics[width=0.33\textwidth]{/home/collin/Documents/classwork/engl314/instructional/first_fold.png}
+  \subfloat{{\includegraphics[width=0.33\textwidth]{engl314/instructional/first.png} }}
+  \qquad
+  \subfloat{{\includegraphics[width=.375\textwidth]{engl314/instructional/second.png} }}
 \end{figure}
 
 
