@@ -77,11 +77,56 @@
              & addi & \$a0, \$a0, 4        & \# Advance pointer to next source\\
              & addi & \$a1, \$a1, 4        & \# Advance pointer to next destination\\
              & addi & \$v0, \$v0, 1        & \# Increment count of words copied\\
-             & j    & loop                 &\\
+             & j    & Loop                 &\\
       end:   &&
     \end{tabular}
   \end{question}
 
   \clearpage
+
+  \begin{question}
+    a)
+    \begin{quote}
+      \begin{tabular}{ r l l l }
+        begin: & addi & \$t1, \$a0, 400      &\# sets t1 to be 100 memory addresses ahead of a0\\
+        loop:  & lw   & \$t2, 0(\$a1)        &\# loads b[i]\\
+               & add  & \$t2, \$t2, \$s0     &\# \$t2 = b[i] + c\\
+               & sw   & \$t2, 0(\$a0)        &\# a[i] = \$t2\\
+               & addi & \$a0, \$a0, 4        &\# increments the address for a\\
+               & addi & \$a1, \$a1, 4        &\# increments the address for b\\
+               & slt  & \$t2, \$t1, \$a0     &\# \$t2 is 1 if \$a0 > \$t1 (i>100)\\
+               & beq  & \$t2, \$zero, loop   &\# loops while \$t2 = 0 (i<=100)\\
+               & addi & \$a0, \$a0, -404     &\# resets the value of a0 to be a[0]\\
+               & addi & \$a1, \$a1, -404     &\# resets the value of a1 to be b[0]
+      \end{tabular}
+    \end{quote}
+    b)
+    \begin{quote}
+      $1+7*101+2 = 710$ assignments
+    \end{quote}
+    c)
+    \begin{quote}
+      $(i<=100) = 101$ jumps
+    \end{quote}
+  \end{question}
+
+  \begin{question}
+    a)
+    \begin{quote}
+      $7*9 + 5 = 68$
+    \end{quote}
+    b)
+    \begin{quote}
+      \begin{tabular}{ l r l l }
+               & add  & \$t1, \$s4, \$s4     &\# t1 = 2j\\
+               & add  & \$t1, \$t1, \$t1     &\# t1 = 4j\\
+               & add  & \$t2, \$s3, \$s6     &\# t2 adress of a[i]\\
+        loop:  & lw   & \$t0, 0(\$t2)        &\# loads a[i + m*j]\\
+               & add  & \$t2, \$t2, \$t1     &\# t2 += 4j\\
+               & beq  & \$t0, \$s5, loop     &\# loop if a[i + m*j] = k\\
+      \end{tabular}\\\\
+      $3 + 3*10 = 33$ instructions executed
+    \end{quote}
+  \end{question}
 
 \end{document}
