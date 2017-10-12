@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 6}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{tabular}{ r l l l }
+      begin: & addi & \$t0, \$zero, 0      & \# \$t0 = 0\\
+             & addi & \$t1, \$zero, 1      & \# \$t1 = 1\\
+      loop:  & slt  & \$t2, \$a0, \$t1     & \# \hspace{.5cm}$\downarrow$\\
+             & bne  & \$t2, \$zero, finish & \# while(\$a0 $<$ \$t1)\{\\
+             & add  & \$t0, \$t0, \$t1     & \# \$t0 += \$t1: sums \$t1, so all odd numbers\\
+             & addi & \$t1, \$t1, 2        & \# \$t1 += 2 :starts at 1 and counts odd numbers\\
+             & j    & loop                 & \# \}\\
+             & add  & \$v0, \$t0, 0        & \# return \$t0\\
+    \end{tabular}\\\\
+    this program sums all odd numbers that are less than the input
+  \end{question}
+
+  \begin{question}
+    \begin{tabular}{ r l l }
+      loop:  & add  & \$t0, \$s3, \$s3\\
+             & add  & \$t0, \$t0, \$t0\\
+             & add  & \$t0, \$t0, \$s5\\
+             & lw   & \$t0, 0(\$t0)\\
+             & add  & \$s1, \$s1, \$t0\\
+             & add  & \$s3, \$s3, \$s4\\
+             & bne  & \$s2, \$s3, loop
+    \end{tabular}\\\\
+  \end{question}
+
+  \begin{question}
+    \$t0 contains the largest value from $b[0]\ldots b[9]$\\
+    \$t2 contains $b[9]$
+  \end{question}
+
+  \begin{question}
+    \begin{tabular}{ r l l l }
+      Loop:  & lw   & \$v1, 0(\$a0)        & \# Read next word from source\\
+             & sw   & \$v1, 0(\$a1)        & \# Write to destination\\
+             & beq  & \$v1, \$zero, end    & \# end if word copied is $=$ 0\\
+             & addi & \$a0, \$a0, 4        & \# Advance pointer to next source\\
+             & addi & \$a1, \$a1, 4        & \# Advance pointer to next destination\\
+             & addi & \$v0, \$v0, 1        & \# Increment count of words copied\\
+             & j    & loop                 &\\
+      end:   &&
+    \end{tabular}
+  \end{question}
+
+  \clearpage
+
+\end{document}
