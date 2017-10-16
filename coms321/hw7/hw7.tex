@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 7}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    a)\\
+    \null\hspace{.5cm} 0000 0000 0000 0000 0000 0010 0000 0000\\
+    b)\\
+    \null\hspace{.5cm} 1111 1111 1111 1111 1111 1100 0000 0001\\
+    c)\\
+    \null\hspace{.5cm} 1111 1111 1100 0010 1111 0111 0000 0000
+  \end{question}
+
+  \begin{question}
+    a)\\
+    \null\hspace{.5cm}-500\\
+    b)\\
+    \null\hspace{.5cm} -1\\
+    c)\\
+    \null\hspace{.5cm} 2147483647
+  \end{question}
+
+  \begin{question}
+    a)\\
+    \null\hspace{.5cm} 0111 1111 1111 1111 1111 1111 1111 1010\\
+    b)\\
+    \null\hspace{.5cm} 0x CAFE FACE
+  \end{question}
+
+  \begin{question}
+    5910 is a counter example for both theories, $5910/6 = 985$
+    and its binary is \\0000 0000 0000 0000 0001 0111 0001 0110 which has 7 ones
+  \end{question}
+
+  \begin{question}
+    a)\\
+    \null\hspace{.5cm} -1880113152\\
+    b)\\
+    \null\hspace{.5cm} 2414854144\\
+    c)\\
+    \null\hspace{.5cm} a load word instruction from memory address 31 + 49152 offset into register 15.
+  \end{question}
+
+\end{document}
