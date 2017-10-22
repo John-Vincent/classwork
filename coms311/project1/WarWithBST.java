@@ -13,15 +13,15 @@ import java.util.ArrayList;
 public class WarWithBST
 {
 	// member fields and methods
-	
+
 	public WarWithBST(String[] s, int k)
 	{
 		// implementation
 	}
-	
+
 	public ArrayList<String> compute2k()
 	{
-		// implementation
+		ArrayList<String> ans = new ArrayList<String>();
+    return ans;
 	}
 }
-

@@ -21,82 +21,174 @@ public class BinaryST
 	public BinaryST(String[] s)
 	{
     this.root = null;
-		for(int i = 0; i < s.length; s++){
+		for(int i = 0; i < s.length; i++){
       this.add(s[i]);
     }
 	}
 
 	public int distinctSize()
 	{
-		return this.root.uniqueChildren + 1;
+    if(this.root == null){
+		  return 0;
+    } else{
+      return this.root.uniqueChildren + 1;
+    }
 	}
 
 	public int size()
 	{
-		return this.root.children + this.root.count;
+    if(this.root == null){
+      return 0;
+    } else{
+		  return this.root.children + this.root.count;
+    }
 	}
 
 	public int height()
 	{
-		return this.root.height
+    if(this.root == null){
+      return 0;
+    } else{
+		  return this.root.height;
+    }
 	}
 
 	public void add(String s)
 	{
-		this.root.insert(s);
+    if(this.root == null){
+		  this.root = new Node(s);
+    } else{
+      this.root.insert(s);
+    }
 	}
 
 	public boolean search(String s)
 	{
-		return this.root.search(s) != null;
+    if(this.root == null){
+      return false;
+    } else{
+		  return this.root.search(s) != null;
+    }
 	}
 
 	public int frequency(String s)
 	{
-		Node ans = this.root.search(s);
-    if(ans == null){
+    if(this.root == null){
       return 0;
     } else{
-      return ans.count;
+    	Node ans = this.root.search(s);
+      if(ans == null){
+        return 0;
+      } else{
+        return ans.count;
+      }
     }
 	}
 
 	public boolean remove(String s)
 	{
-    return this.root.remove(s)[0];
+    if(this.root == null){
+      return false;
+    } else{
+      return this.root.remove(s)[0];
+    }
 	}
 
 	public String[] inOrder()
 	{
-		// implementation
+		int unique = 0;
+    String[] ans;
+    if(this.root == null){
+      return new String[unique];
+    }
+    unique = this.root.uniqueChildren+1;
+    ans = new String[unique];
+    inOrder(root, ans, 0);
+    return ans;
 	}
+
+  private int inOrder(Node n, String[] ans, int i){
+    if(n == null){
+      return i;
+    }
+    i = inOrder(n.lChild, ans, i);
+    ans[i] = n.print();
+    return inOrder(n.rChild, ans, i+1);
+  }
 
 	public String[] preOrder()
 	{
-		// implementation
+		int unique = 0;
+    String[] ans;
+    if(this.root == null){
+      return new String[unique];
+    }
+    unique = this.root.uniqueChildren+1;
+    ans = new String[unique];
+    preOrder(root, ans, 0);
+    return ans;
 	}
+
+  private static int preOrder(Node n, String[] ans, int i){
+    if(n == null){
+      return i;
+    }
+    ans[i] = n.print();
+    i = preOrder(n.lChild, ans, i+1);
+    return preOrder(n.rChild, ans, i);
+  }
 
 	public int rankOf(String s)
 	{
-		// implementation
+		return rankOf(this.root, s, 0);
 	}
 
-  private class Node implements comparable{
+  private static int rankOf(Node n, String s, int rank){
+    if(n == null){
+      return rank;
+    }
+    int compare = n.compareTo(s);
+    if(compare > 0){
+      rank = rankOf(n.lChild, s, rank);
+    } else if(compare < 0){
+      if(n.lChild != null){
+        rank += n.lChild.children + n.lChild.count;
+      }
+      rank = rankOf(n.rChild, s, rank + n.count);
+    } else if(n.lChild != null){
+      rank += n.lChild.children + n.lChild.count;
+    }
+    return rank;
+  }
 
-    public final String value;
+  /**
+   * this is the class that will be used for the Nodes in the tree, the methods in the Node class will handle most
+   * of the logic for the BST operations.
+   */
+  private class Node implements Comparable<String>{
 
+    //This String this Node represents
+    public String value;
+
+    //pointer to this Node's left child
     public Node lChild = null;
 
+    //pointer to this Node's right child
     public Node rChild = null;
 
-    public Node Parent = null;
+    //pointer to this nodes parent
+    public Node parent = null;
 
+    //height of this Node in the tree, leafs are 1 the parent is = 1 + the height if its highest child
     public int height = 1;
 
+    //number of occurences of this string
     public int count = 1;
 
+    //number of Strings inserted below this Node
     public int children = 0;
 
+    //number of Nodes inserted below this Node
     public int uniqueChildren = 0;
 
     public Node(String value){
@@ -115,7 +207,7 @@ public class BinaryST
       if(compare > 0){
         if(this.lChild == null){
           result = true;
-          this.lChild = new Node(s);
+          this.lChild = new Node(s, this);
           this.increment(true);
         } else{
           result = this.lChild.insert(s);
@@ -124,7 +216,7 @@ public class BinaryST
       } else if(compare < 0){
         if(this.rChild == null){
           result = true;
-          this.rChild = new Node(s);
+          this.rChild = new Node(s, this);
           this.increment(true);
         } else{
           result = this.rChild.insert(s);
@@ -168,11 +260,17 @@ public class BinaryST
         } else{
           ans = this.rChild.remove(s);
         }
+        if(ans[0]){
+          this.decrement(ans[1]);
+        }
       } else if(compare > 0){
         if(this.lChild == null){
           ans[0] = false;
         } else{
           ans = this.lChild.remove(s);
+        }
+        if(ans[0]){
+          this.decrement(ans[1]);
         }
       } else{
         ans[0] = true;
@@ -182,10 +280,18 @@ public class BinaryST
         } else{
           ans[1] = true;
           Node replacement = this.findReplacement(true);
-          replacement
+          if(replacement == null){
+            if(this.parent.lChild == this){
+              this.parent.lChild = null;
+            } else{
+              this.parent.rChild = null;
+            }
+          } else{
+            this.value = replacement.value;
+            this.count = replacement.count;
+          }
         }
       }
-
       return ans;
     }
 
@@ -200,27 +306,42 @@ public class BinaryST
      */
     private Node findReplacement(boolean first){
       Node ans;
-      this.uniqueChildren--;
-      this.children--;
       if(first){
         if(this.lChild == null){
           ans = this.rChild;
           this.rChild = null;
         } else if(this.rChild == null){
-          ans = this.lChild
+          ans = this.lChild;
           this.lChild = null;
         } else{
           ans = this.rChild.findReplacement(false);
         }
+        this.calcHeight();
+        this.children -= ans.count;
+        this.uniqueChildren -= 1;
       } else{
         if(this.lChild == null){
-          this.parent.lChild = null;
+          if(this.parent != null){
+            if(this.parent.lChild == this){
+              this.parent.lChild = this.rChild;
+            } else{
+              this.parent.rChild = this.rChild;
+            }
+          }
+          if(this.rChild != null){
+            this.rChild.parent = this.parent;
+          }
+          this.rChild = null;
+          this.parent = null;
           ans = this;
         } else{
           ans = this.lChild.findReplacement(false);
+          this.calcHeight();
+          this.children -= ans.count;
+          this.uniqueChildren -= 1;
         }
       }
-      this.calcHeight();
+
       return ans;
     }
 
@@ -233,19 +354,59 @@ public class BinaryST
      */
     private void appendRight(Node n){
       if(this.rChild == null){
-        this.rChild = n
+        this.rChild = n;
+        n.parent = this;
       } else {
-        this.rChild.appendRight(Node);
+        this.rChild.appendRight(n);
       }
+      this.children += n.children + n.count;
+      this.uniqueChildren += n.uniqueChildren + 1;
       this.calcHeight();
     }
 
+    /**
+     * appends node n to the left most child of this node and then recalculates the height up to
+     * the node that this method was called on.
+     * @param  Node                    n node to be appended to the first empty right child spot
+     * @author Collin Vincent collinvincent96@gmail.com
+     * @date   2017-10-22T16:47:40+000
+     */
+    private void appendLeft(Node n){
+      if(this.lChild == null){
+        this.lChild = n;
+        n.parent = this;
+      } else {
+        this.lChild.appendRight(n);
+      }
+      this.children += n.children + n.count;
+      this.uniqueChildren += n.uniqueChildren + 1;
+      this.calcHeight();
+    }
+
+    /**
+     * adds a child to this Node
+     * @param  boolean                 unique if true then the uniqueChild counter will also be incremented and the height will be recalculated
+     * @author Collin Vincent collinvincent96@gmail.com
+     * @date   2017-10-22T19:55:27+000
+     */
     private void increment(boolean unique){
-      this.children++
+      this.children++;
       if(unique){
-        this.uniqueChildren++
+        this.uniqueChildren++;
         this.calcHeight();
       }
+    }
+
+    private void decrement(boolean unique){
+      this.children--;
+      if(unique){
+        this.uniqueChildren--;
+        this.calcHeight();
+      }
+    }
+
+    public String print(){
+      return this.value;
     }
 
     private void calcHeight(){
@@ -254,6 +415,7 @@ public class BinaryST
       this.height = lHeight < rHeight ? rHeight + 1 : lHeight + 1;
     }
 
+    @Override
     public int compareTo(String other){
       return this.value.compareTo(other);
     }

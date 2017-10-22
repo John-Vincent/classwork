@@ -9,8 +9,12 @@ COMS331_FILE = hw8
 COMS331_MODE = pdf
 
 COMS311_DIR = ./coms311/project1/
-COMS311_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash)
+COMS311_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash test)
 COMS311_MODE = class
+
+COMS311_2_DIR = ./coms311/project1/
+COMS311_2_FILE = jvincent-HW4
+COMS311_2_MODE = pdf
 
 ENG314_DIR = ./engl314/instructional/
 ENG314_FILE = plane
@@ -30,5 +34,13 @@ makebin:
 	@[  -d $($(CUR)_DIR)/bin ] || echo "making bin folder"
 	@[  -d $($(CUR)_DIR)/bin ] || mkdir $($(CUR)_DIR)/bin
 
+clean: clean/$($(CUR)_MODE)
+	@echo "$(CUR) is now clean"
 
-.PHONY: default makebin
+clean/class:
+	@rm -r $($(CUR)_DIR)/bin
+
+clean/pdf:
+	@rm $($(CUR)_DIR)$($(CUR)_FILE).{pdf,log,aux} $($(CUR)_DIR)latexgarbage.txt
+
+.PHONY: default makebin clean clean/class clean/pdf

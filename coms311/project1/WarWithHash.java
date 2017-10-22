@@ -13,15 +13,16 @@ import java.util.ArrayList;
 public class WarWithHash
 {
 	// member fields and methods
-	
+
 	public WarWithHash(String[] s, int k)
 	{
 		// implementation
 	}
-	
+
 	public ArrayList<String> compute2k()
 	{
-		// implementation
+		ArrayList<String> ans = new ArrayList<String>();
+
+    return ans;
 	}
 }
-
