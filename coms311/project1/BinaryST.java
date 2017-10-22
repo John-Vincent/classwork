@@ -199,15 +199,45 @@ public class BinaryST
      * @date   2017-10-22T00:50:41+000
      */
     private Node findReplacement(boolean first){
-      if(this.lChild != null && this.rChild != null){
-
-      } else if(this.lChild != null){
-
-      } else if(this.rChild != null){
-
+      Node ans;
+      this.uniqueChildren--;
+      this.children--;
+      if(first){
+        if(this.lChild == null){
+          ans = this.rChild;
+          this.rChild = null;
+        } else if(this.rChild == null){
+          ans = this.lChild
+          this.lChild = null;
+        } else{
+          ans = this.rChild.findReplacement(false);
+        }
       } else{
-        return null;
+        if(this.lChild == null){
+          this.parent.lChild = null;
+          ans = this;
+        } else{
+          ans = this.lChild.findReplacement(false);
+        }
       }
+      this.calcHeight();
+      return ans;
+    }
+
+    /**
+     * appends node n to the right most child of this node and then recalculates the height up to
+     * the node that this method was called on.
+     * @param  Node                    n node to be appended to the first empty right child spot
+     * @author Collin Vincent collinvincent96@gmail.com
+     * @date   2017-10-22T16:47:40+000
+     */
+    private void appendRight(Node n){
+      if(this.rChild == null){
+        this.rChild = n
+      } else {
+        this.rChild.appendRight(Node);
+      }
+      this.calcHeight();
     }
 
     private void increment(boolean unique){
