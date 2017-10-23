@@ -23,7 +23,7 @@ public class WarWithBST
     for(int i = 0; i < s.length; i++){
       for(int j = 0; j < s.length; j++){
         if(j != i){
-          ans.add(s[i] + s[j%s.length]);
+          ans.add(s[i] + s[j]);
         }
       }
     }

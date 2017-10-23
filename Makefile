@@ -1,4 +1,4 @@
-CUR = COMS311
+CUR = COMS311_2
 
 COMS321_DIR = ./coms321/hw7/
 COMS321_FILE = hw7
@@ -12,7 +12,7 @@ COMS311_DIR = ./coms311/project1/
 COMS311_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash test)
 COMS311_MODE = class
 
-COMS311_2_DIR = ./coms311/project1/
+COMS311_2_DIR = ./coms311/hw4/
 COMS311_2_FILE = jvincent-HW4
 COMS311_2_MODE = pdf
 

@@ -8,7 +8,8 @@
 //  (i.e., you may include java.util.ArrayList etc. here, but not junit, apache commons, google guava, etc.)
 
 import java.util.ArrayList;
-
+import java.util.iterator;
+import java.util.Arrays;
 
 public class WarWithArray
 {
@@ -24,7 +25,7 @@ public class WarWithArray
     for(int i = 0; i < s.length; i++){
       for(int j = 0; j < s.length; j++){
         if(j != i){
-          ans.add(s[i] + s[j%s.length]);
+          ans.add(s[i] + s[j]);
         }
       }
     }
@@ -32,6 +33,21 @@ public class WarWithArray
 
 	public ArrayList<String> compute2k()
 	{
-    return ans;
+    Iterator<String> it = ans.iterator();
+    String cur;
+    String sub;
+
+    Arrays.sort(this.S);
+
+    while(it.hasNext()){
+      cur = it.next();
+      for(int i = this.size; i <= cur.length(); i++){
+        sub = cur.substring(i-this.size, i);
+        if(Arrays.binarySearch(this.S, sub) < 0){
+          it.remove();
+          break;
+        }
+      }
+    }
 	}
 }

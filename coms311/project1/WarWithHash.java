@@ -6,24 +6,23 @@
 
 // DO NOT INCLUDE LIBRARIES OUTSIDE OF THE JAVA STANDARD LIBRARY
 //  (i.e., you may include java.util.ArrayList etc. here, but not junit, apache commons, google guava, etc.)
-
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashSet;
 
 public class WarWithHash
 {
-	private Hashtable<String, String> S;
+	private HashSet<String> S;
   private int size;
   private ArrayList<String> ans;
 
 	public WarWithHash(String[] s, int k)
 	{
 		ans = new ArrayList<String>();
-    this.S = new Hashtable<String, String>();
+    this.S = new HashSet<String>();
     for(int i = 0; i < s.length; i++){
       for(int j = 0; j < s.length; j++){
         if(j != i){
-          ans.add(s[i] + s[j%s.length]);
+          ans.add(s[i] + s[j]);
         }
       }
     }

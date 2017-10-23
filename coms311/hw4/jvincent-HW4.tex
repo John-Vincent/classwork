@@ -10,8 +10,8 @@
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S 311}
+\newcommand\assignment{Homework 4}
 
 
 \newcounter{excounter}
@@ -39,6 +39,16 @@
 
 
   \begin{question}
+    \center
+    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+      \node [circle,draw] (z){$59$}
+        child {node [circle,draw] (a) {$10$}
+          child {node [circle,draw] (b) {$11$}
+            child {node [circle,draw] (d) {$12$}}
+            child {node [circle,draw] (e) {$13$}}
+          }
+        };
+    \end{tikzpicture}
   \end{question}
 
 
