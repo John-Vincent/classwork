@@ -107,6 +107,14 @@ public class BinaryST
     return ans;
 	}
 
+  /**
+   * recursive function that fills the array with the strings in the tree
+   * in order
+   * @param  Node     n             the current Node
+   * @param  String[] ans           the array of Strings
+   * @param  int      i             the current vacant index
+   * @return          the next vacant index after this funtion completes
+   */
   private int inOrder(Node n, String[] ans, int i){
     if(n == null){
       return i;
@@ -129,6 +137,13 @@ public class BinaryST
     return ans;
 	}
 
+  /**
+   * recursive function used to print the tree pre order.
+   * @param  Node     n             the current node
+   * @param  String[] ans           the array of strings
+   * @param  int      i             the current location that needs to be filled
+   * @return          the next free index after this function returns.
+   */
   private static int preOrder(Node n, String[] ans, int i){
     if(n == null){
       return i;
@@ -297,8 +312,8 @@ public class BinaryST
 
     /**
      * returns a detached node that can be inserted into the place of the node
-     * this method was called on. This method also takes care of decrementing the children and unique children fields of the
-     * nodes it passes over while finding the replacement.
+     * this method was called on. This method also takes care of decrementing the children and unique children fields
+     * as well as recalculating the heights of the nodes it passes over while finding the replacement.
      * @param  boolean                 first true if this is the base element that the method was called on
      * @return Node                    A Node that is a child of the root node that has been detached from the graph. null if there are no children.
      * @author Collin Vincent collinvincent96@gmail.com
@@ -307,12 +322,29 @@ public class BinaryST
     private Node findReplacement(boolean first){
       Node ans;
       if(first){
+        if(this.lChild == null && this.rChild == null){
+          return null;
+        }
         if(this.lChild == null){
           ans = this.rChild;
-          this.rChild = null;
+          this.lChild = ans.lChild;
+          this.rChild = ans.rChild;
+          if(ans.lChild != null){
+            ans.lChild.parent = this;
+          }
+          if(ans.rChild != null){
+            ans.rChild.parent = this;
+          }
         } else if(this.rChild == null){
           ans = this.lChild;
-          this.lChild = null;
+          this.lChild = ans.lChild;
+          this.rChild = ans.rChild;
+          if(ans.lChild != null){
+            ans.lChild.parent = this;
+          }
+          if(ans.rChild != null){
+            ans.rChild.parent = this;
+          }
         } else{
           ans = this.rChild.findReplacement(false);
         }
@@ -321,6 +353,12 @@ public class BinaryST
         this.uniqueChildren -= 1;
       } else{
         if(this.lChild == null){
+          if(this.value == "lat"){
+            System.out.println(this.parent);
+            System.out.println(this.rChild);
+            this.parent.rChild = null;
+          }
+
           if(this.parent != null){
             if(this.parent.lChild == this){
               this.parent.lChild = this.rChild;
@@ -331,8 +369,8 @@ public class BinaryST
           if(this.rChild != null){
             this.rChild.parent = this.parent;
           }
-          this.rChild = null;
           this.parent = null;
+          this.rChild = null;
           ans = this;
         } else{
           ans = this.lChild.findReplacement(false);
