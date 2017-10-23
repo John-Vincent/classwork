@@ -27,6 +27,7 @@
 \lhead{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\newcommand\tab{\null\hspace{.4cm}}
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 
@@ -39,16 +40,69 @@
 
 
   \begin{question}
-    \center
-    \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
-      \node [circle,draw] (z){$59$}
-        child {node [circle,draw] (a) {$10$}
-          child {node [circle,draw] (b) {$11$}
-            child {node [circle,draw] (d) {$12$}}
-            child {node [circle,draw] (e) {$13$}}
+    a)\\
+    \begin{center}
+      \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+        \node [circle,draw] (a){$59$}
+          child {node [circle,draw] (b) {$12$}
+            child {node [circle,draw] (c) {$9$}
+              child {node [circle,draw] (d) {$2$}}
+              child{node [circle,draw] (i) {$8$}}
+            }
+            child {node [circle,draw] (e) {$10$}}
           }
-        };
-    \end{tikzpicture}
+          child{node [circle,draw] (f) {$52$}
+            child{node [circle,draw] (g) {$5$}}
+            child{node [circle,draw] (h) {$13$}}
+          };
+      \end{tikzpicture}
+    \end{center}
+    b)
+    \begin{quote}
+      you would remove 59 and replace it with 8 then heapify down until 8 settles into a spot.
+    \end{quote}
+    \begin{center}
+      \begin{tikzpicture}[level/.style={sibling distance=60mm/#1}]
+        \node [circle,draw] (a){$52$}
+          child {node [circle,draw] (b) {$12$}
+            child {node [circle,draw] (c) {$9$}
+              child {node [circle,draw] (d) {$2$}}
+            }
+            child {node [circle,draw] (e) {$10$}}
+          }
+          child{node [circle,draw] (f) {$13$}
+            child{node [circle,draw] (g) {$5$}}
+            child{node [circle,draw] (h) {$8$}}
+          };
+      \end{tikzpicture}
+    \end{center}
+  \end{question}
+
+  \begin{question}
+  \end{question}
+
+  \begin{question}
+    a)
+    \begin{quote}
+      \[ 2(n-2) + 1 = 2n-3 \]
+    \end{quote}
+    b)
+    \begin{quote}
+      B = Array[$\floor{log_2 n}$+1][n]\\
+      B[0] = deepCopy(A)\\
+      c = $\floor{n/2}$\\
+      r = n\%2\\
+      For i in range 1 to B.length\{\\
+      \tab For j in range 0 to c\{\\
+      \tab\tab B[i][j] = B[i-1][2j] $>$ B[i-1][2j+1] ? B[i-1][2j] : B[i-1][2j+1]\\
+      \tab \}\\
+      \tab if(r == 1)\{\\
+      \tab\tab B[i][c] = B[i-1][2c+1]\\
+      \tab \}\\
+      \tab r = c\%2\\
+      \tab c = $\floor{\text{c/2}}$\\
+      \}%now just loop through and find the second largest elemnt, it must have been beaten by the largest somewhere
+    \end{quote}
   \end{question}
 
 
