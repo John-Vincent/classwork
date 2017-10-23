@@ -296,10 +296,14 @@ public class BinaryST
           ans[1] = true;
           Node replacement = this.findReplacement(true);
           if(replacement == null){
-            if(this.parent.lChild == this){
-              this.parent.lChild = null;
+            if(this.parent != null){
+              if(this.parent.lChild == this){
+                this.parent.lChild = null;
+              } else{
+                this.parent.rChild = null;
+              }
             } else{
-              this.parent.rChild = null;
+              BinaryST.this.root = null;
             }
           } else{
             this.value = replacement.value;

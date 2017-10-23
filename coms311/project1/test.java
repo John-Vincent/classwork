@@ -1,56 +1,40 @@
 
 import java.util.Arrays;
+import java.util.ArrayList;
 
 public abstract class test{
 
   static String[] testSet = new String[] {
-    "matt", //0
-    "bat",  //1
-    "fat",  //2
-    "cat",  //3
-    "lat",  //4
-    "hat",  //5
-    "nat",  //6
-    "spat", //7
-    "tat",  //8
-    "sat",  //9
-    "pat",  //10
-    "plat", //11
-    "rat",  //12
-    "matt"  //13
+    "matt",     //0
+    "bat",      //1
+    "fat",      //2
+    "cat",      //3
+    "lat",      //4
+    "hat",      //5
+    "nat",      //6
+    "spat",     //7
+    "tat",      //8
+    "sat",      //9
+    "pat",      //10
+    "plat",     //11
+    "rat",      //12
+    "begining", //13
+    "bananas",  //14
+    "lirik",    //15
+    "cap",      //16
+    "wap",      //17
+    "rolf",     //18
+    "trystan"   //19
   };
 
-  static BinaryST testTree = new BinaryST(testSet);
+  static BinaryST testTree = new BinaryST();
 
   static String spacing = "";
 
   public static void main(String[] args){
-    for(int i = 0; i < 30; i++){
-      spacing += '-';
-    }
-    printTree();
-    testTree.remove(testSet[0]);
-    printTree();
-    testTree.remove(testSet[13]);
-    printTree();
-    testTree.remove(testSet[2]);
-    printTree();
-    testTree.remove(testSet[10]);
-    printTree();
-    testTree.remove(testSet[9]);
-    printTree();
-    testTree.remove(testSet[7]);
-    printTree();
-    testTree.remove(testSet[1]);
-    printTree();
-    testTree.remove(testSet[5]);
-    printTree();
-    testTree.remove(testSet[8]);
-    printTree();
-    testTree.remove(testSet[4]);
-    printTree();
-    testTree.remove(testSet[11]);
-    printTree();
+    //testAddRemove();
+    //testFrequency();
+    testRankOf();
   }
 
   public static boolean testConstructors(){
@@ -60,6 +44,84 @@ public abstract class test{
       tree.add(testSet[i]);
     }
     return Arrays.equals(tree.inOrder(), tree2.inOrder()) && Arrays.equals(tree.preOrder(), tree2.preOrder());
+  }
+
+  public static void testAddRemove(){
+    ArrayList<String> additions = new ArrayList<String>();
+    int index;
+    spacing = "";
+
+    for(int i = 0; i < 30; i++){
+      spacing += '-';
+      index = (int)(Math.random() * 20);
+      additions.add(testSet[index]);
+      testTree.add(testSet[index]);
+    }
+    System.out.println(spacing);
+    System.out.println("Strings entered: " + Arrays.toString(additions.toArray()));
+    printTree();
+    for(int i = 0; i < 10; i++){
+      index = (int)(Math.random() * additions.size());
+      System.out.println("removing: " + additions.get(index));
+      testTree.remove(additions.remove(index));
+      index = (int)(Math.random() * additions.size());
+      System.out.println("removing: " + additions.get(index));
+      testTree.remove(additions.remove(index));
+      index = (int)(Math.random() * additions.size());
+      System.out.println("removing: " + additions.get(index));
+      testTree.remove(additions.remove(index));
+      printTree();
+    }
+  }
+
+  public static void testFrequency(){
+    ArrayList<String> additions = new ArrayList<String>();
+    int index;
+    String[] list = new String[30];
+    spacing = "";
+
+    for(int i = 0; i < 30; i++){
+      spacing += '-';
+      index = (int)(Math.random() * 20);
+      if(!additions.contains(testSet[index])){
+        additions.add(testSet[index]);
+      }
+      list[i] = testSet[index];
+      testTree.add(testSet[index]);
+    }
+    Arrays.sort(list);
+    System.out.println(spacing);
+    System.out.println("Strings entered: " + Arrays.toString(list));
+    printTree();
+    while(additions.size() > 0){
+      System.out.println(additions.get(0) + " occurs " + testTree.frequency(additions.remove(0)) + " times");
+    }
+  }
+
+  public static void testRankOf(){
+    ArrayList<String> additions = new ArrayList<String>();
+    int index;
+    String[] list = new String[30];
+    spacing = "";
+
+    for(int i = 0; i < 30; i++){
+      spacing += '-';
+      index = (int)(Math.random() * 20);
+      if(!additions.contains(testSet[index])){
+        additions.add(testSet[index]);
+      }
+      list[i] = testSet[index];
+      testTree.add(testSet[index]);
+    }
+    Arrays.sort(list);
+    System.out.println(spacing);
+    System.out.println("Strings entered: " + Arrays.toString(list));
+    printTree();
+    System.out.println("Rank of a: " + testTree.rankOf("a"));
+    System.out.println("Rank of z: " + testTree.rankOf("z"));
+    System.out.println("Rank of fg:" + testTree.rankOf("fg"));
+    System.out.println("Rank of dd:" + testTree.rankOf("dd"));
+    System.out.println("Rank of qr:" + testTree.rankOf("qr"));
   }
 
   public static int testSize(){

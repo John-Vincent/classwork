@@ -12,16 +12,26 @@ import java.util.ArrayList;
 
 public class WarWithArray
 {
-	// member fields and methods
+	private String[] S;
+  private int size;
+  private ArrayList<String> ans;
 
 	public WarWithArray(String[] s, int k)
 	{
-		// implementation
+		this.S = s;
+    this.size = k;
+    ans = new ArrayList<String>();
+    for(int i = 0; i < s.length; i++){
+      for(int j = 0; j < s.length; j++){
+        if(j != i){
+          ans.add(s[i] + s[j%s.length]);
+        }
+      }
+    }
 	}
 
 	public ArrayList<String> compute2k()
 	{
-		ArrayList<String> ans = new ArrayList<String>();
     return ans;
 	}
 }

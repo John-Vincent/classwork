@@ -12,11 +12,21 @@ import java.util.ArrayList;
 
 public class WarWithBST
 {
-	// member fields and methods
+	private BinaryST S;
+  private int size;
+  private ArrayList<String> ans;
 
 	public WarWithBST(String[] s, int k)
 	{
-		// implementation
+		ans = new ArrayList<String>();
+    this.S = new BinaryST(s);
+    for(int i = 0; i < s.length; i++){
+      for(int j = 0; j < s.length; j++){
+        if(j != i){
+          ans.add(s[i] + s[j%s.length]);
+        }
+      }
+    }
 	}
 
 	public ArrayList<String> compute2k()
