@@ -6,6 +6,41 @@
 \usepackage{tikz}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
 
 
 %edit this for each class
@@ -86,23 +121,89 @@
     \begin{quote}
       \[ 2(n-2) + 1 = 2n-3 \]
     \end{quote}
+    \clearpage
     b)
-    \begin{quote}
-      B = Array[$\floor{log_2 n}$+1][n]\\
-      B[0] = deepCopy(A)\\
-      c = $\floor{n/2}$\\
-      r = n\%2\\
-      For i in range 1 to B.length\{\\
-      \tab For j in range 0 to c\{\\
-      \tab\tab B[i][j] = B[i-1][2j] $>$ B[i-1][2j+1] ? B[i-1][2j] : B[i-1][2j+1]\\
-      \tab \}\\
-      \tab if(r == 1)\{\\
-      \tab\tab B[i][c] = B[i-1][2c+1]\\
-      \tab \}\\
-      \tab r = c\%2\\
-      \tab c = $\floor{\text{c/2}}$\\
-      \}%now just loop through and find the second largest elemnt, it must have been beaten by the largest somewhere
-    \end{quote}
+    \begin{lstlisting}[language=javascript]
+      n1 = null;
+      n2 = new Node(A[0]);
+      for(var i = 1; i < A.length; i++){
+        n1 = new Node(A[i]);
+        n1.next = n2;
+        n2 = n1;
+      }
+      n3 = n4 = null;
+      newLevel = false;
+      //makes a graph of linked nodes in the shape of a pyramid, nodes on a level are linked one direction through the next pointer
+      //all nodes that get compared are linked, the larger value gets a clone in the next level with a pointer to it
+      // will complete after log_2 n levels are formed with the last level, ends when it starts on a level with only 1 element
+      while(!newLevel || n2.next){
+        newLevel = false;
+        n1 = n2.next;
+        if(n1){
+          n2.compare = n1;
+          n1.compare = n2;
+          if(n1.value > n2.value){
+            n3 = new Node(n1.value);
+            n3.parent = n1
+          }else{
+            n3 = new Node(n2.value);
+            n3.parent = n2;
+          }
+          n3.next = n4;
+          n4 = n3;
+          if(n1.next){
+            n2 = n1.next;
+          }else{
+            n4 = null;
+            n2 = n3;
+            newLevel = true;
+          }
+        } else{
+          newLevel = true;
+          n3 = new Node(n2.value);
+          n3.parent = n2;
+          n3.next = n4;
+          n4 = null;
+          n2 = n3;
+        }
+      }
+      largest = n2.value
+      n2 = n2.parent;
+      second = n2.compare.value;
+      while(n2.parent){
+        n2 = n2.parent;
+        if(n2.compare && n2.compare.value > second){
+          second = n2.compare.value;
+        }
+      }
+    \end{lstlisting}
+    the number of comparisons for the first while loop which finds the largest element is $n-1$, and the number of comparisions to go back down the graph and find the second largest
+    is $\log_2 (n-1)$, so the overall number of comparisions is $n-1+\log_2 (n-1)$
+  \end{question}
+
+  \begin{question}
+    \begin{lstlisting}[language=javascript]
+      b = Array(n);
+      c = Array(k);
+      smallest = null;
+      sub = 0;
+      for(i = 0; i < k; i++){
+        c[i] = 0;
+      }
+      for(i = 0; i < n; i++){
+        smallest = a[c[0]*k];
+        sub = 0;
+        for(j = 1; j < k; j++){
+          if(a[c[j]*k + j] < smallest){
+            smallest = a[c[j]*k + j];
+            sub = j;
+          }
+        }
+        c[sub]++;
+        b[i] = smallest;
+      }
+    \end{lstlisting}
+    This runs in $n*k$ time and it is essentally mimicking the second half of the merge sort algorithm since we start with k sorted sub arrays.
   \end{question}
 
 
