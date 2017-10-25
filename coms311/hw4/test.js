@@ -8,10 +8,11 @@ Node = function(val){
 //A = [27,1,2,3,51,5,6,7,8,0];
 //calc();
 k = 3
-a = [1, 32, 12, 43, 53, 23, 64, 65, 34, 91, 66, 45, 100, 72, 56, 112];
+a = [1, 32, -12, 43, -53, -23, 64, 65, -34, 91, -66, 45, -100, -72, -56, 112];
 
 n = a.length;
-sort();
+//sort();
+calcMax();
 
 function calc(){
   n1 = null;
@@ -92,4 +93,28 @@ function sort(){
     b[i] = smallest;
   }
   console.log(b);
+}
+
+
+function calcMax(){
+  cur_max = {start: 0, end: 0, sum: 0};
+  max = {start: 0, end: 0, sum: 0}
+
+  for(i = 0; i < a.length; i++){
+    if(cur_max.sum + a[i] < a[i]){
+      cur_max.start = i;
+      cur_max.end = i;
+      cur_max.sum = a[i];
+    } else{
+      cur_max.sum += a[i];
+      cur_max.end = i;
+    }
+    if(max.sum < cur_max.sum){
+      max.sum = cur_max.sum;
+      max.start = cur_max.start;
+      max.end  = cur_max.end;
+    }
+  }
+
+  console.log(max);
 }
