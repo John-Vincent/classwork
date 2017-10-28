@@ -27,14 +27,42 @@ public abstract class test{
     "trystan"   //19
   };
 
+  static String testString = "Stranger Things Season 2 is pretty good but no where near as good as Season 1";
+
   static BinaryST testTree = new BinaryST();
 
   static String spacing = "";
 
+  static int size = 5;
+
   public static void main(String[] args){
     //testAddRemove();
     //testFrequency();
-    testRankOf();
+    //testRankOf();
+    ArrayList<String> testSet2L = new ArrayList<String>();
+    for(int i = size; i <= testString.length(); i++){
+      testSet2L.add(testString.substring(i-size, i));
+    }
+
+    String[] testSet2 = new String[testSet2L.size()];
+    testSet2 = testSet2L.toArray(testSet2);
+
+    System.out.println(Arrays.toString(testSet2));
+
+    WarWithArray wwa = new WarWithArray(testSet2, 4);
+    WarWithBST wwb = new WarWithBST(testSet2, 4);
+    WarWithHash wwh = new WarWithHash(testSet2, 4);
+    WarWithRollHash wwr = new WarWithRollHash(testSet2, 4);
+
+    System.out.println(System.currentTimeMillis());
+    System.out.println(Arrays.toString(wwa.compute2k().toArray()));
+    System.out.println(System.currentTimeMillis());
+    System.out.println(Arrays.toString(wwb.compute2k().toArray()));
+    System.out.println(System.currentTimeMillis());
+    System.out.println(Arrays.toString(wwh.compute2k().toArray()));
+    System.out.println(System.currentTimeMillis());
+    System.out.println(Arrays.toString(wwr.compute2k().toArray()));
+    System.out.println(System.currentTimeMillis());
   }
 
   public static boolean testConstructors(){

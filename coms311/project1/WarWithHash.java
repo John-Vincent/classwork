@@ -8,6 +8,7 @@
 //  (i.e., you may include java.util.ArrayList etc. here, but not junit, apache commons, google guava, etc.)
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class WarWithHash
 {
@@ -17,9 +18,11 @@ public class WarWithHash
 
 	public WarWithHash(String[] s, int k)
 	{
-		ans = new ArrayList<String>();
+		this.ans = new ArrayList<String>();
     this.S = new HashSet<String>();
+    this.size = k;
     for(int i = 0; i < s.length; i++){
+      S.add(s[i]);
       for(int j = 0; j < s.length; j++){
         if(j != i){
           ans.add(s[i] + s[j]);
@@ -30,6 +33,21 @@ public class WarWithHash
 
 	public ArrayList<String> compute2k()
 	{
+    Iterator<String> it = ans.iterator();
+    String cur;
+    String sub;
+
+    while(it.hasNext()){
+      cur = it.next();
+      for(int i = this.size + 1; i <= cur.length(); i++){
+        sub = cur.substring(i-this.size, i);
+        if(!S.contains(sub)){
+          it.remove();
+          break;
+        }
+      }
+    }
+
     return ans;
 	}
 }
