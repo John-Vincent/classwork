@@ -47,9 +47,8 @@ public class WarWithRollHash
 
     while(it.hasNext()){
       cur = new RollingString(it.next());
-      for(int i = this.size + 1; i <= cur.length(); i++){
-        cur.index++;
-        //System.out.println(cur.core + ": " + cur + ": " + cur.hash[cur.index]);
+      for(int i = this.size + 1; i < cur.length(); i++){
+        cur.incrementHash();
         if(!S.contains(cur)){
           it.remove();
           break;
@@ -67,11 +66,11 @@ public class WarWithRollHash
 
     private int index;
 
-    private long[] hash;
+    private long hash;
 
     private static final long BASE = 31;
 
-    private static final long MOD = 1000000007;
+    private static final long MOD = 179424673;
                                   //307790412;
                                  //2147483647
                                   //976607406
@@ -80,22 +79,22 @@ public class WarWithRollHash
       boolean print = false;
       this.core = s;
       this.index = 0;
-      char[] values = s.toCharArray();
-      this.hash = new long[s.length()-WarWithRollHash.this.size+1];
-      this.hash[0] = 0;
+      this.hash = 0;
       for(int i = 0; i < WarWithRollHash.this.size; i++){
-       this.hash[0] = (this.hash[0] * BASE + values[i]) % MOD;
-      }
-      for(int i = 0; i < this.hash.length - 1; i++){
-        this.hash[i+1] = this.hash[i] - (WarWithRollHash.this.pow * values[i]) % MOD;
-        if(this.hash[i+1] < 0)
-          this.hash[i+1] += MOD;
-        this.hash[i+1] = (this.hash[i+1] * BASE + values[i+ WarWithRollHash.this.size]) % MOD;
+       this.hash = (this.hash * BASE + s.charAt(i)) % MOD;
       }
     }
 
+    public void incrementHash(){
+      this.hash = this.hash - (WarWithRollHash.this.pow * this.core.charAt(this.index)) % MOD;
+      if(this.hash < 0)
+        this.hash += MOD;
+      this.hash = (this.hash * BASE + this.core.charAt(this.index+ WarWithRollHash.this.size)) % MOD;
+      this.index++;
+    }
+
     public int hashCode(){
-      return (int)hash[this.index];
+      return (int)hash;
     }
 
     public int length(){

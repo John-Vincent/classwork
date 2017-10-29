@@ -40,7 +40,7 @@ public class WarWithBST
 
     while(it.hasNext()){
       cur = it.next();
-      for(int i = this.size + 1; i <= cur.length(); i++){
+      for(int i = this.size + 1; i < cur.length(); i++){
         sub = cur.substring(i-this.size, i);
         if(!S.search(sub)){
           it.remove();

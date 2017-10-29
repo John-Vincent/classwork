@@ -27,13 +27,13 @@ public abstract class test{
     "trystan"   //19
   };
 
-  static String testString = "Stranger Things Season 2 is probably better than stranger things season 1 alksdhjf aklsdjhf laksdhf lkasdfh laksdhjf laksdjhf fhq3i9o47hf02794bf80qervg0pef9vub8o06234gfv134780b9f80qsdgvpasdubvf801347bvf08qebvoasuixcd 3408bf 0378rbvf0 sdgcvb139p4u bf 08dbcvpqeibrv128o34bvgf 80sdcbv314bfp 897gfih1pio3b rp29b f-90qerbv13p4iubrpaxdgvlkjbp98g0a8s7dg134iv5po789sg d80fg 304gr 802we7gf0apsd8bv13il4bro yusdfc97iS6DVFCV321KUHV4RO876ASVDOVB2534HJLBVT OQ8DFG0Q3R8BF IBF O8G7 7g0823gb4oibv87";
+  static String testString = "Stranger Things Season 2 is probably better than stranger things season 1 alksdhjf aklsdjhf lak";
 
   static BinaryST testTree = new BinaryST();
 
   static String spacing = "";
 
-  static int size = 50;
+  static int size = 20;
 
   public static void main(String[] args){
     //testAddRemove();
@@ -43,7 +43,7 @@ public abstract class test{
     double time1 = 0;
     double time2 = 0;
 
-    boolean printArrays = false;
+    boolean printArrays = true;
 
     ArrayList<String> testSet2L = new ArrayList<String>();
     for(int i = size; i <= testString.length(); i++){

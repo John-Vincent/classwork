@@ -41,7 +41,7 @@ public class WarWithArray
 
     while(it.hasNext()){
       cur = it.next();
-      for(int i = this.size + 1; i <= cur.length(); i++){
+      for(int i = this.size + 1; i < cur.length(); i++){
         sub = cur.substring(i-this.size, i);
         if(Arrays.binarySearch(this.S, sub) < 0){
           it.remove();
