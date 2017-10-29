@@ -17,6 +17,7 @@ public class WarWithRollHash
 	private HashSet<RollingString> S;
   private int size;
   private ArrayList<String> ans;
+  private long pow = 1;
 
 	public WarWithRollHash(String[] s, int k)
 	{
@@ -25,7 +26,7 @@ public class WarWithRollHash
     this.size = k;
     for(int i = 0; i < s.length; i++){
       RollingString c = new RollingString(s[i]);
-      //System.out.println(c + ": " + c.hashCode());
+      //System.out.println(c + ": " + c.hash[c.index]);
       S.add(c);
       for(int j = 0; j < s.length; j++){
         if(j != i){
@@ -33,6 +34,10 @@ public class WarWithRollHash
         }
       }
     }
+    for(int i = 0; i < k-1; i++){
+      this.pow = (this.pow * RollingString.BASE) % RollingString.MOD;
+    }
+    //System.out.println(this.pow);
 	}
 
 	public ArrayList<String> compute2k()
@@ -43,8 +48,8 @@ public class WarWithRollHash
     while(it.hasNext()){
       cur = new RollingString(it.next());
       for(int i = this.size + 1; i <= cur.length(); i++){
-        cur.incrementHash();
-        //System.out.println(cur.core + ": " + cur + ": " + cur.hashCode());
+        cur.index++;
+        //System.out.println(cur.core + ": " + cur + ": " + cur.hash[cur.index]);
         if(!S.contains(cur)){
           it.remove();
           break;
@@ -62,31 +67,35 @@ public class WarWithRollHash
 
     private int index;
 
-    private char[] values;
+    private long[] hash;
 
-    private int hash;
+    private static final long BASE = 31;
+
+    private static final long MOD = 1000000007;
+                                  //307790412;
+                                 //2147483647
+                                  //976607406
 
     public RollingString(String s){
+      boolean print = false;
       this.core = s;
       this.index = 0;
-      this.values = s.toCharArray();
+      char[] values = s.toCharArray();
+      this.hash = new long[s.length()-WarWithRollHash.this.size+1];
+      this.hash[0] = 0;
       for(int i = 0; i < WarWithRollHash.this.size; i++){
-       this.hash += java.lang.Math.pow(2, i)*(int)this.values[i];
+       this.hash[0] = (this.hash[0] * BASE + values[i]) % MOD;
       }
-    }
-
-    public void incrementHash(){
-      if(this.index + WarWithRollHash.this.size > this.values.length){
-        return;
+      for(int i = 0; i < this.hash.length - 1; i++){
+        this.hash[i+1] = this.hash[i] - (WarWithRollHash.this.pow * values[i]) % MOD;
+        if(this.hash[i+1] < 0)
+          this.hash[i+1] += MOD;
+        this.hash[i+1] = (this.hash[i+1] * BASE + values[i+ WarWithRollHash.this.size]) % MOD;
       }
-      this.hash -= (int)this.values[index];
-      this.hash = this.hash /2;
-      this.hash += java.lang.Math.pow(2, WarWithRollHash.this.size-1) * (int)this.values[this.index + WarWithRollHash.this.size];
-      this.index++;
     }
 
     public int hashCode(){
-      return hash;
+      return (int)hash[this.index];
     }
 
     public int length(){

@@ -27,18 +27,24 @@ public abstract class test{
     "trystan"   //19
   };
 
-  static String testString = "Stranger Things Season 2 is pretty good but no where near as good as Season 1";
+  static String testString = "Stranger Things Season 2 is probably better than stranger things season 1 alksdhjf aklsdjhf laksdhf lkasdfh laksdhjf laksdjhf fhq3i9o47hf02794bf80qervg0pef9vub8o06234gfv134780b9f80qsdgvpasdubvf801347bvf08qebvoasuixcd 3408bf 0378rbvf0 sdgcvb139p4u bf 08dbcvpqeibrv128o34bvgf 80sdcbv314bfp 897gfih1pio3b rp29b f-90qerbv13p4iubrpaxdgvlkjbp98g0a8s7dg134iv5po789sg d80fg 304gr 802we7gf0apsd8bv13il4bro yusdfc97iS6DVFCV321KUHV4RO876ASVDOVB2534HJLBVT OQ8DFG0Q3R8BF IBF O8G7 7g0823gb4oibv87";
 
   static BinaryST testTree = new BinaryST();
 
   static String spacing = "";
 
-  static int size = 5;
+  static int size = 50;
 
   public static void main(String[] args){
     //testAddRemove();
     //testFrequency();
     //testRankOf();
+
+    double time1 = 0;
+    double time2 = 0;
+
+    boolean printArrays = false;
+
     ArrayList<String> testSet2L = new ArrayList<String>();
     for(int i = size; i <= testString.length(); i++){
       testSet2L.add(testString.substring(i-size, i));
@@ -47,22 +53,42 @@ public abstract class test{
     String[] testSet2 = new String[testSet2L.size()];
     testSet2 = testSet2L.toArray(testSet2);
 
-    System.out.println(Arrays.toString(testSet2));
+    //System.out.println(Arrays.toString(testSet2));
 
-    WarWithArray wwa = new WarWithArray(testSet2, 4);
-    WarWithBST wwb = new WarWithBST(testSet2, 4);
-    WarWithHash wwh = new WarWithHash(testSet2, 4);
-    WarWithRollHash wwr = new WarWithRollHash(testSet2, 4);
+    WarWithArray wwa = new WarWithArray(testSet2, size);
+    WarWithBST wwb = new WarWithBST(testSet2, size);
+    WarWithHash wwh = new WarWithHash(testSet2, size);
+    WarWithRollHash wwr = new WarWithRollHash(testSet2, size);
+    ArrayList<String> ans;
 
-    System.out.println(System.currentTimeMillis());
-    System.out.println(Arrays.toString(wwa.compute2k().toArray()));
-    System.out.println(System.currentTimeMillis());
-    System.out.println(Arrays.toString(wwb.compute2k().toArray()));
-    System.out.println(System.currentTimeMillis());
-    System.out.println(Arrays.toString(wwh.compute2k().toArray()));
-    System.out.println(System.currentTimeMillis());
-    System.out.println(Arrays.toString(wwr.compute2k().toArray()));
-    System.out.println(System.currentTimeMillis());
+    time1 = System.currentTimeMillis();
+    ans = wwa.compute2k();
+    time2 = System.currentTimeMillis();
+    System.out.println("array:");
+    if(printArrays)
+      System.out.println(Arrays.toString(ans.toArray()));
+    System.out.println(time2 - time1);
+    time1 = System.currentTimeMillis();
+    ans = wwb.compute2k();
+    time2 = System.currentTimeMillis();
+    System.out.println("BST:");
+    if(printArrays)
+      System.out.println(Arrays.toString(ans.toArray()));
+    System.out.println(time2 - time1);
+    time1 = System.currentTimeMillis();
+    ans = wwh.compute2k();
+    time2 = System.currentTimeMillis();
+    System.out.println("hash:");
+    if(printArrays)
+      System.out.println(Arrays.toString(ans.toArray()));
+    System.out.println(time2 - time1);
+    time1 = System.currentTimeMillis();
+    ans = wwr.compute2k();
+    time2 = System.currentTimeMillis();
+    System.out.println("RollHash: " + (ans.size() != 0));
+    if(printArrays)
+      System.out.println(Arrays.toString(ans.toArray()));
+    System.out.println(time2 - time1);
   }
 
   public static boolean testConstructors(){
