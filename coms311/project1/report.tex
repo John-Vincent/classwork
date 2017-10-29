@@ -126,9 +126,13 @@
   \end{verbatim}
   This starts with inserting the $k$ length strings into the hashtable, the insertion takes $k$ time because the string needs to be hashed
    and there are $n$ strings, and the list of $2k$ length strings is
-  also made taking $n^2$ time. Again it loops through the $n(n-1)$ strings and does up to $k-1$ searches through the Hash Table each taking time because
-  the strings need to be hashed and java calls the equals method
-  after the element is accessed to confirm its a match. The total time complexity ends up being $kn + n^2 + n(n-1)(k-1)(2k)$\\
-
+  also made taking $n^2$ time. Again it loops through the $n(n-1)$ strings it does an initial $k$ hash then for the $k-1$ searches it increments the hash taking constant time
+  the accessing the hash still takes $k$ time for each $k-1$ search because of the equals check.
+  after the element is accessed to confirm its a match. The total time complexity ends up being
+  \begin{align*} 
+    kn + n^2 + n(n-1)(k-1)(k) + n(n-1)k\\
+    kn + n^2 + n(n-1)k((k-1) + 1)\\
+    kn + n^2 + n(n-1)2k
+  \end{align*}
 
 \end{document}
