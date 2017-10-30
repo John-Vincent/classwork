@@ -1,0 +1,98 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usetikzlibrary{shapes,arrows,fit,calc,positioning,automata,matrix}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 8}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{tabular}{ l c c c c c c }
+               & Add & Sub &  LW &  SW & BEQ & Addi\\
+      RegDst   &   1 &   1 &   0 &   D &   D &   0 \\
+      ALUSrc   &   0 &   0 &   1 &   1 &   0 &   1 \\
+      MemToReg &   0 &   0 &   1 &   D &   0 &   0 \\
+      RegWrite &   1 &   1 &   1 &   0 &   0 &   1 \\
+      PCSrc    &   0 &   0 &   0 &   0 &   1 &   0 \\
+      MemWrite &   0 &   0 &   0 &   1 &   0 &   0 \\
+      MemRead  &   0 &   0 &   1 &   0 &   0 &   0 \\
+      ALUOp    & Add & Sub & Add & Add & Sub & Add
+    \end{tabular}
+  \end{question}
+
+  \begin{question}
+    No changes would need to be made to the diagram.\\
+    \begin{tabular}{l c}
+       RegDst   & 1 \\
+       AluSrc   & 0 \\
+       PCSrc    & 0 \\
+       MemToReg & 1 \\
+       MemRead  & 1 \\
+       MemWrite & 0
+    \end{tabular}
+  \end{question}
+
+  \begin{question}
+    \begin{tikzpicture}[shorten >=1pt,node distance=3cm,on grid,auto]
+      \node[initial,state,label={above:IF - 0}] (q_0) {
+        \begin{tabular}{r l}
+          ALUSrcA  &  0\\
+          ALUSrcB  & 01\\
+          ALUOp    & 00\\
+          PCSource & 00\\
+          MemRead  &  1\\
+          PCWrite  &  1\\
+          lorD     &  0
+        \end{tabular}
+      };
+      \node[state,label={above:ID - 1}] (q_1) [right= 5cm of q_0] {
+        \begin{tabular}{r l}
+          ALUSrcA &  0\\
+          ALUSrcB & 11\\
+          ALUOp   & 00
+        \end{tabular}
+      };
+      \node[state,label={left: EX - 2}] (q_2) [below= 5cm of q_0]{
+
+      };
+
+      \path[->] (q_0) edge node {} (q_1);
+      \path[->] (q_1) edge node {} (q_2);
+    \end{tikzpicture}
+  \end{question}
+
+
+\end{document}

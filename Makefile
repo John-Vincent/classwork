@@ -1,20 +1,20 @@
-CUR = COMS311_2
+CUR = COMS321
 
-COMS321_DIR = ./coms321/hw7/
-COMS321_FILE = hw7
+COMS321_DIR = ./coms321/hw8/
+COMS321_FILE = hw8
 COMS321_MODE = pdf
 
 COMS331_DIR = ./coms331/hw8/
 COMS331_FILE = hw8
 COMS331_MODE = pdf
 
-COMS311_DIR = ./coms311/project1/
-COMS311_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash test)
-COMS311_MODE = class
-
 COMS311_2_DIR = ./coms311/project1/
-COMS311_2_FILE = report
-COMS311_2_MODE = pdf
+COMS311_2_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash test)
+COMS311_2_MODE = class
+
+COMS311_DIR = ./coms311/project1/
+COMS311_FILE = report
+COMS311_MODE = pdf
 
 ENG314_DIR = ./engl314/instructional/
 ENG314_FILE = plane
