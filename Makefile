@@ -4,8 +4,8 @@ COMS321_DIR = ./coms321/hw8/
 COMS321_FILE = hw8
 COMS321_MODE = pdf
 
-COMS331_DIR = ./coms331/hw9/
-COMS331_FILE = hw9
+COMS331_DIR = ./coms331/hw10/
+COMS331_FILE = hw10
 COMS331_MODE = pdf
 
 COMS311_2_DIR = ./coms311/project1/

@@ -10,14 +10,17 @@
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S}
+\newcommand\assignment{Homework 10}
 
 
 \newcounter{excounter}
 \setcounter{excounter}{1}
+\newcounter{subques}
+\setcounter{subques}{1}
 \newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
-\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}\setcounter{subques}{1}}
+\newenvironment{subquestion}[1]{\arabic{subques}\addtocounter{subques}{1}) #1\begin{quote}}{\end{quote}}
 
 
 \pagestyle{fancy}
@@ -39,6 +42,24 @@
 
 
   \begin{question}
+    \begin{subquestion}{Union}
+      Assume there is a Turing Machine $M_1$ that accepts the language $L_1$ with the
+      alphabet $\Sigma_1=\{a_1,a_2\ldots a_n\}$, and some Turing Machine $M_2$ that accpets the
+      language $L_2$ with the alphabet $\Sigma_2=\{b_1, b_2\ldots b_m\}$. By the Turing thesis
+      we know that both $M_1$ and $M_2$ can be represented by a single tape single head
+      machine. We can then construct $M_1\cup M_2$ by making a two tape two head machine
+      $M_3$ where the first tape is $M_1$ and the second tape is
+      $M_2$ and $\Sigma_3 = \Sigma_1 \cup \Sigma_2$. The set of states and
+      the set oftransitions will also be the union of the states
+      and transitions in $M_1$ and $M_2$. For any input $w$ you can run the two heads
+      on $w$ and if either of them reach their halting state then $w$ will be accepted.
+      By the Turing thesis we know that this multi tape Turing Machine can be converted into
+      a single tape single head Machine.
+      %still need to do sketch
+    \end{subquestion}
+    \begin{subquestion}{intersection}
+    \end{subquestion}
+
   \end{question}
 
 
