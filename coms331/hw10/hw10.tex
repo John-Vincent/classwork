@@ -4,6 +4,7 @@
 \usepackage{fullpage}
 \usepackage{amsfonts}
 \usepackage{tikz}
+\usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 
@@ -16,11 +17,10 @@
 
 \newcounter{excounter}
 \setcounter{excounter}{1}
-\newcounter{subques}
-\setcounter{subques}{1}
-\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
-\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}\setcounter{subques}{1}}
-\newenvironment{subquestion}[1]{\arabic{subques}\addtocounter{subques}{1}) #1\begin{quote}}{\end{quote}}
+\newcommand\ques[2]{\vskip 1em
+\noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1\begin{quote}}{\end{quote}}
 
 
 \pagestyle{fancy}
@@ -54,12 +54,70 @@
       and transitions in $M_1$ and $M_2$. For any input $w$ you can run the two heads
       on $w$ and if either of them reach their halting state then $w$ will be accepted.
       By the Turing thesis we know that this multi tape Turing Machine can be converted into
-      a single tape single head Machine.
-      %still need to do sketch
-    \end{subquestion}
-    \begin{subquestion}{intersection}
+      a single tape single head Machine.\\
+
+      I would build a machine that would copy the input $w$ and split into two tapes with one
+      head each. one head would use the transitions from $M_1$ and one head would use the
+      transitions from $M_2$, if either of the heads halt then $w$ is accecpted.
     \end{subquestion}
 
+    \begin{subquestion}{Intersection}
+      since Turing acceptable languages are proven to be closed under union, demorgans law
+      proves that they must also be closed under intersection
+      $\overline{\overline{M_1}\cup\overline{M_2}}= M_1 \cap M_2$\\
+
+      In order to create this Machine I would use two tapes each with a copy of input $w$, this
+      could be done by starting with rewriting $w$. Then each head would use the transitions
+      from one of the two languages, The Machine then only accepts if both heads halt.
+    \end{subquestion}
+
+    \begin{subquestion}{Reversal}
+      Give a Turing Machine $M$ that can recognize the language $L$ a Machine $M_r$ can be
+      constructed that will recongnize $L^{\reflectbox{R}}$. Given input $w\in
+      L^{\reflectbox{R}}$ on the tape
+      $M_r$ could just move to the other side of $w$ which would essentially
+      create $w^{\reflectbox{R}}$ then from there $M_r$ can follow the same process as $M$ to
+      recognize the language since $w^{\reflectbox{R}}\in L$.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    if you have a Turing Machine $M_L$ that can accept a language $L$ and a Turing Machine
+    $M_K$ that can accept a language $K$ then you can construct a machine $M_{LK}$ that
+    accpets $K$ concatenated onto $L$. This Turing machine will have some input $w$ that
+    can be split into two partitions $xy$ where $x\in L, y\in K$, this can be done
+    non determinantly so that a copy of the TM can be made that partitions the input at every
+    symbol and if any of them halt then the input is an instance of $LK$
+  \end{question}
+
+  \begin{question}
+    \begin{subquestion}{a)}
+      \begin{subquestion}{transition function:}
+        $\delta: K \times\Sigma\times\Gamma_1\times\Gamma_2\rightarrow(K\cup \{h\}) \times
+        (\Sigma\cup\{L,R\})$
+      \end{subquestion}
+      \begin{subquestion}{configuration:}
+        $(Q\cup{h})\times\Sigma^*\times\Sigma\times(\Sigma^*(\Sigma\backslash\{\#\})\cup
+        \epsilon)\times\Gamma_1\times\Gamma_2: (q,x,a,y,u,w)$ meaning the machine is
+        in state $q$ with the head on $a$ everything to the right of head being $x$,
+        everything to the left of
+        the head being $y$, $u$ on the top of $\Gamma_1$ and $w$ on the top of $\Gamma_2$
+      \end{subquestion}
+      \begin{subquestion}{yields in one step:}
+        $(q_1, x_1\underline{a_1}y_1, u\gamma, w\gamma)\vdash(q_2, x_2\underline{a_2}y_2,
+        \Gamma_1*\gamma, \Gamma_2*\gamma)$ where the difference between the $x,a,y$ are only
+        their positions on the string.
+      \end{subquestion}
+      \begin{subquestion}{language accepted:}
+        $M$ accepts $L$ iff $\forall w\in L, (s, \#w\#, \gamma, \gamma)\vdash^*(h,\#w\#,
+        \Gamma_1*, \Gamma_2*)$ basically all the strings must halt.
+      \end{subquestion}
+    \end{subquestion}
+
+    \begin{subquestion}{b)}
+      its the same as a turing maching but i
+      dont know how to prove that formally.
+    \end{subquestion}
   \end{question}
 
 
