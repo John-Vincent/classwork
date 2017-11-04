@@ -42,8 +42,38 @@
 
   \begin{question}
     \begin{subquestion}{}
-      since $(u,v)\in E' \Leftrightarrow \exists x\in V, (u, x)\wedge(x,v)\in E$
+      since $(u,v)\in E' \Leftrightarrow \exists x\in V, (u, x)\wedge(x,v)\in E$ and the graph is given in an adjacency list, we could loop through that list and for each
+      vertex go to all its adacent vertices, and then all the verticies adjacent to those would be made adjacent to the original vertex in $G'$. sudo code would look like
+      \begin{verbatim}
+        for each v in verticies
+          k = new vertex;
+          for each i in v.adjacent
+            for each j in i.adjacent
+              k.adjacent.add(j);
+          verticies_prime.add(k);
+      \end{verbatim}
+      where $|\text{v.adjacent}| + |\text{i.adjacent}| \le  |E|$ so the max time bound would be $|V|\times|E| = O(mn)$
     \end{subquestion}
+    \begin{subquestion}{}
+      \begin{verbatim}
+        for(var i = 0; i < matrix.length; i++){
+          for(var j =0; j < matrix.length; j++){
+            if(matrix[i][j]){
+              for(var k = 0; k < matrix.length; k++){
+                if(matrix[j][k] && k != i){
+                  new_matrix[i][k] = 1;
+                }
+              }
+            }
+          }
+        }
+      \end{verbatim}
+      since if(matrix[i][j]) is true exactly $|E|$ times the total run time would be $|V|^2 + |E|\times|V|$ because the inner most loop will run $|E|$ times.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    
   \end{question}
 
 
