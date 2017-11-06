@@ -1,4 +1,4 @@
-CUR = COMS311
+CUR = COMS311_3
 
 COMS321_DIR = ./coms321/hw8/
 COMS321_FILE = hw8
@@ -11,6 +11,10 @@ COMS331_MODE = pdf
 COMS311_2_DIR = ./coms311/project1/
 COMS311_2_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash WarWithRollHash test)
 COMS311_2_MODE = class
+
+COMS311_3_DIR = ./coms311/project2/
+COMS311_3_FILE = $(addprefix bin/, GraphProcessor WikiCrawler)
+COMS311_3_MODE = class
 
 COMS311_DIR = ./coms311/hw5/
 COMS311_FILE = jvincent-HW5
