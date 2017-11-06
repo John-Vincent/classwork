@@ -6,6 +6,41 @@
 \usepackage{tikz}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+\lstdefinelanguage{JavaScript}{
+  keywords={break, case, catch, continue, debugger, default, delete, do, else, false, finally, for, function, if, in, instanceof, new, null, return, switch, this, throw, true, try, typeof, var, void, while, with},
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]',
+  morestring=[b]",
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  sensitive=true
+}
+
+\lstset{
+   language=JavaScript,
+   backgroundcolor=\color{lightgray},
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
 
 
 %edit this for each class
@@ -68,12 +103,88 @@
           }
         }
       \end{verbatim}
-      since if(matrix[i][j]) is true exactly $|E|$ times the total run time would be $|V|^2 + |E|\times|V|$ because the inner most loop will run $|E|$ times.
+      since if(matrix[i][j]) is true exactly $|E|$ times the total run time would be $|V|^2 +
+      |E|\times|V|$ because the inner most loop will run $|E|$ times.
     \end{subquestion}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{lstlisting}[language=javascript]
+        var from = [];
+
+        for(var i = 0; i < list.length; i++){
+          from[i] = 0;
+        }
+
+        for(var i = 0; i < list.length; i++){
+          var adj = list[i];
+          for(var j = 0; j < adj.length; j++){
+            var adj2 = list[adj[j]];
+            if(adj2.includes(i)){
+              from[i] = -1;
+              from[j] = -1;
+            } else{
+              if(from[adj[j]] > -1){
+                from[adj[j]]++;
+              }
+            }
+          }
+        }
+
+        for(var i = 0; i < list.length; i++){
+          if(list[i].length == from[i] && 2*from[i] + 1 == list.length){
+            return i;
+          }
+        }
+      }
+    \end{lstlisting}
+    my algorithm makes a array of size $|V|$ which stores the amount of verticies with edges
+    pointing at the vertex $i$ where $i$ is the index in the array. once this array
+    is make it loops through and tries to find a vertex where the length of the
+    array of edges going out equals the number of edges coming in which also equals
+    $\frac{|V| -1}{2}$. \\
+    We can prove this algorithm is correct directly because if $TO_v\cap FROM_v \ne
+    \O$ then when $i = v$ and $adj[j] = (TO_v\cap FROM_v)(1)$ then then adjacency
+    array for $adj[j]$ must contain $i$ which would exclude vertex $i$ and $j$ from being
+    considered for the center since $from[i] = from[j] = -1$ and the adjacency array for
+    $i$ and $j$ cannot be $-1$ and once $from[x] = -1, x\in V$ it cannot change.
+    Then a vertex $x$ can only be selected if $|FROM_x| = |TO_x| = \frac{|V|- 1}{2}$ because
+    of the last if statement.\\
+    Initializing the from array takes $|V|$ time then calculating the values for the
+    from array takes $|V|\times|E|$ time since $|adj| + |adj2| \le |E|$ and the last
+    loop that checks the values of the $|FROM_v|, |TO_v|$ takes $|V|$ time because it
+    has to check each element. so the total time will be
+    \begin{align*}
+      |V| + |V|\times|E| + |V|\\
+      |V|(2+|E|)
+    \end{align*}
   \end{question}
 
   \begin{question}
-    
+    \begin{subquestion}{}
+      suppose there is a cut vertex $v\in V$ that is also a leaf in a DFS search starting
+      on an arbitrary vertex $u\in V$. Since $v$ is a cut vertex that means that
+      $V$ can be split into two sets $X, Y$ that are the set of vertices on each side of the
+      bridge. WLOG we can say $v \in X$. if $u\in X$ then when we arrive at $v$ in the DFS
+      starting at $u$ none of the vertices in $Y$ can have been visited yet by the definition
+      of a bridge vertex. This means that $v$ cannot be a leaf in the DFS tree when $u\in X$
+      since a leaf in a DFS tree cannot be adjacent to an unvisited vertex when it is reached
+      in the search. If $u\in Y$ and $v$ is a bridge vertex that means that $|X| \ge 2$ because
+      if $v$ is the only vertex in $X$ then removing it would not disconnect the graph. Now
+      when $v$ is reached in the DFS starting at $u$ none of the other verticies in $X$ can
+      have been visited by the definition of a cut vertex which would mean that that $v$
+      cannot be a leaf in the DFS tree because at least one vertex in $X$ will be its child.
+      this contradicts the assumption that $v$ is a cut vertex in $V$ as well as a leaf
+      in the DFS starting at $u$ proving that $v$ cannot be a leaf in the DFS tree.
+    \end{subquestion}
+   \begin{subquestion}{}
+      my algorithm would be to run a modified DFS on an arbitrary vertex $v\in V$, once
+      i reach the first vertex $u$ that isnt adjacent to any unvisited vertex i would return
+      $u$. We can prove this is correct directly because $u$ would be a leaf in the DFS
+      tree of $G$ which means it can't be a cut vertex in $G$ by the proof for the last questions. this algorithm must also have a time bound that is less than DFS since
+      it is a DFS that ends at the first leaf. So the time is bounded by $O(m+n)$ since that
+      is the time bound of DFS.
+   \end{subquestion}
   \end{question}
 
 
