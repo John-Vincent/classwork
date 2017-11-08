@@ -32,7 +32,20 @@ public class WikiCrawler
 	// NOTE: extractLinks takes the source HTML code, NOT a URL
 	public ArrayList<String> extractLinks(String doc)
 	{
-		// implementation
+    ArraList<String> ans = new ArrayList<String>();
+		Matcher par = paragraphs.matcher(doc);
+    Matcher url;
+
+    while(par.find()){
+      url = links.matcher(par.group());
+      while(url.find()){
+        if(url.group() != null){
+          ans.add(url.group());
+        }
+      }
+    }
+
+    return ans;
 	}
 
 	public void crawl()
