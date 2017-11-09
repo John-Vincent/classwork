@@ -10,6 +10,8 @@
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.*;
+import java.net.*;
 
 public class WikiCrawler
 {
@@ -19,7 +21,7 @@ public class WikiCrawler
   private ArrayList<String> topics;
   private final String fileName;
   private Pattern paragraphs = Pattern.compile("<p.*?>(.*?)</p>");
-  private Pattern links = Pattern.compile("<a.*? href=\""+BASE_URL+"(.+?)\"");
+  private Pattern links = Pattern.compile("<a.*? href=\"("+BASE_URL+")?(.+?)\"");
 
 	public WikiCrawler(String seedUrl, int max, ArrayList<String> topics, String fileName)
 	{
@@ -39,8 +41,8 @@ public class WikiCrawler
     while(par.find()){
       url = links.matcher(par.group());
       while(url.find()){
-        if(url.group() != null){
-          ans.add(url.group());
+        if(url.group(1) != null){
+          ans.add(url.group(1));
         }
       }
     }
@@ -52,4 +54,19 @@ public class WikiCrawler
 	{
 		// implementation
 	}
+
+  public static String readUrl(String url){
+    URL url = new URL(url);
+    URLConnection connect = url.openConnection();
+    BufferedReader in = new BufferedReader(new InputStreamReader(connect.getInputStream()));
+    StringBuilder response = new StringBuilder();
+    String line = in.readLine();
+
+    while(line != null){
+      response.append(line);
+      line = in.readLine();
+    }
+
+    return response.toString();
+  }
 }
