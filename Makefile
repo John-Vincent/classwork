@@ -13,7 +13,7 @@ COMS311_2_FILE = $(addprefix bin/, BinaryST WarWithArray WarWithBST WarWithHash 
 COMS311_2_MODE = class
 
 COMS311_3_DIR = ./coms311/project2/
-COMS311_3_FILE = $(addprefix bin/, GraphProcessor WikiCrawler)
+COMS311_3_FILE = $(addprefix bin/, GraphProcessor WikiCrawler test DiGraph)
 COMS311_3_MODE = class
 
 COMS311_DIR = ./coms311/hw5/
