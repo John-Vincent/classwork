@@ -186,6 +186,71 @@
       cache frame $= 1001 1101 = 157$\\
       tag $= 1001 0100 = 148$
     \end{subquestion}
+    \begin{subquestion}{b}
+      \[ \text{number of sets} = 64 = 2^6 \]
+      \centering
+      \begin{tabular}{|c | c | c|}
+        \hline
+        \multicolumn{3}{|c|}{20 bits}\\
+        \hline
+        TAG    & Set \# & Offset\\
+        \hline
+        $20-6-4= 10$ bits & 6 bits &  4 bits\\
+        \hline
+      \end{tabular}
+      $0\text{x}949\text{DA} = 10010100100111011010$\\
+      cache tag $= 10$ bits\\
+      tag $= 10 0101 0010 = 252_{8}$
+    \end{subquestion}
+
+    \begin{subquestion}{c}
+      TAG $= 20 - 4$ bits $= 16$ bits
+      TAG $= 0\text{x}949\text{D}$
+    \end{subquestion}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{align*}
+      \text{Main Mem Words/ address bits} &= 2^5 *2^{10}= 2^{15}\\
+      \text{BF's in cache} &= \frac{2^2 * 2^{10}\text{ words}}{2^3\text{ block size}}\\
+                             &= 2^9\\
+    \end{align*}
+    \begin{subquestion}{a}
+      $2^9$ comparators are needed because there are $2^9$ block frames in cache
+    \end{subquestion}
+    \begin{subquestion}{b}
+      the size of the tag field is $15 - 3 = 12$ because the address is 15 bits long and
+      the offset for a block size of $8$ is $3$.
+    \end{subquestion}
+    \begin{subquestion}{c}
+      1 comparator would be needed and the tag size would be $15 - 3 - 9 = 3$ since 9 of the bits
+      will be used to notate block frame number
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    \begin{align*}
+      \text{Main Mem words} &= 2^3 * 2^{10} * 2^3\\
+                            &= 2^16
+    \end{align*}
+    \begin{subquestion}{a}
+      the number of bits in a main memory address is 16 because there are $2^16$ words in main
+      memory
+    \end{subquestion}
+    \begin{subquestion}{b}
+      $0\text{xCA}49 = 1100101001001001$ so the 3 bit offset would be $001$.
+    \end{subquestion}
+    \begin{subquestion}{c}
+      since there are 512 BF's in cache there must be $10$ bits that specify BF \#
+      $16-10-3 = 3$ so the tag is $3$ bits so the block frame number is $0101001001 = 329$
+      there should be 1 hardware comparitor and it should be width $3$ because the tag is $3$ bits.
+    \end{subquestion}
+    \begin{subquestion}{d}
+      if there are $512$ BF's and $4$ frames per set there are $128$ sets in cache.
+      so there should be $6$ bits in the set number, $16 - 6 -3 = 7$ so the tag is $7$ bits.
+      the set number would be $001001 = 9$. there would need to be 4 comparators, since the
+      set size is 4, and the width should be $7$ since the tag is $7$ bits.
+    \end{subquestion}
   \end{question}
 
 \end{document}
