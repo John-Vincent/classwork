@@ -1,0 +1,82 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 331}
+\newcommand\assignment{Homework 11}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{subquestion}{a}
+      This Language is acceptable but not decidable because the only way to tell if the tape of $M$ is bounded on $w$ is to run $M$ on $w$ and check to
+      see if it reaches a state where it can no longer access new tape spaces. This means it doesn't have to determain if $M$ halts on $w$ so it has a better
+      chance of halting than $M$, since it only has to make sure that the possible transistions for $M$ no longer bring it to a new space in the tape. However if $M$
+      does not halt and it is constantly in a state where it can access new tape spaces then the machine that accepts $L$ will not be able to halt, meaning
+      it cannot be decidable.
+    \end{subquestion}
+    \begin{subquestion}{b}
+      This Language is acceptable but not decidable because the only way to determain $n$ is to simulate the machine $M$ and then read the number of tape spaces
+      used by $M$. Then it can check to make sure that the number of trailing ones is at most  $n$. If the machine $M$ hangs then this machine will also hang so
+      it cannot always be decidable. It can however sometimes halt and return false.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    \begin{subquestion}{a}
+      this is not turing acceptable because with any given alphabet you can generate a infinite number of possible input strings mean the
+      machine could never halt if you try to simulate $M$ for every possible input.
+    \end{subquestion}
+    \begin{subquestion}{b}
+      this is turing acceptable but not decidable because you can simulate $M$ for every possible input string and run them in a dovetail mannor then as soon as
+      at least 10 of the strings are accepted by $M$ the machine would halt with $\rho(M)$ being in the language. If $M$ hangs than it also hangs
+    \end{subquestion}
+    \begin{subquestion}{c}
+      This is Turing decidable because you could simulate the first 10 steps of $M$ and if it accepts $w$ then its accepted otherwise its rejected.
+    \end{subquestion}
+    \begin{subquestion}{d}
+      This is turing acceptable because it can simulate $M$ on $w$ and if $M$ accepts $w$ in less than 10 steps it rejects, but if $M$ halts at 10 or more steps
+      than it accepts, but if $M$ hangs than it hangs as well.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    If a machine $M$ exist that decides this language than we could use this machine to decide the language $\{\rho(M_1): L(M_1) = \Sigma*\}$ the second machine
+    $M_2$ would then have to be equal to $\Sigma*$ since there is no larger set. This would mean $M$ would have to be able to decide a language that was proven to
+    be undecidable in the Language book $L(M_1) = L(M_2)$\\
+    \[ M\searrow\rho(M_1)\rho(M_2) \Leftrightarrow L(M_1) = L(M_2) \Leftrightarrow L(M) = \Sigma*\]
+  \end{question}
+
+
+\end{document}
