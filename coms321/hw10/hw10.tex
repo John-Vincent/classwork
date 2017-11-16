@@ -1,0 +1,178 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 10}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{subquestion}{a}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (\text{Hit ratio})(\text{Cache time}) + (1-\text{Hit ratio})(\text{Mem time})\\
+          &= (.9 * 100)+(1000 * .1)\\
+          &= 90 + 100\\
+          &= 190\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{b}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (\text{Hit ratio})(\text{Cache time}) + (1-\text{Hit ratio})(2\text{Mem time}*\text{block size}+\text{Cache time})\\
+        &= (.9 * 100)+( ((2*1000*8)+100) * .1)\\
+        &= 90 + 1610\\
+        &= 1700\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA}_{2} &= (\text{Hit ratio})(\text{Cache time}) + (1-\text{Hit ratio})(2\text{Mem time}*\text{block size}+\text{Cache time})\\
+        &= (.9 * 100)+( ((2*500*8)+100) * .1)\\
+        &= 90 + 810\\
+        &= 900\text{ns}
+      \end{align*}
+      \begin{align*}
+        \text{EMA}_{4w} &= (\text{Hit ratio})(\text{Cache time}) + (1-\text{Hit ratio})(2\text{Mem time}*\text{block size}+\text{Cache time})\\
+        &= (.9 * 100)+( ((2*1000*2)+100) * .1)\\
+        &= 90 + 410\\
+        &= 500\text{ns}
+      \end{align*}
+    \end{subquestion}
+    making the bandwidth between memory and cache 4 words wide would increase to speed by 400ns more than increasing the memory speed.
+  \end{question}
+
+  \begin{question}
+    \begin{subquestion}{a}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{ReadHitTime} &= (1-W)*t_c\\
+      \end{align*}
+    \end{subquestion}
+
+    \begin{subquestion}{b}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{WriteHitTime} &= W*t_m\\
+      \end{align*}
+    \end{subquestion}
+
+    \begin{subquestion}{c}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{ReadMissPenalty} &= (1-W)*(\frac{B}{c}*t_m+t_c)\\
+      \end{align*}
+    \end{subquestion}
+
+    \begin{subquestion}{d}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{ReadMissPenalty} &= W*t_m\\
+      \end{align*}
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    \begin{subquestion}{a}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(t_m)\\
+                   &= 100 * .9 + (1-.9) * (1000)\\
+                   &= 90 + 100\\
+                   &= 190\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{b}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(2*t_m\frac{B}{c} + t_c)\\
+                   &= 100 * .9 + (1-.9) * (2*1000*\frac{8}{2} + 100)\\
+                   &= 90 + 810\\
+                   &= 900\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(\text{read miss} + \text{write miss})\\
+                   &= 100 * .9 + (1-.9) * (.7*(2*1000*\frac{8}{2} + 100) + .3*1000)\\
+                   &= 90 + 597\\
+                   &= 687\text{ns}
+      \end{align*}
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    \begin{subquestion}{a}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(t_m)\\
+                   &= 100 * .95 + (1-.95) * (1000)\\
+                   &= 95 + 50\\
+                   &= 145\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \clearpage
+    \begin{subquestion}{b}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(2*t_m\frac{B}{c} + t_c)\\
+                   &= 100 * .95 + (1-.95) * (2*1000*\frac{8}{4} + 100)\\
+                   &= 95 + 205\\
+                   &= 300\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(\text{read miss} + \text{write miss})\\
+                   &= 100 * .95 + (1-.95) * (.75*(2*1000*\frac{8}{4} + 100) + .25(1000))\\
+                   &= 95 + 166.25\\
+                   &= 261.25\text{ns}
+      \end{align*}
+    \end{subquestion}
+    \begin{subquestion}{d}
+      \vspace{-1cm}
+      \begin{align*}
+        \text{EMA} &= (h)(t_c) + (1-h)(\text{read miss} + \text{write miss})\\
+                   &= 100 * .95 + (1-.95) * (.75*(1000*\frac{8}{4} + 100) + .25(1000))\\
+                   &= 95 + 91.25\\
+                   &= 185.25\text{ns}
+      \end{align*}
+    \end{subquestion}
+  \end{question}
+
+\end{document}
