@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 321}
+\newcommand\assignment{Homework 11}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+      \begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+             & 0 & 1 & 2 & 3 & 4 & 0 & 1 & 5 & 0 & 1 & 2 & 3 & 4 & 5 & 4 & ratio\\\hline
+        FIFO & M & M & M & M & M & M & M & M & H & H & M & M & M & H & H & $\frac{4}{15} = 26.7$\%\\\hline
+        LRU  & M & M & M & M & M & M & M & M & H & H & M & M & M & M & H &$\frac{3}{15} = 20\%$\\\hline
+        MRU  & M & M & M & M & M & H & H & M & H & M & H & M & H & H & H &$\frac{7}{15} = 46.7\%$\\
+      \end{tabular}
+  \end{question}
+
+
+  \begin{question}
+    \textbf{Block Reference String:} 0, 1, 2, 3, 0, 4, 1, 2, 5, 4, 3, 0, 5, 1, 4, 3\\\\
+    \begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+           & 0 & 1 & 2 & 3 & 0 & 4 & 1 & 2 & 5 & 4 & 3 & 0 & 5 & 1 & 4 & 3\\\hline
+      DMC  & M & M & M & M & H & M & H & H & M & H & H & M & H & M & H & H\\\hline
+      FIFO & M & M & M & M & H & M & H & H & M & H & H & M & H & M & H & M\\\hline
+      LRU  & M & M & M & M & H & M & M & M & M & H & M & M & H & M & H & H\\\hline
+      MRU  & M & M & M & M & H & M & H & H & M & H & H & M & H & H & H & M\\
+    \end{tabular}
+    \begin{subquestion}{a}
+      with this string there will be and a direct mapped cache there will be 9 misses. so the time for instruction fetches will be
+      \[ 16 * 50 + 9*400  = 4400\text{ns} \]
+    \end{subquestion}
+    \begin{subquestion}{b}
+      there are 10 misses with the FIFO replacement so the instruction fetch time will be
+      \[ 16 * 50 + 10*400 = 4800\text{ns} \]
+    \end{subquestion}
+    \begin{subquestion}{c}
+      there are 11 misses with the LRU replacement policy so the instruction fetch time will be
+      \[ 16 * 50 + 11*400 = 5200\text{ns} \]
+    \end{subquestion}
+    \begin{subquestion}{d}
+      there are 11 misses with the MRU replacement policy so the instruction fetch time will be
+      \[ 16 * 50 + 8*400 = 4000\text{ns} \]
+    \end{subquestion}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{tabular}{r|c|c}
+      WORD/BLOCK & H/M & STATE\\\hline
+      1 & M & $\emptyset,1,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      4 & M & $\emptyset,1,\emptyset,\emptyset,4,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      8 & M & $\emptyset,1,\emptyset,\emptyset,4,\emptyset,\emptyset,\emptyset,8,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      5 & M & $\emptyset,1,\emptyset,\emptyset,4,5,\emptyset,\emptyset,8,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      20 & M & $\emptyset,1,\emptyset,\emptyset,20,5,\emptyset,\emptyset,8,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      17 & M & $\emptyset,17,\emptyset,\emptyset,20,5,\emptyset,\emptyset,8,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      19 & M & $\emptyset,17,\emptyset,19,20,5,\emptyset,\emptyset,8,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      56 & M & $\emptyset,17,\emptyset,19,20,5,\emptyset,\emptyset,56,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      9 & M & $\emptyset,17,\emptyset,19,20,5,\emptyset,\emptyset,56,9,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      11 & M & $\emptyset,17,\emptyset,19,20,5,\emptyset,\emptyset,56,9,\emptyset,11,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      4 & M & $\emptyset,17,\emptyset,19,4,5,\emptyset,\emptyset,56,9,\emptyset,11,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      43 & M & $\emptyset,17,\emptyset,19,4,5,\emptyset,\emptyset,56,9,\emptyset,43,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      5 & H & $\emptyset,17,\emptyset,19,4,5,\emptyset,\emptyset,56,9,\emptyset,43,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      6 & M & $\emptyset,17,\emptyset,19,4,5,6,\emptyset,56,9,\emptyset,43,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      9 & H & $\emptyset,17,\emptyset,19,4,5,6,\emptyset,56,9,\emptyset,43,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      17 & H & $\emptyset,17,\emptyset,19,4,5,6,\emptyset,56,9,\emptyset,43,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+    \end{tabular}
+  \end{question}
+
+  \begin{question}
+    \begin{tabular}{r|c|c}
+      Block & H/M & STATE\\\hline
+      0 & M & $0,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      1 & M & $0,1,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      2 & M & $0,1,2,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      1 & H & $0,1,2,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      5 & M & $0,1,2,\emptyset,\emptyset,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      4 & M & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      4 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset$\\\hline
+      14 & M & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      2 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      2 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      1 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      10 & M & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,10,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      1 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,10,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      1 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,10,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      2 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,10,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+      4 & H & $0,1,2,\emptyset,4,5,\emptyset,\emptyset,\emptyset,\emptyset,10,\emptyset,\emptyset,\emptyset,14,\emptyset$\\\hline
+    \end{tabular}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{tabular}{r|c|c}
+      WORD/BLOCK & H/M & STATE\\\hline
+      1 & M & $|1,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      8 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,\emptyset|\emptyset,\emptyset|4,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      20 & M & $|1,\emptyset|\emptyset,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & M & $|1,17|\emptyset,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      19 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      56 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|8,56|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|9,56|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      11 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|9,56|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & M & $|1,17|19,\emptyset|20,4|\emptyset,\emptyset|9,56|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      43 & M & $|1,17|19,\emptyset|20,4|\emptyset,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,17|19,\emptyset|5,4|\emptyset,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      6 & M & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & H & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & H & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+    \end{tabular}
+  \end{question}
+
+  \begin{question}
+    \begin{tabular}{r|c|c}
+      WORD/BLOCK & H/M & STATE\\\hline
+      1 & M & $|1,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      8 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,\emptyset|\emptyset,\emptyset|4,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      20 & M & $|1,\emptyset|\emptyset,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & M & $|1,17|\emptyset,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      19 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      56 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|8,56|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|9,56|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      11 & M & $|1,17|19,\emptyset|20,5|\emptyset,\emptyset|9,56|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & M & $|1,17|19,\emptyset|20,4|\emptyset,\emptyset|9,56|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      43 & M & $|1,17|19,\emptyset|20,4|\emptyset,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,17|19,\emptyset|5,4|\emptyset,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      6 & M & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & H & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & H & $|1,17|19,\emptyset|5,4|6,\emptyset|9,56|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+    \end{tabular}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{tabular}{r|c|c}
+      WORD/BLOCK & H/M & STATE\\\hline
+      1 & M & $|1,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      8 & M & $|1,\emptyset|\emptyset,\emptyset|4,\emptyset|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,\emptyset|\emptyset,\emptyset|4,5|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      20 & M & $|1,\emptyset|\emptyset,\emptyset|4,20|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & M & $|1,17|\emptyset,\emptyset|4,20|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      19 & M & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      56 & M & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,56|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & M & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,9|\emptyset,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      11 & M & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,9|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      4 & H & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,9|11,\emptyset|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      43 & M & $|1,17|19,\emptyset|4,20|\emptyset,\emptyset|8,9|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      5 & M & $|1,17|19,\emptyset|5,20|\emptyset,\emptyset|8,9|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      6 & M & $|1,17|19,\emptyset|5,20|6,\emptyset|8,9|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      9 & H & $|1,17|19,\emptyset|5,20|6,\emptyset|8,9|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+      17 & H & $|1,17|19,\emptyset|5,20|6,\emptyset|8,9|11,43|\emptyset,\emptyset|\emptyset,\emptyset|$\\\hline
+    \end{tabular}
+  \end{question}
+
+
+\end{document}
