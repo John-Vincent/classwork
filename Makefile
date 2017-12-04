@@ -1,4 +1,4 @@
-CUR = COMS321
+CUR = COMS311
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -16,8 +16,8 @@ COMS311_3_DIR = ./coms311/project2/
 COMS311_3_FILE = $(addprefix bin/, GraphProcessor WikiCrawler test DiGraph)
 COMS311_3_MODE = class
 
-COMS311_DIR = ./coms311/project2/
-COMS311_FILE = report
+COMS311_DIR = ./coms311/hw6/
+COMS311_FILE = hw6
 COMS311_MODE = pdf
 
 ENG314_DIR = ./engl314/instructional/
