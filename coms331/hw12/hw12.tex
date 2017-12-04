@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 331}
+\newcommand\assignment{Homework 12}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{subquestion}{a}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{b}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{c}
+      N
+    \end{subquestion}
+    \begin{subquestion}{d}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{e}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{f}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{g}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{h}
+      N
+    \end{subquestion}
+    \begin{subquestion}{i}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{j}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{k}
+      N
+    \end{subquestion}
+    \begin{subquestion}{l}
+      N
+    \end{subquestion}
+    \begin{subquestion}{m}
+      N
+    \end{subquestion}
+    \begin{subquestion}{n}
+      N
+    \end{subquestion}
+    \begin{subquestion}{o}
+      Y
+    \end{subquestion}
+    \begin{subquestion}{p}
+      N
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    In order to decided that an arbitrary $M$ never reenters the initial state $M$ will have to halt on any input $w$ so we know for certain that it can never reenter that state.
+    this implies that a program that decides $L$ has a complexity that can be reduced to deciding if $M$ halts on $w$ which we know to be undecidable. proving that $L$ is
+    undecidable by reduction.
+  \end{question}
+
+
+\end{document}
