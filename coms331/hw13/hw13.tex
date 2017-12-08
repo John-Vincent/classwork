@@ -39,15 +39,41 @@
 
 
   \begin{question}
+    \vspace{-1cm}
+    \begin{align*}
+      S &\rightarrow QE\\
+      Q &\rightarrow 0QZ \hspace{.2cm}| \hspace{.2cm} 1QN\hspace{.2cm} | \hspace{.2cm}F\\
+      FN &\rightarrow FR1\\
+      FZ &\rightarrow FR0\\
+      F &\rightarrow \epsilon\\
+      R0N &\rightarrow NR0\\
+      R0Z &\rightarrow ZR0\\
+      R0E &\rightarrow 0\\
+      R1N &\rightarrow NR1\\
+      R1Z &\rightarrow ZR1\\
+      R1E &\rightarrow 1\\
+      R11 &\rightarrow 11\\
+      R10 &\rightarrow 10\\
+      R01 &\rightarrow 01\\
+      R00 &\rightarrow 00
+    \end{align*}
+    basically it generates $ww^{\reflectbox{R}}$ which a normal grammer can do and then reverses $w^{\reflectbox{R}}$ with the power of an unrestricted grammar to form $ww$.
   \end{question}
-
+  \vspace{-.2cm}
   \begin{question}
-    the assignment didn't ask for proofs so I'm hoping that these intuitions are enough of a answer.
+    \vspace{-.3cm}
+    the assignment didn't ask for proofs so I'm hoping that these intuitions are enough of a answer.\\
     \begin{subquestion}{a}
 
+      This language as acceptable because $M$ will use a finite number of cells when it halts or when it gets caught in a loop over the same section of tape which can be
+      detected by tracking the machines configurations. In both of these cases we can accept $\rho(M)\rho(w)$, however for use to be able to decided that it will not
+      use a finite number of cells we would have to be able to decide that $M$ will not halt on $w$ and if we could do that we could solve the halting problem.
     \end{subquestion}
     \begin{subquestion}{b}
 
+      This can be decided because if $M$ halts using $n$ or less cells we can accept $\rho(M)\rho(w)01^n0$, and if we track the configurations of $M$ and detected that a configuration
+      is repeated after using less than $n$ cells we know that it will continue to loop over those $n$ cells, allowing us to accept $\rho(M)\rho(w)$ even if $M$ doesn't halt. If
+      however $M$ ever goes past $n$ cells we can halt and reject. Allowing us to decided $L$
     \end{subquestion}
   \end{question}
 
