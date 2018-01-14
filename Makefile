@@ -1,4 +1,4 @@
-CUR = COMS331
+CUR = STAT330
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -23,6 +23,22 @@ COMS311_MODE = pdf
 ENG314_DIR = ./engl314/instructional/
 ENG314_FILE = plane
 ENG314_MODE = pdf
+
+COMS342_DIR = ./coms342/hw1/
+COMS342_FILE = hw1
+COMS342_MODE = pdf
+
+SE329_DIR = ./se329/hw1/
+SE329_FILE = hw1
+SE329_MODE = pdf
+
+STAT330_DIR = ./stat330/hw1/
+STAT330_FILE = hw1
+STAT330_MODE = pdf
+
+COMS352_DIR = ./coms352/hw1/
+COMS352_FILE = hw1
+COMS352_MODE = pdf
 
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
 	@echo "made $(CUR)"
