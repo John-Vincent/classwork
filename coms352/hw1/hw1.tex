@@ -1,0 +1,83 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 352}
+\newcommand\assignment{Homework 1}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{subquestion}{a}
+      \begin{subquestion}{1}
+        users may be able to view and take other users files and information.
+      \end{subquestion}
+      \begin{subquestion}{2}
+        if permissions for users/groups are not configured properly users may be able to edit system configuration files and compramise the whole environment
+      \end{subquestion}
+    \end{subquestion}
+    \begin{subquestion}{b}
+      you can have a high level of security in a time shared environment with proper permission settings, but the fact that you are regularly letting third parties preform operations on
+      the time shared machine creates a inherintly more vulnerable environment than a dedicated machine for each user.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    users who are collaberating on a project, or have a need for a uniform environment that can be changed by another team to consistently mirror the production envirnment will find a 
+    time shared machine more efficient than multiple dedicated machines. 
+  \end{question}
+
+  \begin{question}
+    symmetric multiprocessing is where there are multiple cpu's that all have the same architecture and are managed by a single OS with some shared memory. asymmetric multiprocessing is where there are multiple cpu's that 
+    may or may not have the same architecture and may or may not be running the same OS, they all have a method of communication between them but do not have a shared memory pool.
+    \begin{subquestion}{advantages}
+      1) users can run multiple process's at a time
+      2) users can run different architectures together like a cpu and gpu
+      3) speed of execution
+    \end{subquestion}
+    \begin{subquestion}{disadvantages}
+      its hard to sychronize the processors and make them work together in a consistant and stable way.
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    an interrupt is used to signal to the cpu that a hardware process has finished and is ready to be handled. An interrupt is different from a trap in that a trap is thrown by a user
+    program and is often the result of a division by 0 or an invalid memory access. yes traps can be thrown intentionally and are often used to switch context mode.
+  \end{question}
+
+  \begin{question}
+    The cpu sends a request to the DMA controlled to initiate the transfer. An interrupt is triggered to alert the cpu when the memory process is complete.
+  \end{question}
+
+\end{document}
