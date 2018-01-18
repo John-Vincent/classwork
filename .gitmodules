@@ -1,0 +1,3 @@
+[submodule "arithlang"]
+	path = coms342/arithlang
+	url = myserver:~/repos/coms342
