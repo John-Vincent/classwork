@@ -1,0 +1,28 @@
+organizations are consistently missing deadlines and over spending, and when projects succeed its usually due to the developers on that team being
+really good at thier job. making future success dependant on those developers.
+
+the basic idea is to change from being unorganized to organized in the project management so that estimations on time and expense are more accurate.
+work is done according to set plans and the process is clearly defined and enforced to all staff.
+
+In order to have a more organized and accurate understanding of the organizations development the infrastructure has to be there for a team to be able to
+communicate and be organized.
+
+The CMM is not a quick fix for saving a failing project but rather a map for how to steadily improve an organizations processes step by step
+so that a more mature approach can be reached in future projects.
+
+level one is chaotic
+
+level two has more experience and planning a project is based on experience with a similar project in the past. making outcomes more
+relyable and repeatable
+
+level three has a clearly defined organization wide process for projects which can be tweeked to fit a specific project.
+meaning there is a readiness(start) criteria, defined inputs, verification mechinisms (peer review), completion criteria,
+and standards for how to work
+
+level four means that there are tools inplace to measure the projects. these measurements are stored in a database and
+use to run analysis on the process in order to find ways to further improve it. projects are now expected to fall within
+a range of acceptable process preformance. the recorded measurment of this variation allows for statistical analysis
+to determain random variation from meaningful divergance. outcomes become very predictable.
+
+level five takes the data from level four and focuses on using this to continually run cost benifit analysis on the process and
+propose adjustments to optimise the organizations outcomes.
