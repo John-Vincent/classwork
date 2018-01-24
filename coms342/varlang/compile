@@ -1,0 +1,6 @@
+#! /bin/bash
+if [[ ! -e build/ ]]; then
+    mkdir build
+fi
+javac -cp src:lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER -d build/ src/varlang/Interpreter.java
+cp -r src/varlang/examples build/varlang
