@@ -4,12 +4,21 @@ public interface Value {
 	public String toString();
 	static class NumVal implements Value {
 		private double _val;
-	    public NumVal(double v) { _val = v; } 
+	    public NumVal(double v) { _val = v; }
 	    public double v() { return _val; }
-	    public String toString() { 
+	    public String toString() {
 	    	int tmp = (int) _val;
 	    	if(tmp == _val) return "" + tmp;
-	    	return "" + _val; 
+	    	return "" + _val;
 	    }
 	}
+  static class WarnVal implements Value{
+    private String message;
+    public WarnVal(String s){
+      this.message = s;
+    }
+    public String toString(){
+      return this.message;
+    }
+  }
 }
