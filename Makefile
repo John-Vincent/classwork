@@ -1,4 +1,4 @@
-CUR = SE329
+CUR = COMS352
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -36,8 +36,8 @@ STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw1/
-COMS352_FILE = hw1
+COMS352_DIR = ./coms352/hw2/
+COMS352_FILE = hw2
 COMS352_MODE = pdf
 
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
@@ -49,6 +49,9 @@ default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE))
 
 $($(CUR)_DIR)bin/%.class: makebin $($(CUR)_DIR)%.java
 	@javac -Werror -d $($(CUR)_DIR)/bin/ -cp $($(CUR)_DIR)/bin:$($(CUR)_DIR) -Xlint $(word 2,$^)
+
+spell: $($(CUR)_DIR)$($(CUR)_FILE).$($(CUR)_MODE)
+	@aspell -t -c $($(CUR)_DIR)$($(CUR)_FILE).tex
 
 makebin:
 	@[  -d $($(CUR)_DIR)/bin ] || echo "making bin folder"
@@ -63,4 +66,4 @@ clean/class:
 clean/pdf:
 	@rm $($(CUR)_DIR)$($(CUR)_FILE).{pdf,log,aux} $($(CUR)_DIR)latexgarbage.txt
 
-.PHONY: default makebin clean clean/class clean/pdf
+.PHONY: default makebin clean clean/class clean/pdf spell

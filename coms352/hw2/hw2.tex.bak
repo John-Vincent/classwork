@@ -1,0 +1,70 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{}
+\newcommand\assignment{}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{subquestion}[3.9]
+    The current process counter and stack state of the current process must be saved and then the new program counter and stack must be loaded
+    for the kernel to make a context switch.
+  \end{subquestion}
+
+  \begin{subquestion}[3.12]
+    by the end of the loop where will be 16 processes created.
+  \end{subquestion}
+
+  \begin{subquestion}[3.15]
+    when you have one child and one parent process that need to communicate just for the duration of their execution a normal pipe will work perfectly
+    and will automatically be removed upon termination.\\
+    When you need a common pipe that will be used by lots of different processes that may not share common ancestors and you want the pipe to exist permanently
+    so it can be uses every time the program runs then a named pipe will need to be used.
+  \end{subquestion}
+
+  \begin{subquestion}[3.17]
+    the child will print 0, -1, -4, -9, -16 and the parent will then print 0, 1, 2, 3, 4 since they both of there own copy of the array nums and they are not using shared memory.
+  \end{subquestion}
+
+  \begin{subquestion}[3.18]
+    \begin{itemize}
+      \item[$\alph$]  Sychronous is easy to program because the order of events in guarenteed, by asychronous is faster because you can have independant operations running at the
+      same time, the programmer just has to spend time working on making sure events are happening in the right order.
+      \item[$\alph$]
+      \item[$\alph$]  Custom item label for entry three
+    \end{itemize}
+  \end{subquestion}
+
+\end{document}
