@@ -2,18 +2,22 @@ package varlang;
 
 import java.util.ArrayList;
 import java.util.List;
+import varlang.Evaluator;
 
 /**
  * This class hierarchy represents expressions in the abstract syntax tree
  * manipulated by this interpreter.
- * 
+ *
  * @author hridesh
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public interface AST {
 	public static abstract class ASTNode implements AST {
 		public abstract Object accept(Visitor visitor, Env env);
+    public boolean isFree(String name){
+      return false;
+    }
 	}
 	public static class Program extends ASTNode {
 		Exp _e;
@@ -22,10 +26,15 @@ public interface AST {
 			_e = e;
 		}
 
+    @Override
+    public boolean isFree(String name){
+      return _e.isFree(name);
+    }
+
 		public Exp e() {
 			return _e;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -41,14 +50,29 @@ public interface AST {
 			_name = name;
 		}
 
+
 		public String name() {
 			return _name;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
+
+  public static class DecExp extends VarExp {
+    private double key;
+
+    public DecExp(String name, NumExp key){
+      super(name);
+      this.key = key.v();
+    }
+
+    public double key(){
+      return this.key;
+    }
+
+  }
 
 	public static class NumExp extends Exp {
 		double _val;
@@ -60,7 +84,7 @@ public interface AST {
 		public double v() {
 			return _val;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -108,10 +132,21 @@ public interface AST {
 			return _rest;
 		}
 
+    @Override
+    public boolean isFree(String name){
+      boolean f = false;
+      for( Exp e: _rest){
+        f = e.isFree(name);
+        if(f)
+          break;
+      }
+      return f;
+    }
+
 		public void add(Exp e) {
 			_rest.add(e);
 		}
-		
+
 	}
 
 	public static class AddExp extends CompoundArithExp {
@@ -130,7 +165,7 @@ public interface AST {
 		public AddExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -153,7 +188,7 @@ public interface AST {
 		public SubExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -175,7 +210,7 @@ public interface AST {
 		public DivExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -197,43 +232,64 @@ public interface AST {
 		public MultExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
-	 * A let expression has the syntax 
-	 * 
+	 * A let expression has the syntax
+	 *
 	 *  (let ((name expression)* ) expression)
-	 *  
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class LetExp extends Exp {
 		List<String> _names;
-		List<Exp> _value_exps; 
+		List<Exp> _value_exps;
 		Exp _body;
-		
+
 		public LetExp(List<String> names, List<Exp> value_exps, Exp body) {
 			_names = names;
 			_value_exps = value_exps;
 			_body = body;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
-		
+
+    public boolean isFree(String name){
+      if(_names.contains(name)){
+        return true;
+      } else{
+        return false;
+      }
+    }
+
 		public List<String> names() { return _names; }
-		
+
 		public List<Exp> value_exps() { return _value_exps; }
 
 		public Exp body() { return _body; }
 
 	}
-	
+
+  public static class LeteExp extends LetExp {
+    private double key;
+
+    public LeteExp(List<String> names, List<Exp> value_exps, Exp body, NumExp key){
+      super(names, value_exps, body);
+      this.key = key.v();
+    }
+
+    public double getKey(){
+      return this.key;
+    }
+  }
+
 	public interface Visitor <T> {
 		// This interface should contain a signature for each concrete AST node.
 		public T visit(AST.AddExp e, Env env);
@@ -244,5 +300,7 @@ public interface AST {
 		public T visit(AST.SubExp e, Env env);
 		public T visit(AST.VarExp e, Env env);
 		public T visit(AST.LetExp e, Env env); // New for the varlang
-	}	
+    public T visit(AST.LeteExp e, Env env); // New for the varlang
+    public T visit(AST.DecExp e, Env env); // New for the varlang
+	}
 }
