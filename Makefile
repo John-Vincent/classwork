@@ -36,8 +36,8 @@ STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw2/
-COMS352_FILE = hw2
+COMS352_DIR = ./coms352/hw3/
+COMS352_FILE = hw3
 COMS352_MODE = pdf
 
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
