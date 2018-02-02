@@ -131,9 +131,12 @@ public interface AST {
     public ASTNode subst(List<String> id, List<Exp> val){
       ArrayList<Exp> n = new ArrayList<Exp>();
       for(Exp e : this._rest){
-        n.add(e.subst(id, val));
+        n.add((Exp)e.subst(id, val));
       }
+      return this.copy(n);
     }
+
+    public abstract Exp copy(List<Exp> args);
 
 		public void add(Exp e) {
 			_rest.add(e);
@@ -161,6 +164,12 @@ public interface AST {
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
+
+    @Override
+    public Exp copy(List<Exp> args){
+      return new AddExp(args);
+    }
+
 	}
 
 	public static class SubExp extends CompoundArithExp {
@@ -184,6 +193,11 @@ public interface AST {
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
+
+    @Override
+    public Exp copy(List<Exp> args){
+      return new SubExp(args);
+    }
 	}
 
 	public static class DivExp extends CompoundArithExp {
@@ -206,6 +220,11 @@ public interface AST {
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
+
+    @Override
+    public Exp copy(List<Exp> args){
+      return new DivExp(args);
+    }
 	}
 
 	public static class MultExp extends CompoundArithExp {
@@ -228,6 +247,11 @@ public interface AST {
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
+
+    @Override
+    public Exp copy(List<Exp> args){
+      return new MultExp(args);
+    }
 	}
 
 	/**
@@ -273,7 +297,7 @@ public interface AST {
           hole = true;
         }
         new_names.add(this._names.get(i));
-        new_value_exps.add(this._value_exps.get(i).subst(id, val));
+        new_value_exps.add((Exp)this._value_exps.get(i).subst(id, val));
       }
       if(!hole){
         new_id.add(id.get(0));
@@ -292,7 +316,7 @@ public interface AST {
           new_val.add(val.get(0));
         }
       }
-      return new LetExp(new_names, new_value_exps, this.body.subst(new_id, new_val));
+      return new LetExp(new_names, new_value_exps, (Exp)this._body.subst(new_id, new_val));
     }
 
 	}
@@ -332,7 +356,7 @@ public interface AST {
           hole = true;
         }
         new_names.add(this._names.get(i));
-        new_value_exps.add(this._value_exps.get(i).subst(id, val));
+        new_value_exps.add((Exp)this._value_exps.get(i).subst(id, val));
       }
       if(!hole){
         new_id.add(id.get(0));
@@ -351,7 +375,7 @@ public interface AST {
           new_val.add(val.get(0));
         }
       }
-      return new LetExp(new_names, new_value_exps, this.body.subst(new_id, new_val));
+      return new LetExp(new_names, new_value_exps, (Exp)this._body.subst(new_id, new_val));
     }
 	}
 
@@ -365,5 +389,6 @@ public interface AST {
 		public T visit(AST.SubExp e, Env env);
 		public T visit(AST.VarExp e, Env env);
 		public T visit(AST.LetExp e, Env env); // New for the varlang
+    public T visit(AST.LetsExp e, Env env);
 	}
 }
