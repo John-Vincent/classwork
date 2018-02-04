@@ -1,0 +1,71 @@
+\documentclass[tikz]{standalone}
+\usepackage{pgfgantt}
+\title{Gantt Charts with the pgfgantt Package}
+\begin{document}
+
+  %
+  % A fairly complicated example from section 2.9 of the package
+  % documentation. This reproduces an example from Wikipedia:
+  % http://en.wikipedia.org/wiki/Gantt_chart
+  %
+  \definecolor{barblue}{RGB}{153,204,254}
+  \definecolor{groupblue}{RGB}{51,102,254}
+  \definecolor{linkred}{RGB}{165,0,33}
+  \renewcommand\sfdefault{phv}
+  \renewcommand\mddefault{mc}
+  \renewcommand\bfdefault{bc}
+  \setganttlinklabel{s-s}{START-TO-START}
+  \setganttlinklabel{f-s}{FINISH-TO-START}
+  \setganttlinklabel{f-f}{FINISH-TO-FINISH}
+  \sffamily
+  \begin{ganttchart}[
+      canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+      hgrid style/.style={draw=black!5, line width=.75pt},
+      vgrid={*1{draw=black!5, line width=.75pt}},
+      today=0,
+      today rule/.style={
+        draw=black!64,
+        dash pattern=on 3.5pt off 4.5pt,
+        line width=1.5pt
+      },
+      today label font=\small\bfseries,
+      title/.style={draw=none, fill=none},
+      title label font=\bfseries\footnotesize,
+      title label node/.append style={below=7pt},
+      include title in canvas=false,
+      bar label font=\mdseries\small\color{black!70},
+      bar label node/.append style={left=2cm},
+      bar/.append style={draw=none, fill=black!63},
+      bar incomplete/.append style={fill=barblue},
+      bar progress label font=\mdseries\footnotesize\color{black!70},
+      group incomplete/.append style={fill=groupblue},
+      group left shift=0,
+      group right shift=0,
+      group height=.5,
+      group peaks tip position=0,
+      group label node/.append style={left=.6cm},
+      group progress label font=\bfseries\small,
+      link/.style={-latex, line width=1.5pt, linkred},
+      link label font=\scriptsize\bfseries,
+      link label node/.append style={below left=-2pt and 0pt}
+    ]{1}{15}
+    \gantttitle[
+      title label node/.append style={below left=7pt and -3pt}
+    ]{Hours:\quad0}{1}
+    \gantttitlelist{10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140}{1} \\
+    \ganttgroup{Group 1}{1}{15} \\
+    \ganttbar[
+      name=WBS1A
+    ]{Motor Movement}{1}{3} \\
+    \ganttbar[
+      name=WBS1B
+    ]{Adjusting the motor to the switch}{4}{11} \\
+    \ganttbar[
+      name=WBS1C
+    ]{Cervo detection}{12}{15} \\[grid]
+    \ganttgroup{Group 2}{1}{13} \\
+    \ganttbar{Camera Recognition}{1}{10} \\
+    \ganttbar{Combine Camera and Motor}{11}{13}
+  \end{ganttchart}
+
+\end{document}
