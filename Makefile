@@ -40,17 +40,26 @@ COMS352_DIR = ./coms352/hw3/
 COMS352_FILE = hw3
 COMS352_MODE = pdf
 
+C_DIR = ./coms352/hw3/
+C_FILE = bin/Collatz_3.22
+C_MODE = exe
+
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
 	@echo "made $(CUR)"
+
+.PHONY: default makebin clean clean/class clean/pdf clean/exe spell
 
 %.pdf: %.tex
 	@pdflatex -interaction=nonstopmode -output-directory $($(CUR)_DIR) $< >> $($(CUR)_DIR)latexgarbage.txt
 	@rm $($(CUR)_DIR)*.log $($(CUR)_DIR)latexgarbage.txt
 
-$($(CUR)_DIR)bin/%.class: makebin $($(CUR)_DIR)%.java
-	@javac -Werror -d $($(CUR)_DIR)/bin/ -cp $($(CUR)_DIR)/bin:$($(CUR)_DIR) -Xlint $(word 2,$^)
+$($(CUR)_DIR)bin/%.class: $($(CUR)_DIR)%.java | makebin
+	@javac -Werror -d $($(CUR)_DIR)/bin/ -cp $($(CUR)_DIR)/bin:$($(CUR)_DIR) -Xlint $<
 
-spell: $($(CUR)_DIR)$($(CUR)_FILE).$($(CUR)_MODE)
+$($(CUR)_DIR)bin/%.exe: $($(CUR)_DIR)%.c | makebin
+	@gcc -Werror -Wall -o $@ $< -lrt
+
+spell: $($(CUR)_DIR)$($(CUR)_FILE).tex
 	@aspell -t -c $($(CUR)_DIR)$($(CUR)_FILE).tex
 
 makebin:
@@ -64,6 +73,8 @@ clean/class:
 	@rm -r $($(CUR)_DIR)/bin
 
 clean/pdf:
-	@rm $($(CUR)_DIR)$($(CUR)_FILE).{pdf,log,aux} $($(CUR)_DIR)latexgarbage.txt
+	@rm -f $($(CUR)_DIR)$($(CUR)_FILE).pdf $($(CUR)_DIR)$($(CUR)_FILE).aux 
 
-.PHONY: default makebin clean clean/class clean/pdf spell
+clean/exe:
+	@rm -r $($(CUR)_DIR)/bin
+

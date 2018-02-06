@@ -68,15 +68,15 @@
   \end{subquestion}
 
   \begin{subquestion}{4.17}
-    could you include the figure in the pdf next time?
+
   \end{subquestion}
 
   \begin{subquestion}{4.18}
     \begin{enumerate}[label=(\alph*)]
-      \item each thread will execute on a different core. This will have good performance
+      \item each thread will execute on a different core. This will have good preformance
       since minimal context switches will be needed.
       \item threads will take turns executing on the different cores as they become available.
-      this will have the worst performance since lots of context switches will be incurred.
+      this will have the worst preformance since lots of context switches will be incured.
       \item each kernel thread will execute on one core, and they will execute different
       user threads as they are available to. this will have ideal performance for a program
       that needs more threads than there are cores, since the context switches will
