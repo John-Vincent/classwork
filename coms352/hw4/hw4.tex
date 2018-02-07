@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage{pgfgantt}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{}
+\newcommand\assignment{}
+
+\graphicspath{{coms352/hw4/}}
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{subquestion}{1}
+    they both end with 4 processes but the first program makes 6 prints to the terminal, 2 being duplicates from the loop.
+    Also every once in a while when I run these programs the third process thats created claims that one of my systemd processes
+    is its parent, when its parent should be the initial process. If you know why this happens please email me because I can't find
+    and explination jvincent@iastate.edu.\\
+    \center\includegraphics[width=.5\textwidth]{coms352/hw4/screenshot.png}
+  \end{subquestion}
+
+  \begin{subquestion}{6.16}
+    \center FCFS\\
+    \begin{ganttchart}[y unit title=0.4cm,
+      y unit chart=0.5cm,
+      vgrid,hgrid,
+      title label anchor/.style={below=-1.6ex},
+      title left shift=.05,
+      title right shift=-.05,
+      title height=1,
+      bar/.style={fill=gray!50},
+      incomplete/.style={fill=white},
+      progress label text={},
+      bar height=0.7,
+      group right shift=0,
+      group top shift=.6,
+      group height=.3]{1}{20}
+      %labels
+      \gantttitlelist{1,...,20}{1}\\
+      %tasks
+      \ganttbar{$P_1$}{1}{2} \\
+      \ganttbar{$P_2$}{3}{3} \\
+      \ganttbar{$P_3$}{4}{11} \\
+      \ganttbar{$P_4$}{12}{15} \\
+      \ganttbar[progress=33]{$P_5$}{16}{20}
+    \end{ganttchart}\\
+    SJF\\
+    \begin{ganttchart}[y unit title=0.4cm,
+      y unit chart=0.5cm,
+      vgrid,hgrid,
+      title label anchor/.style={below=-1.6ex},
+      title left shift=.05,
+      title right shift=-.05,
+      title height=1,
+      bar/.style={fill=gray!50},
+      incomplete/.style={fill=white},
+      progress label text={},
+      bar height=0.7,
+      group right shift=0,
+      group top shift=.6,
+      group height=.3]{1}{20}
+      %labels
+      \gantttitlelist{1,...,20}{1}\\
+      %tasks
+      \ganttbar{$P_1$}{2}{3} \\
+      \ganttbar{$P_2$}{1}{1} \\
+      \ganttbar{$P_3$}{13}{20} \\
+      \ganttbar{$P_4$}{4}{7} \\
+      \ganttbar[progress=33]{$P_5$}{8}{12}
+    \end{ganttchart}\\
+    Nonpreemptive priority\\
+    \begin{ganttchart}[y unit title=0.4cm,
+      y unit chart=0.5cm,
+      vgrid,hgrid,
+      title label anchor/.style={below=-1.6ex},
+      title left shift=.05,
+      title right shift=-.05,
+      title height=1,
+      bar/.style={fill=gray!50},
+      incomplete/.style={fill=white},
+      progress label text={},
+      bar height=0.7,
+      group right shift=0,
+      group top shift=.6,
+      group height=.3]{1}{20}
+      %labels
+      \gantttitlelist{1,...,20}{1}\\
+      %tasks
+      \ganttbar{$P_1$}{13}{14} \\
+      \ganttbar{$P_2$}{20}{20} \\
+      \ganttbar{$P_3$}{1}{7} \\
+      \ganttbar{$P_4$}{15}{19} \\
+      \ganttbar[progress=33]{$P_5$}{8}{12}
+    \end{ganttchart}\\\clearpage
+    Round Robin\\
+    \begin{ganttchart}[y unit title=0.4cm,
+      y unit chart=0.5cm,
+      vgrid,hgrid,
+      title label anchor/.style={below=-1.6ex},
+      title left shift=.05,
+      title right shift=-.05,
+      title height=1,
+      bar/.style={fill=gray!50},
+      incomplete/.style={fill=white},
+      progress label text={},
+      bar height=0.7,
+      group right shift=0,
+      group top shift=.6,
+      group height=.3]{1}{20}
+      %labels
+      \gantttitlelist{1,...,20}{1}\\
+      %tasks
+      \ganttbar{$P_1$}{1}{2} \\
+      \ganttbar{$P_2$}{3}{3} \\
+      \ganttbar{$P_3$}{4}{6}\ganttbar{}{13}{15}\ganttbar{}{19}{20} \\
+      \ganttbar{$P_4$}{7}{9} \ganttbar{}{16}{16}\\
+      \ganttbar{$P_5$}{10}{12} \ganttbar{}{17}{18}
+    \end{ganttchart}\\
+  \end{subquestion}
+
+
+\end{document}

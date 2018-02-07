@@ -1,4 +1,4 @@
-CUR = SE329
+CUR = COMS352
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -36,18 +36,18 @@ STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw3/
-COMS352_FILE = hw3
+COMS352_DIR = ./coms352/hw4/
+COMS352_FILE = hw4
 COMS352_MODE = pdf
 
-C_DIR = ./coms352/hw3/
-C_FILE = bin/Collatz_3.22
+C_DIR = ./coms352/hw4/
+C_FILE = bin/pipes
 C_MODE = exe
 
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
 	@echo "made $(CUR)"
 
-.PHONY: default makebin clean clean/class clean/pdf clean/exe spell
+.PHONY: default makebin clean clean/class clean/pdf clean/exe spell run run/exe run/class
 
 %.pdf: %.tex
 	@pdflatex -interaction=nonstopmode -output-directory $($(CUR)_DIR) $< >> $($(CUR)_DIR)latexgarbage.txt
@@ -73,8 +73,12 @@ clean/class:
 	@rm -r $($(CUR)_DIR)/bin
 
 clean/pdf:
-	@rm -f $($(CUR)_DIR)$($(CUR)_FILE).pdf $($(CUR)_DIR)$($(CUR)_FILE).aux 
+	@rm -f $($(CUR)_DIR)$($(CUR)_FILE).pdf $($(CUR)_DIR)$($(CUR)_FILE).aux
 
 clean/exe:
 	@rm -r $($(CUR)_DIR)/bin
 
+run: run/$($(CUR)_MODE)
+
+run/exe: $($(CUR)_DIR)$($(CUR)_FILE).$($(CUR)_MODE)
+	$($(CUR)_DIR)$($(CUR)_FILE).$($(CUR)_MODE)
