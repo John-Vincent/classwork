@@ -47,14 +47,14 @@ C_MODE = exe
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))
 	@echo "made $(CUR)"
 
-.PHONY: default makebin clean clean/class clean/pdf clean/exe spell run run/exe run/class
+.PHONY: default makebin clean spell run run/exe run/class
 
-%.pdf: %.tex
-	@pdflatex -interaction=nonstopmode -output-directory $($(CUR)_DIR) $< >> $($(CUR)_DIR)latexgarbage.txt
-	@rm $($(CUR)_DIR)*.log $($(CUR)_DIR)latexgarbage.txt
+%.pdf: %.tex | makebin
+	@pdflatex -interaction=nonstopmode -output-directory $($(CUR)_DIR)bin $< >> $($(CUR)_DIR)bin/latexgarbage.txt
+	@rm $($(CUR)_DIR)bin/*.log $($(CUR)_DIR)bin/latexgarbage.txt
 
 $($(CUR)_DIR)bin/%.class: $($(CUR)_DIR)%.java | makebin
-	@javac -Werror -d $($(CUR)_DIR)/bin/ -cp $($(CUR)_DIR)/bin:$($(CUR)_DIR) -Xlint $<
+	@javac -Werror -d $($(CUR)_DIR)bin/ -cp $($(CUR)_DIR)bin:$($(CUR)_DIR) -Xlint $<
 
 $($(CUR)_DIR)bin/%.exe: $($(CUR)_DIR)%.c | makebin
 	@gcc -Werror -Wall -o $@ $< -lrt
@@ -63,20 +63,12 @@ spell: $($(CUR)_DIR)$($(CUR)_FILE).tex
 	@aspell -t -c $($(CUR)_DIR)$($(CUR)_FILE).tex
 
 makebin:
-	@[  -d $($(CUR)_DIR)/bin ] || echo "making bin folder"
-	@[  -d $($(CUR)_DIR)/bin ] || mkdir $($(CUR)_DIR)/bin
+	@[  -d $($(CUR)_DIR)bin ] || echo "making bin folder"
+	@[  -d $($(CUR)_DIR)bin ] || mkdir $($(CUR)_DIR)bin
 
-clean: clean/$($(CUR)_MODE)
+clean:
+	@rm -r $($(CUR)_DIR)bin
 	@echo "$(CUR) is now clean"
-
-clean/class:
-	@rm -r $($(CUR)_DIR)/bin
-
-clean/pdf:
-	@rm -f $($(CUR)_DIR)$($(CUR)_FILE).pdf $($(CUR)_DIR)$($(CUR)_FILE).aux
-
-clean/exe:
-	@rm -r $($(CUR)_DIR)/bin
 
 run: run/$($(CUR)_MODE)
 

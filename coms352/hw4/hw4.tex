@@ -65,7 +65,7 @@
       group top shift=.6,
       group height=.3]{1}{20}
       %labels
-      \gantttitlelist{1,...,20}{1}\\
+      \gantttitlelist{0,...,19}{1}\\
       %tasks
       \ganttbar{$P_1$}{1}{2} \\
       \ganttbar{$P_2$}{3}{3} \\
@@ -89,7 +89,7 @@
       group top shift=.6,
       group height=.3]{1}{20}
       %labels
-      \gantttitlelist{1,...,20}{1}\\
+      \gantttitlelist{0,...,19}{1}\\
       %tasks
       \ganttbar{$P_1$}{2}{3} \\
       \ganttbar{$P_2$}{1}{1} \\
@@ -137,7 +137,7 @@
       group top shift=.6,
       group height=.3]{1}{20}
       %labels
-      \gantttitlelist{1,...,20}{1}\\
+      \gantttitlelist{0,...,19}{1}\\
       %tasks
       \ganttbar{$P_1$}{1}{2} \\
       \ganttbar{$P_2$}{3}{3} \\
@@ -165,11 +165,32 @@
         SJF\\
         $P_1 = 1, P_2 = 0, P_3 = 12, P_4 = 3, P_5 = 7$\\
         Nonpreemptive priority\\
-        $P_1 = 12, P_2 = 19, P_3 = 7, P_4 = 19, P_5 = 12$\\
+        $P_1 = 13, P_2 = 19, P_3 = 0, P_4 = 15, P_5 = 8$\\
         Round Robin\\
-        $P_1 = 2, P_2 = 3, P_3 = 20, P_4 = 13, P_5 = 18$\\
+        $P_1 = 0, P_2 = 2, P_3 = 12, P_4 = 9, P_5 = 13$\\
       \end{center}
     \end{subquestion}
+    \begin{subquestion}{c}
+      \begin{align*}
+        FCFS &= \frac{0+2+3+11+15}{5} &= 6.2\\
+        SJF &= \frac{1+0+12+3+7}{5} &= 4.6\\
+        NonPreemptive &= \frac{13+19+0+15+8}{5} &= 11\\
+        Round Robin &= \frac{0+2+12+9+13}{5} &= 7.2\\
+      \end{align*}\\
+      shortest job first has the lowest average wait time.
+    \end{subquestion}
+  \end{subquestion}
+
+  \clearpage
+
+  \begin{subquestion}{6.19}
+    Shortest job first can cause starvation if small jobs keep getting added to the queue, the longer jobs will
+    never execute.\\
+    Priority can cause starvation because if high priority jobs keep getting scheduled the low priority jobs will never be executed
+  \end{subquestion}
+
+  \begin{subquestion}{6.22}
+    They could limit the number of other user processes, and keep the process in the highest priority queue possible.
   \end{subquestion}
 
 
