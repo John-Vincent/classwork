@@ -42,9 +42,9 @@
 
   \begin{subquestion}{1}
     they both end with 4 processes but the first program makes 6 prints to the terminal, 2 being duplicates from the loop.
-    Also every once in a while when I run these programs the third process thats created claims that one of my systemd processes
+    Also every once in a while when I run these programs the third process that's created claims that one of my systemd processes
     is its parent, when its parent should be the initial process. If you know why this happens please email me because I can't find
-    and explination jvincent@iastate.edu.\\
+    and explanation jvincent@iastate.edu.\\
     \center\includegraphics[width=.5\textwidth]{coms352/hw4/screenshot.png}
   \end{subquestion}
 
@@ -97,7 +97,7 @@
       \ganttbar{$P_4$}{4}{7} \\
       \ganttbar[progress=33]{$P_5$}{8}{12}
     \end{ganttchart}\\
-    Nonpreemptive priority\\
+    Non-preemptive priority\\
     \begin{ganttchart}[y unit title=0.4cm,
       y unit chart=0.5cm,
       vgrid,hgrid,
@@ -152,7 +152,7 @@
         $P_1 = 2, P_2 = 3, P_3 = 11, P_4 = 15, P_5 = 20$\\
         SJF\\
         $P_1 = 3, P_2 = 1, P_3 = 20, P_4 = 7, P_5 = 12$\\
-        Nonpreemptive priority\\
+        Non-preemptive priority\\
         $P_1 = 15, P_2 = 20, P_3 = 8, P_4 = 19, P_5 = 13$\\
         Round Robin\\
         $P_1 = 2, P_2 = 3, P_3 = 20, P_4 = 13, P_5 = 18$\\
@@ -164,7 +164,7 @@
         $P_1 = 0, P_2 = 2, P_3 = 3, P_4 = 11, P_5 = 15$\\
         SJF\\
         $P_1 = 1, P_2 = 0, P_3 = 12, P_4 = 3, P_5 = 7$\\
-        Nonpreemptive priority\\
+        Non-preemptive priority\\
         $P_1 = 13, P_2 = 19, P_3 = 0, P_4 = 15, P_5 = 8$\\
         Round Robin\\
         $P_1 = 0, P_2 = 2, P_3 = 12, P_4 = 9, P_5 = 13$\\
@@ -174,7 +174,7 @@
       \begin{align*}
         FCFS &= \frac{0+2+3+11+15}{5} &= 6.2\\
         SJF &= \frac{1+0+12+3+7}{5} &= 4.6\\
-        NonPreemptive &= \frac{13+19+0+15+8}{5} &= 11\\
+        Non-Preemptive &= \frac{13+19+0+15+8}{5} &= 11\\
         Round Robin &= \frac{0+2+12+9+13}{5} &= 7.2\\
       \end{align*}\\
       shortest job first has the lowest average wait time.
@@ -193,5 +193,12 @@
     They could limit the number of other user processes, and keep the process in the highest priority queue possible.
   \end{subquestion}
 
+  \begin{subquestion}{6.22}
+    First come first serve doesn't really favor short processes since it schedules them in the order they are created, if anything
+    its bad for short processes since if a long process is scheduled in front of a lot of short processes all of the short processes will have
+    long turn around times.\\
+    Round Robin gives the best turn around times to short processes since long processes are forced to wait to come back through the cycle potentially multiple times
+    adding a large amount of wait time, while the short processes might be able to finish within their first scheduling quantum.
+  \end{subquestion}
 
 \end{document}

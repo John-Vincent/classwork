@@ -1,4 +1,4 @@
-PROJ=varlang
+PROJ=funclang
 
 
 FILES =  $(addprefix ${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpreter Value Printer Reader))
@@ -8,8 +8,8 @@ FILES =  $(addprefix ${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpr
 default: ${FILES}
 	@echo done
 
-run: 
-	@java -cp ${PROJ}/lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER:${PROJ}/build ${PROJ}/Interpreter || true
+run:
+	@cd ${PROJ}; java -cp lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER:build ${PROJ}/Interpreter || true
 
 clean:
 	@rm -r ${PROJ}/build
@@ -20,5 +20,3 @@ ${PROJ}/build/${PROJ}/%.class: ${PROJ}/src/${PROJ}/%.java
 	@cp -r ${PROJ}/src/${PROJ}/examples ${PROJ}/build/${PROJ}
 
 .PHONY: run default clean
-
-
