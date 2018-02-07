@@ -113,13 +113,13 @@
       group top shift=.6,
       group height=.3]{1}{20}
       %labels
-      \gantttitlelist{1,...,20}{1}\\
+      \gantttitlelist{0,...,19}{1}\\
       %tasks
-      \ganttbar{$P_1$}{13}{14} \\
+      \ganttbar{$P_1$}{14}{15} \\
       \ganttbar{$P_2$}{20}{20} \\
-      \ganttbar{$P_3$}{1}{7} \\
-      \ganttbar{$P_4$}{15}{19} \\
-      \ganttbar[progress=33]{$P_5$}{8}{12}
+      \ganttbar{$P_3$}{1}{8} \\
+      \ganttbar{$P_4$}{16}{19} \\
+      \ganttbar{$P_5$}{9}{13}
     \end{ganttchart}\\\clearpage
     Round Robin\\
     \begin{ganttchart}[y unit title=0.4cm,
@@ -141,10 +141,35 @@
       %tasks
       \ganttbar{$P_1$}{1}{2} \\
       \ganttbar{$P_2$}{3}{3} \\
-      \ganttbar{$P_3$}{4}{6}\ganttbar{}{13}{15}\ganttbar{}{19}{20} \\
-      \ganttbar{$P_4$}{7}{9} \ganttbar{}{16}{16}\\
-      \ganttbar{$P_5$}{10}{12} \ganttbar{}{17}{18}
+      \ganttbar{$P_3$}{4}{5}\ganttbar{}{10}{11}\ganttbar{}{16}{17}\ganttbar{}{19}{20} \\
+      \ganttbar{$P_4$}{6}{7} \ganttbar{}{12}{13}\\
+      \ganttbar{$P_5$}{8}{9} \ganttbar{}{14}{15}\ganttbar{}{18}{18}
     \end{ganttchart}\\
+    \raggedright
+    \begin{subquestion}{b}
+      \begin{center}
+        FCFS\\
+        $P_1 = 2, P_2 = 3, P_3 = 11, P_4 = 15, P_5 = 20$\\
+        SJF\\
+        $P_1 = 3, P_2 = 1, P_3 = 20, P_4 = 7, P_5 = 12$\\
+        Nonpreemptive priority\\
+        $P_1 = 15, P_2 = 20, P_3 = 8, P_4 = 19, P_5 = 13$\\
+        Round Robin\\
+        $P_1 = 2, P_2 = 3, P_3 = 20, P_4 = 13, P_5 = 18$\\
+      \end{center}
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \begin{center}
+        FCFS\\
+        $P_1 = 0, P_2 = 2, P_3 = 3, P_4 = 11, P_5 = 15$\\
+        SJF\\
+        $P_1 = 1, P_2 = 0, P_3 = 12, P_4 = 3, P_5 = 7$\\
+        Nonpreemptive priority\\
+        $P_1 = 12, P_2 = 19, P_3 = 7, P_4 = 19, P_5 = 12$\\
+        Round Robin\\
+        $P_1 = 2, P_2 = 3, P_3 = 20, P_4 = 13, P_5 = 18$\\
+      \end{center}
+    \end{subquestion}
   \end{subquestion}
 
 
