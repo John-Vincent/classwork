@@ -11,7 +11,7 @@ import funclang.parser.FuncLangLexer;
 import funclang.parser.FuncLangParser;
 
 public class Reader {
-	
+
 	Program read() throws IOException {
 		String programText = readNextProgram();
 		return parse(programText);
@@ -23,7 +23,7 @@ public class Reader {
 		Program program = p.program().ast;
 		return program;
 	}
-	
+
 	static String readFile(String fileName) throws IOException {
 		try (BufferedReader br = new BufferedReader(
 				new FileReader(fileName))) {
@@ -38,19 +38,19 @@ public class Reader {
 			return sb.toString();
 		}
 	}
-	
+
 	private String readNextProgram() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.print("$ ");
 		String programText = br.readLine();
 		return runFile(programText);
 	}
-	
-	protected String getProgramDirectory() { return "build"+File.separator+"funclang"+File.separator+"examples"+File.separator; }
+
+	protected String getProgramDirectory() { return "src"+File.separator+"funclang"+File.separator+"examples"+File.separator; }
 	private String runFile(String programText) throws IOException {
 		if(programText.startsWith("run ")){
 			programText = readFile(getProgramDirectory() + programText.substring(4));
 		}
-		return programText; 
+		return programText;
 	}
 }
