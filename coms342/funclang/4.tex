@@ -1,0 +1,34 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+\begin{document}
+le: nat x nat $\rightarrow$ bool\\
+\[\text{le}(n, m) =
+  \begin{cases}
+    \text{if n is O} & \text{true}\\
+    \text{if n is S}n' & \begin{cases}
+                          \text{if m is O} & false\\
+                          \text{if m is S}m' & le(n',m')
+                        \end{cases}
+  \end{cases}
+\]
+
+ge: nat x nat $\rightarrow$ bool\\
+\[\text{ge}(n, m) =
+  \begin{cases}
+    \text{if m is O} & \text{true}\\
+    \text{if m is S}m' & \begin{cases}
+                          \text{if n is O} & false\\
+                          \text{if n is S}n' & ge(n',m')
+                        \end{cases}
+  \end{cases}
+\]
+
+\end{document}

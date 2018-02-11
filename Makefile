@@ -1,4 +1,4 @@
-CUR = COMS352
+CUR = COMS342
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -24,8 +24,8 @@ ENG314_DIR = ./engl314/instructional/
 ENG314_FILE = plane
 ENG314_MODE = pdf
 
-COMS342_DIR = ./coms342/hw1/
-COMS342_FILE = hw1
+COMS342_DIR = ./coms342/funclang/
+COMS342_FILE = 4
 COMS342_MODE = pdf
 
 SE329_DIR = ./se329/timeline/
