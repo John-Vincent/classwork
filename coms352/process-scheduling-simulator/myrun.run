@@ -1,0 +1,19 @@
+name myrun
+comment This is a sample experimental run file
+algorithm FCFS
+
+numprocs 10
+firstarrival 0.0
+interarrival constant 0.0
+duration constant 8.0
+cpuburst constant 4.0
+ioburst constant 8.0
+basepriority 1.0
+
+numprocs 10
+firstarrival 50.0
+interarrival constant 0.0
+duration constant 4.0
+cpuburst constant 2.0
+ioburst constant 0.0
+basepriority 1.0

@@ -1,0 +1,6 @@
+name myexp
+comment This experiment contains 4 runs
+run myrun key "FCFS experiment"
+run myrun algorithm SJF key "SJF experiment"
+run myrun algorithm RR 1 key "RR experiment (q=1)"
+run myrun algorithm RR 2 cstin 1 cstout 2 key "RR experiment (q=2)"
