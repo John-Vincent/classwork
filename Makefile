@@ -1,4 +1,4 @@
-CUR = COMS342
+CUR = SE329
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -28,16 +28,16 @@ COMS342_DIR = ./coms342/funclang/
 COMS342_FILE = 4
 COMS342_MODE = pdf
 
-SE329_DIR = ./se329/timeline/
-SE329_FILE = timeline
+SE329_DIR = ./se329/exam1/
+SE329_FILE = exam1
 SE329_MODE = pdf
 
 STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw4/
-COMS352_FILE = hw4
+COMS352_DIR = ./coms352/hw2/
+COMS352_FILE = hw2
 COMS352_MODE = pdf
 
 C_DIR = ./coms352/hw4/

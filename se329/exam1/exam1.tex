@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{SE329}
+\newcommand\assignment{exam1  Secret Key = Holland}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    The resources allocated to the project affect the amount of man hours you can spend
+    on the project as well as the components you can use to create the project, which in the
+    end will affect what can be accomplished. If you are given a smaller budget than you
+    requested you might have to use cheaper hardware for the project or use a smaller team.
+    The complexity of the project affects how long you will have to work on developing
+    the project to get a correct solution. If you are working on a project that has some
+    complicated machine learning component to it then you will have to spend the
+    development time and the resources to pay the developers in order to get a solution that
+    works as specified.
+
+  \end{question}
+
+  \begin{question}
+    They used the Rolling wave planning which leaves later task vague, this means that
+    as they approach the later task in the project they were less planned out than the initial task, causing them to be behind the initial schedule. They need to put the time into
+    fully developing the schedule then use schedule control techniques like adjusting leads,
+    and lags.
+  \end{question}
+  \clearpage
+  \begin{question}
+    \hspace*{-.4cm}
+    \begin{tabular}{|c|l|l|}
+      \hline\\
+      PM  & Justification & Response\\\hline
+
+
+      Yes &
+        this might affect the number of houses & survey the houses in the intended area for  \\ & our system will be compatible with &
+        water delivery system, and adjust project
+        work\\&& with most common systems.\\\hline
+
+
+      No  & services like that are normally another teams & trust the service team\\ & responsibility, and the development
+      team &\\ &needs to focus on creating the product & \\\hline
+
+
+      Yes & user data should always be protected & run penetration test on the system, \\& &to make sure the data is secure\\\hline
+
+      No  & That is the billing teams job & trust the accountants that do the companies billing.\\\hline
+
+      Yes & If that is a piece that we are & do a stress test on this component,\\ & providing we need to test that it can stand & and potentially replace it will a better component\\& up
+      to the conditions it will be put in \\\hline
+
+
+      Yes & our equipment should be able to & stress test
+      critical equipment\\ & withstand the stresses of normal use\\\hline
+
+      Yes & that's always a concern & check specifications for the \\&& project and make sure
+      all the\\&& goals are being met\\\hline
+
+      Yes & we should design a project that actually & do test on consumers
+      \\ & fills a need of the consumer & where they get to use the product \\&& and give
+      feed back.\\\hline
+
+      Yes & developing software to standards ensure ethical & include
+      experience developers on the team\\& and easy to maintain
+      software & and set up an environment that enforces standards\\\hline
+
+      Yes & The product must be thoroughly tested & delay the delivery if necessary\\\hline
+    \end{tabular}
+  \end{question}
+
+  \begin{question}
+    I would try to program the project to a set library or environment that i knew
+    would be implemented on any architecture that could be used in the future. For example
+    the project components that risk having different architecture could be done in java
+    because there is almost a guarantee that the JVM will be implemented for that architecture.
+  \end{question}
+
+  \begin{question}
+    \begin{verbatim}
+                      Camera System
+        Camera           billing          follow-up
+   identify speeders    send bill           email
+     record license    collect payments     send email
+                                           notify police
+    \end{verbatim}
+  \end{question}
+
+  \clearpage
+  \begin{question}
+    \begin{tabular}{|c|}
+      \hline\\
+      Schedule\\\hline
+      create camera\\\hline
+      create lincense identifying \\software\\\hline
+      create server endpoint for \\cameras to send data to\\\hline
+      create billing system will banks api\\\hline
+      create system that gets address \\from license plate and sends bill\\\hline
+      create system that monitors \\payments and schedules follow ups\\\hline
+
+
+
+    \end{tabular}
+  \end{question}
+
+\end{document}
