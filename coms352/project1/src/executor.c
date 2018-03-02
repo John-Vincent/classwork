@@ -6,14 +6,22 @@
 #include <errno.h>
 #include <string.h>
 
-char *prev_dir = NULL;
-
+/**
+ * struct that will story the history of the commands entered into the shell
+ * functions as a linked list
+ */
 typedef struct history{
-  char command[MAXLINE + 1];
+  command_t command;
   struct history *next;
 } history_t;
 
-history_t *last = NULL;
+/**
+ * adds a given command to the history linked list
+ * @param  command                 the command to be added to the linked list.
+ * @author Collin Vincent collinvincent96@gmail.com
+ * @date   2018-03-02T02:06:16+000
+ */
+void add_to_history(command_t command);
 
 /**
  * this function will do the logic for chaning the cwd
@@ -25,22 +33,25 @@ history_t *last = NULL;
  */
 void change_dir(char *string);
 
+char prev_dir[100];
+
+int command_num = 0;
+
+history_t *last = NULL;
+
 int run_command(command_t command, command_t *heap)
 {
-  //add this command to the history linked list.
-  history_t *temp = malloc(sizeof(*temp));
-  temp->next = last;
-  strcpy(temp->command, command.string);
-  last = temp;
   //check for commands that should be run in the main process
   if(eq_exit(command.string) && strchr(command.string, '|') == NULL)
   {
     return 0;
   } else if(command.length > 3 && eq_cd(command.string) && strchr(command.string, '|') == NULL)
   {
+    add_to_history(command);
     change_dir(command.string);
   } else
   {
+    add_to_history(command);
     //fork and run;
   }
   return 1;
@@ -49,12 +60,12 @@ int run_command(command_t command, command_t *heap)
 
 void change_dir(char *string)
 {
-  char *arg;
-  if(prev_dir)
-    free(prev_dir);
-  prev_dir = getcwd(prev_dir, 0);
+  char *arg, temp[100];
+  if(!getcwd(temp, 100)){
+    printf("failed to get current directory: %s", strerror(errno));
+  }
   arg = string + 3;
-  //printf("%s\n", string);
+  //printf("%s\n", temp);
   if(string[3] == '.' && string[4] == '.')
   {
     string[1] = '.';
@@ -89,8 +100,18 @@ void change_dir(char *string)
   {
     printf("%s\n", strerror(errno));
   }
+  strcpy(prev_dir, temp);
 }
 
+void add_to_history(command_t command)
+{
+  history_t *temp = malloc(sizeof(*temp));
+  temp->next = last;
+  strcpy(temp->command.string, command.string);
+  temp->command.length = command.length;
+  last = temp;
+  command_num++;
+}
 
 void free_history()
 {
