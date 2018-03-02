@@ -4,8 +4,8 @@
 /**
  * This function will create the child process(es) to run the input command(s)
  * it will also detect pipes and concurrency (&) inputs and pipe/wait accordingly
- * @param  i                       the input line from the user.
- * @param  l                       the length of the input string.
+ * @param  command                 the command to be run.
+ * @param  heap                    the command array that is allocated on the heap so any sub  process can free it before closing.
  * @author Collin Vincent collinvincent96@gmail.com
  * @date   2018-03-01T17:57:24+000
  */

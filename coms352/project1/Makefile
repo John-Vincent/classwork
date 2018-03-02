@@ -1,5 +1,5 @@
 C_COMP = gcc
-C_FLAGS = -Werror -Wall
+C_FLAGS = -Werror -Wall -ggdb
 C_LINKS = -lrt -lpthread
 C_FILES = $(addprefix bin/objects/, $(addsuffix .o, main input executor))
 C_HEADERS = $(addprefix src/headers/, $(addsuffix .h, command const executor input))

@@ -81,7 +81,7 @@ command_t *split_commands(char *input, int end, int *length)
       start = i;
       commands[c].length = 0;
     }
-    if(start != -1 && input[i] != ';')
+    if(start != -1 && input[i] != ';' && input[i] != '\n')
     {
       commands[c].string[i-start] = input[i];
       commands[c].length++;
@@ -112,6 +112,13 @@ command_t *split_commands(char *input, int end, int *length)
       quote = !quote;
     }
   }
-
+  i = 0;
+  while(i < *length && commands[i].length == 0)
+    i++;
+  if(i == *length)
+  {
+    free(commands);
+    commands = NULL;
+  }
   return commands;
 }
