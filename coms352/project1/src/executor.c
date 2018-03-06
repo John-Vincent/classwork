@@ -266,6 +266,9 @@ void execute_command(command_t command, int *in_pipe, int *out_pipe)
       free(split_command);
       exit(1);
     }
+    if(*(split_command[tokens-1]) == '&'){
+      *(split_command[tokens-1]) = NULL;
+    }
     if(execvp(split_command[0], split_command))
     {
       perror("execvp");

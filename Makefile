@@ -1,4 +1,4 @@
-CUR = SE329
+CUR = COMS352
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -36,8 +36,8 @@ STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw2/
-COMS352_FILE = hw2
+COMS352_DIR = ./coms352/hw6/
+COMS352_FILE = hw6
 COMS352_MODE = pdf
 
 C_DIR = ./coms352/hw5/
