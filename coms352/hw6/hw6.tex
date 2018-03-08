@@ -10,8 +10,8 @@
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{Com S 352}
+\newcommand\assignment{Homework 6}
 
 
 \newcounter{excounter}
@@ -50,5 +50,134 @@
     request $\alpha$ for reading or writing causing a deadlock in the system.
   \end{subquestion}
 
+  \begin{subquestion}{7.17}
+    Since the 3 processes need at most 2 resources the max number of edges is 6 while the number of nodes in the graph is 7(3 processes + 4 resources).
+    Assuming that the any resource can be assigned to a process we know that a tree can be formed from the resource allocation graph since trees have
+    $n$ vertices and $n-1$ edges. Trees must be acyclic so the graph will be acyclic. Also a connected graph with $n$ vertices that contains a cycle must have at least
+    $n$ edges so we know this graph cannot contain a cycle. if the resouce allocation graph is acyclic than it cannot have deadlocks.
+  \end{subquestion}
+
+  \clearpage
+
+  \begin{subquestion}{7.23}
+    \begin{subquestion}{a}
+      \begin{center}
+        \vspace{-.2cm}
+        \underline{Need}\\
+        \vspace{.2cm}
+        \begin{tabular}{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+          $P_0$ & 2 & 2 & 1 & 1\\
+          $P_1$ & 2 & 1 & 3 & 1\\
+          $P_2$ & 0 & 2 & 1 & 3\\
+          $P_3$ & 0 & 1 & 1 & 2\\
+          $P_4$ & 2 & 2 & 3 & 3
+        \end{tabular}
+      \end{center}
+      order = \textless$P_0$, $P_3$, $P_4$, $P_1$, $P_2$\textgreater
+    \end{subquestion}
+    \begin{subquestion}{b}
+      \begin{table}[h]
+        \hspace{.8cm}\underline{Allocation} \hfill \underline{Need} \hfill \underline{Available}\hspace{1cm}\null\\
+        \vspace{.2cm}
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+          $P_0$ & 2 & 0 & 0 & 1\\
+          $P_1$ & 4 & 2 & 2 & 1\\
+          $P_2$ & 2 & 1 & 0 & 3\\
+          $P_3$ & 1 & 3 & 1 & 2\\
+          $P_4$ & 1 & 4 & 3 & 2
+        \end{tabular}
+        \hfill
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+          $P_0$ & 2 & 2 & 1 & 1\\
+          $P_1$ & 1 & 0 & 3 & 1\\
+          $P_2$ & 0 & 2 & 1 & 3\\
+          $P_3$ & 0 & 1 & 1 & 2\\
+          $P_4$ & 2 & 2 & 3 & 3
+        \end{tabular}
+        \hfill
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+                & 2 & 2 & 2 & 1
+        \end{tabular}
+      \end{table}
+      order = \textless$P_0$, $P_3$, $P_4$, $P_1$, $P_2$\textgreater, so yes it can be granted immediately
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \begin{table}[h]
+        \hspace{.8cm}\underline{Allocation} \hfill \underline{Need} \hfill \underline{Available}\hspace{1cm}\null\\
+        \vspace{.2cm}
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+          $P_0$ & 2 & 0 & 0 & 1\\
+          $P_1$ & 3 & 1 & 2 & 1\\
+          $P_2$ & 2 & 1 & 0 & 3\\
+          $P_3$ & 1 & 3 & 1 & 2\\
+          $P_4$ & 1 & 4 & 5 & 2
+        \end{tabular}
+        \hfill
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+          $P_0$ & 2 & 2 & 1 & 1\\
+          $P_1$ & 2 & 1 & 3 & 1\\
+          $P_2$ & 0 & 2 & 1 & 3\\
+          $P_3$ & 0 & 1 & 1 & 2\\
+          $P_4$ & 2 & 2 & 1 & 3
+        \end{tabular}
+        \hfill
+        \begin{tabular}[t]{l | c | c | c | c|}
+                & A & B & C & D\\\hline
+                & 3 & 3 & 0 & 1
+        \end{tabular}
+      \end{table}
+      order = none, all processes require at least 1 additional c resource and $P_4$'s requestion would leave the system with 0 available c resources to use.
+      if this request is granted there will be a deadlock in the system.
+    \end{subquestion}
+  \end{subquestion}
+
+  \begin{subquestion}{7.24}
+    the assumption is that none of the processes will request more resources.
+    it can be violated by a process requesting more resources.
+  \end{subquestion}
+
+  \clearpage
+  \begin{subquestion}{7.25}
+    \begin{verbatim}
+      bridge: monitor
+      begin
+        int southbound, northbound;
+        boolean inuse = false;
+        condition Bridge, South, North;
+
+        procedure travelSouth();
+        begin
+          southbound++;
+          if northbound > 0 then South.wait;
+          if inuse then Bridge.wait;
+          inuse = true;
+          <travel south>
+          inuse = false;
+          Bridge.signal;
+          southbound--;
+          if northbound > 0 then North.signal;
+        end travelSouth;
+
+        procedure travelNorth();
+        begin
+          northbound++;
+          if southbound > 0 then North.wait;
+          if inuse then Bridge.wait;
+          inuse = true;
+          <travel north>
+          inuse = false;
+          Bridge.signal;
+          northbound--;
+          if southbound > 0 then South.signal;
+        end travelNorth;
+      end bridge;
+    \end{verbatim}
+  \end{subquestion}
 
 \end{document}
