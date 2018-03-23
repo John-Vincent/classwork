@@ -1,0 +1,265 @@
+Homework 8 in COMS 342: Principles of Programming Languages
+Spring 2018
+Instructor: Dr. Hridesh Rajan
+
+This homework focuses on the semantics of memory-related operations, and on how to implement
+extension to these facilities. 
+
+This homework is due 03/22/2018 11:59 pm after which it will be considered late. 
+24 hours late homework submission, submitted after 03/23/2018 11:59 pm will incur 
+a 25% penalty. Homework submission submitted after 03/23/2018 11:59 pm will 
+incur a 100% penalty.
+
+
+Instructions:
+
+1. Attempt All questions. For these questions, you will need to read textbook chapters 9  
+   that is available from Pages->Textbook.
+2. Clone a fresh copy of the Reflang interpreter for all programming-related questions in this homework.
+3. Clone Reflang by using our instructions available at the Downloading and Installing 
+    the Interpreter Framework. However, instead of the Arithlang link in step 1 use the 
+    Reflang link that is https://github.com/hridesh/reflang.
+4. Extend the Reflang interpreter for questions that require an extension.
+5. For all questions, write your answers in hw8.scm and save it at src/reflang/examples/hw8.scm
+6. Export your homework solution as an archive file (File->Export->General->archive).
+7. Attach the archive file.
+8. Please provide the complete project as submission, not just the src directory.
+9. Correct indentation and style are important for understanding your solution and 
+    points will be deducted for sloppy code.
+
+
+
+(5 points)
+Q1. Goal of this question is to understand the semantics of the Reflang interpreter. 
+       This is a practice question that reminds you about the language.
+
+a. Perform the following operations on your implementation of Reflang and understand
+   the output.
+
+     (deref (ref 1))
+     (free (ref 1))
+     (let ((loc (ref 1))) (set! loc 2))
+     (let ((loc (ref 3))) (set! loc (deref loc)))
+
+    To make testing your code easier and to allow these three programs to 
+    coexist in a file, you can define them as four functions in the file hw8.scm.
+ 
+    (define program1 (lambda () /* Your program here */ ))
+    (define program2 (lambda () /* Your program here */ ))
+    (define program3 (lambda () /* Your program here */ ))
+    (define program4 (lambda () /* Your program here */ ))
+
+
+b. Write 3 Reflang programs which use aliases. Recall that an alias is created when 
+     two variables refer to the same memory location. Write these programs in the file 
+    hw8.scm. To make testing your code easier and to allow these three programs to 
+    coexist in a file, you can define them as three functions.
+ 
+    (define program5 (lambda () /* Your program here */ ))
+   (define program6 (lambda () /* Your program here */ ))
+   (define program7 (lambda () /* Your program here */ ))
+
+
+
+(25 points)
+
+Q2. Goal of this question is to understand the contiguous memory allocation and indexing.
+
+Extend the Reflang language to add array of numeric values as a new kind of value to the programming language. This would require adding three new kinds of expressions arrayexp, indexexp, and assignarrayexp. You will also need to generalize the array allocation and access operations for heap from the previous question.
+
+To create an array with three rows, one can use the arrayexp as follows.
+
+$ (array 3)
+[0
+ 0
+ 0]
+
+In the output we have adjusted spacing for clarity, but you are simply required to produce output that is equal to these.
+To create an array with three rows and four columns, one can use the arrayexp as follows.
+
+$ (array 3 4)
+[[0 0 0 0]
+ [0 0 0 0]
+ [0 0 0 0]]
+
+To create a three-dimensional array with three rows, four columns, and height two, one can use the arrayexp as follows.
+
+$ (array 3 4 2)
+[[[0 0 0 0]
+  [0 0 0 0]
+  [0 0 0 0]]
+[[0 0 0 0]
+ [0 0 0 0]
+ [0 0 0 0]]]
+
+To access the second element in an array with three rows, one can use the indexexp as follows.
+
+$ (index (array 3) 2)
+0
+
+To access the element in second row and first column in an array with three rows and four columns, one can use the indexexp as follows.
+
+$ (index (array 3 4) 2 1)
+0
+
+To assign the second element in an array with three rows, one can use the assignarrayexp as follows.
+
+$ (assign (array 3) 2 342)
+[0
+ 342
+ 0]
+
+To assign the element in second row and first column in an array with three rows and four columns, one can use the indexexp as follows.
+
+$ (assign (array 3 4) 2 1 342)
+[[0 0 0 0]
+ [342 0 0 0]
+ [0 0 0 0]]
+
+ 
+
+
+(100 points)
+Q3. This problem is about garbage collection, which is a technique for automatic 
+memory management. Extend the Reflang language to add automatic memory management, 
+i.e. a garbage collector.
+
+In programming languages with references and without reference arithmetic, heap 
+locations that are not reachable via any variable in the environment could be 
+considered "leaked" or "garbage". All other heap locations are considered "live". 
+Garbage collection is the process of removing such garbage from the heap. 
+
+In this problem, you will incrementally develop a prototype Mark-and-Sweep garbage 
+collector for the Reflang language. Since later parts of this problem build on 
+previous parts these have to be solved in the order in which they appear in the 
+problem statement.
+
+a) Extend the heap such that each location contains a 2-tuple (val, flag), where 
+   flag is a boolean. This flag will be used to identify garbage locations.
+
+b) Add a freelist, which tracks the free locations in the heap. This is a 
+   list of 2-tuples, where the first element of the tuple is the memory location 
+   that is free and second element is number of locations free after that.
+   For example, in a heap that has just been initialized the free list would have
+   exactly one 2-tuple (0, SIZE_OF_HEAP) signifying that starting from location 0,
+   SIZE_OF_HEAP number of locations are free. After allocating two elements the 
+   tuple would change to (2, SIZE_OF_HEAP-2).
+
+   Change free and ref methods of Heap16Bit class so that 
+    - on invocation of free the location is added to the free list.
+    - on invocation of ref first free location from freelist is allocated.
+    - Initial configuration of the freelist is (0, SIZE_OF_HEAP), where 0 represents 
+      the first free location in heap and SIZE_OF_HEAP represents total free locations. 
+
+   In implementation of free function for this problem, you are not asked to 
+   coalesce free list.
+
+c) Implement a function "markAll" that sets the "flag" for all locations in the 
+   heap to true. This function does not take any arguments.   
+
+d) Implement a function "clearReachable" that takes an environment env and sets 
+  all locations in the heap that are reachable from one or more bindings in 
+  the environment to false.
+
+  Classes that implement the Env interface could be extended with a function that 
+  takes a heap as input and recursively computes the set of locations which are 
+  reachable from the environment.
+
+  To compute the set of reachable locations, you should implement a recursive function,
+  say "reachable", for each value in the Reflang, e.g. NumVal, RefVal, FunVal, PairVal, 
+  etc. To illustrate, to compute reachable locations from a PairVal, reachable function 
+  is invoked on the first and second elements of the pair and results of these two 
+  invocations are unioned. Function clearReachable in environment can use reachable 
+  function in its implementation.
+
+e) Implement a function "sweep" that removes all locations in the heap for which
+   the flag is set to true. Removed locations in the heap are added back to the free
+   list of the heap and the free list is coalesced (compacted). 
+
+  You do not need to move locations in the heap and coalesces them. Coalescing the 
+  free list is enough for this part of the question.
+
+  Once you're done with b, c and d, write a function "gc" that takes an environment
+  env as input and invokes markAll function followed by clearReachable followed by
+  sweep. This function initiates garbage collection and collects garbages. 
+
+f) Change your HEAP_SIZE to 3. Modify the interpreter such that, in allocating a
+   reference, when index reaches the end of the heap (an dynamic error value is returned)
+   the function gc is invoked and garbage collector starts running.
+
+g) Write a test program that allocates enough locations in the memory that causes the
+   garbage collector to be invoked.  Include this program in your interpreter zip file
+   in the directory src/reflang/examples/gctest.scm 
+
+
+
+(20 points)
+Q4. Goal of this question is to extend the Reflang to add reference arithmetics. 
+
+This problem is about explicit references. In current realization of the Reflang
+language arithmetic operations are not permitted on a reference value. 
+
+
+[5 points]
+a. Modify the semantics of dereference expression such that it can dereference 
+locations specified as explicit natural numbers. See the interaction log below 
+for an example.
+
+Starting from an empty heap, i.e. when you restart the interpreter. 
+
+$ (let ((class (ref 342))) (deref 0))
+342
+
+$ (define f (lambda () 1))
+$ (let ((class (ref 541))) (deref (f)))
+541
+
+$ (deref (+ 0 1))
+541
+
+
+[5 points]
+b. Modify the semantics of assignment expression such that it can assign locations
+ specified as explicit natural numbers. See the interaction log below for an example.
+
+$ (let ((class (ref 342))) (set! 0 541))
+541
+$ (let ((class (ref 542))) (set! (- 2 1) 541))
+541
+
+$ (define f (lambda () 2))
+$ (let ((class (ref 581))) (set! (f) 541))
+541
+
+
+[10 points]
+c. Modify the semantics of addition and subtraction expressions such that the addition
+ and subtraction are permitted on reference values.
+
+In this resulting language, adding one or more numeric values to a reference value
+will result in a reference value. In other words, result of an addition is a reference
+value if any one operand is a reference value and no other operand is of type dynamic 
+error, boolean, list, null, string, and function value. See the interaction log below for 
+an example.
+
+Starting from an empty heap, i.e. when you restart the interpreter. 
+
+$ (+ 1 (ref 342))
+loc:1
+$ (+ 1 (ref 342) 1)
+loc:3
+$ (+ 1 (ref 342) (ref 541))
+loc:6
+
+
+
+In this language, subtracting one or more numeric values from a reference value will 
+result in a reference value. In other words, result of a subtraction is a reference
+value if any one operand is a reference value and no other operand is of type dynamic 
+error, boolean, list, null, string, and function value. See the interaction log below for 
+an example.
+
+Starting from an empty heap, i.e. when you restart the interpreter. 
+
+$ (- (+ 1 (ref 342)) 1)
+loc:0

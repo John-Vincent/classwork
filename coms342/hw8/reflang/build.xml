@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<project name="lang" default="parser">
+
+	<!-- ANTLR version -->
+	<property name="antlr.version" value="4.5" />
+
+	<!-- RefLang parser -->
+	<target name="reflang-check-parser">
+		<condition property="reflang.parser.uptodate">
+			<and>
+				<uptodate srcfile="src/reflang/RefLang.g" targetfile="src/reflang/parser/RefLangParser.java" />
+				<uptodate srcfile="src/reflang/RefLang.g" targetfile="src/reflang/parser/RefLangLexer.java" />
+				<uptodate srcfile="src/reflang/RefLang.g" targetfile="src/reflang/parser/RefLangListener.java" />
+			</and>
+		</condition>
+	</target>
+
+	<target name="reflang" depends="reflang-check-parser" unless="reflang.parser.uptodate">
+		<java jar="lib/antlr-${antlr.version}-complete.jar" dir="src/reflang/" fork="true" failonerror="true">
+			<arg value="-o" />
+			<arg value="parser/" />
+			<arg value="-no-listener" />
+			<arg value="-package" />
+			<arg value="reflang.parser; import static reflang.AST.*" />
+			<arg value="RefLang.g" />
+		</java>
+	</target>
+
+	<target name="parser" depends="reflang" >
+	</target>
+	
+</project>

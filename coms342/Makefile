@@ -1,5 +1,5 @@
-PROJ=funclang
-FOLDER=hw7/
+PROJ=reflang
+FOLDER=hw8/
 
 FILES =  $(addprefix ${FOLDER}${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpreter Value Printer Reader Evaluator))
 
