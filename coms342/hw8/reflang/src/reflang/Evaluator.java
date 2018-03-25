@@ -24,11 +24,20 @@ public class Evaluator implements Visitor<Value> {
 	@Override
 	public Value visit(AddExp e, Env env) {
 		List<Exp> operands = e.all();
+    boolean ref = false;
 		double result = 0;
 		for(Exp exp: operands) {
-			NumVal intermediate = (NumVal) exp.accept(this, env); // Dynamic type-checking
-			result += intermediate.v(); //Semantics of AddExp in terms of the target language.
+			Value intermediate = (Value) exp.accept(this, env); // Dynamic type-checking
+      if(intermediate instanceof Value.RefVal){
+        ref = true;
+        result += (double)((Value.RefVal)intermediate).loc();
+      } else{
+			  result += ((Value.NumVal)intermediate).v(); //Semantics of AddExp in terms of the target language.
+      }
 		}
+    if(ref){
+      return new RefVal((int)result);
+    }
 		return new NumVal(result);
 	}
 
@@ -89,12 +98,27 @@ public class Evaluator implements Visitor<Value> {
 	@Override
 	public Value visit(SubExp e, Env env) {
 		List<Exp> operands = e.all();
-		NumVal lVal = (NumVal) operands.get(0).accept(this, env);
-		double result = lVal.v();
+    boolean ref = false;
+		Value lVal = (Value) operands.get(0).accept(this, env);
+    double result = 0;
+    if(lVal instanceof NumVal)
+      result = ((NumVal)lVal).v();
+    else{
+      result = (double)((RefVal)lVal).loc();
+      ref = true;
+    }
 		for(int i=1; i<operands.size(); i++) {
-			NumVal rVal = (NumVal) operands.get(i).accept(this, env);
-			result = result - rVal.v();
+			Value rVal = (Value) operands.get(i).accept(this, env);
+      if(rVal instanceof NumVal)
+			  result = result - ((NumVal)rVal).v();
+      else {
+        result = result - (double)((RefVal)rVal).loc();
+        ref = true;
+      }
 		}
+    if(ref){
+      return new RefVal((int)result);
+    }
 		return new NumVal(result);
 	}
 
@@ -299,16 +323,29 @@ public class Evaluator implements Visitor<Value> {
 
 	@Override
 	public Value visit(RefExp e, Env env) { // New for reflang.
+    Value t;
 		Exp value_exp = e.value_exp();
 		Value value = (Value) value_exp.accept(this, env);
-		return heap.ref(value);
+    //System.out.println(e.accept(ts, env));
+		t = heap.ref(value);
+    if(t instanceof Value.DynamicError){
+      //System.out.println("collecting garbage");
+      heap.gc(env);
+      return heap.ref(value);
+    }
+    return t;
 	}
 
 	@Override
 	public Value visit(DerefExp e, Env env) { // New for reflang.
 		Exp loc_exp = e.loc_exp();
-		Value.RefVal loc = (Value.RefVal) loc_exp.accept(this, env);
-		return heap.deref(loc);
+		Value loc = (Value)loc_exp.accept(this, env);
+    if(loc instanceof Value.RefVal)
+		  return heap.deref((Value.RefVal)loc);
+    else if(loc instanceof Value.NumVal)
+      return heap.deref((Value.NumVal)loc);
+    else
+      return loc;
 	}
 
 	@Override
@@ -317,8 +354,14 @@ public class Evaluator implements Visitor<Value> {
 		Exp lhs = e.lhs_exp();
 		//Note the order of evaluation below.
 		Value rhs_val = (Value) rhs.accept(this, env);
-		Value.RefVal loc = (Value.RefVal) lhs.accept(this, env);
-		Value assign_val = heap.setref(loc, rhs_val);
+		Value loc = (Value) lhs.accept(this, env);
+		Value assign_val;
+    if(loc instanceof Value.RefVal)
+      assign_val = heap.setref((Value.RefVal)loc, rhs_val);
+    else if(loc instanceof Value.NumVal)
+      assign_val = heap.setref((Value.NumVal)loc, rhs_val);
+    else
+      return loc;
 		return assign_val;
 	}
 

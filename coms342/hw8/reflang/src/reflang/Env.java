@@ -6,7 +6,7 @@ import reflang.Value.*;
 
 /**
  * Representation of an environment, which maps variables to values.
- * 
+ *
  * @author hridesh
  *
  */
@@ -14,24 +14,30 @@ public interface Env {
 	Value get (String search_var);
 	boolean isEmpty();
 
+  public void computeReachable(Heap h);
+
 	@SuppressWarnings("serial")
 	static public class LookupException extends RuntimeException {
 		LookupException(String message){
 			super(message);
 		}
 	}
-	
+
 	static public class EmptyEnv implements Env {
 		public Value get (String search_var) {
 			throw new LookupException("No binding found for name: " + search_var);
 		}
 		public boolean isEmpty() { return true; }
+    @Override
+    public void computeReachable(Heap h){
+      return;
+    }
 	}
-	
+
 	static public class ExtendEnv implements Env {
-		private Env _saved_env; 
-		private String _var; 
-		private Value _val; 
+		private Env _saved_env;
+		private String _var;
+		private Value _val;
 		public ExtendEnv(Env saved_env, String var, Value val){
 			_saved_env = saved_env;
 			_var = var;
@@ -46,6 +52,11 @@ public interface Env {
 		public Env saved_env() { return _saved_env; }
 		public String var() { return _var; }
 		public Value val() { return _val; }
+    @Override
+    public void computeReachable(Heap h){
+      _val.reachable(h);
+      _saved_env.computeReachable(h);
+    }
 	}
 
 	static public class ExtendEnvRec implements Env {
@@ -66,11 +77,18 @@ public interface Env {
 			for(int index = 0; index < size; index++) {
 				if (search_var.equals(_names.get(index))) {
 					FunVal f = _funs.get(index);
-					return new Value.FunVal(this, f.formals(), f.body());				
+					return new Value.FunVal(this, f.formals(), f.body());
 				}
 			}
 			return _saved_env.get(search_var);
 		}
+    @Override
+    public void computeReachable(Heap h){
+      for(Value v : _funs){
+        v.reachable(h);
+      }
+      _saved_env.computeReachable(h);
+    }
 	}
 
 	static public class GlobalEnv implements Env {
@@ -87,6 +105,11 @@ public interface Env {
 			map.put(var, val);
 		}
 		public boolean isEmpty() { return map.isEmpty(); }
+    @Override
+    public void computeReachable(Heap h){
+      for(Value v : map.values()){
+        v.reachable(h);
+      }
+    }
 	}
-
 }
