@@ -6,6 +6,7 @@ import reflang.AST.Exp;
 
 public interface Value {
 	public String tostring();
+  public void reachable(Heap h);
 	static class RefVal implements Value { //New in the reflang
 		private int _loc = -1;
 		public RefVal(int loc) { _loc = loc; }
@@ -13,6 +14,11 @@ public interface Value {
 			return "loc:" + this._loc;
 		}
 		public int loc() { return _loc; }
+    @Override
+    public void reachable(Heap h){
+      h.deref(this).reachable(h);
+      h.mark(this, false);
+    }
 	}
 	static class FunVal implements Value { //New in the funclang
 		private Env _env;
@@ -34,6 +40,10 @@ public interface Value {
 			result += _body.accept(new Printer.Formatter(), _env);
 			return result + ")";
 	    }
+    @Override
+    public void reachable(Heap h){
+      h.mark(this, false);
+    }
 	}
   static class ArrayVal implements Value{
     private NumVal[][][] array;
@@ -85,6 +95,17 @@ public interface Value {
         i++;
       return i;
     }
+    @Override
+    public void reachable(Heap h){
+      for(NumVal[][] arr: array){
+        for(NumVal[] ar: arr){
+          for(NumVal v : ar){
+            v.reachable(h);
+          }
+        }
+      }
+      h.mark(this, false);
+    }
   }
 	static class NumVal implements Value {
 	    private double _val;
@@ -95,12 +116,20 @@ public interface Value {
 	    	if(tmp == _val) return "" + tmp;
 	    	return "" + _val;
 	    }
+      @Override
+      public void reachable(Heap h){
+        h.mark(this, false);
+      }
 	}
 	static class BoolVal implements Value {
 		private boolean _val;
 	    public BoolVal(boolean v) { _val = v; }
 	    public boolean v() { return _val; }
 	    public String tostring() { if(_val) return "#t"; return "#f"; }
+      @Override
+      public void reachable(Heap h){
+        h.mark(this, false);
+      }
 	}
 
 	static class StringVal implements Value {
@@ -108,6 +137,10 @@ public interface Value {
 	    public StringVal(String v) { _val = v; }
 	    public String v() { return _val; }
 	    public java.lang.String tostring() { return "" + _val; }
+      @Override
+      public void reachable(Heap h){
+        h.mark(this, false);
+      }
 	}
 	static class PairVal implements Value {
 		protected Value _fst;
@@ -135,18 +168,36 @@ public interface Value {
 	    	}
 	    	return result + ")";
 	    }
+    @Override
+    public void reachable(Heap h){
+      _fst.reachable(h);
+      _snd.reachable(h);
+      h.mark(this, false);
+    }
 	}
 	static class Null implements Value {
 		public Null() {}
 	    public String tostring() { return "()"; }
+    @Override
+    public void reachable(Heap h){
+      h.mark(this, false);
+    }
 	}
 	static class UnitVal implements Value {
 		public static final UnitVal v = new UnitVal();
 	    public String tostring() { return ""; }
+    @Override
+    public void reachable(Heap h){
+      h.mark(this, false);
+    }
 	}
 	static class DynamicError implements Value {
 		private String message = "Unknown dynamic error.";
 		public DynamicError(String message) { this.message = message; }
 	    public String tostring() { return "" + message; }
+    @Override
+    public void reachable(Heap h){
+      h.mark(this, false);
+    }
 	}
 }
