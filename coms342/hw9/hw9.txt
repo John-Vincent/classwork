@@ -1,0 +1,265 @@
+Homework 9 in COMS 342: Principles of Programming Languages
+Spring 2018
+Instructor: Dr. Hridesh Rajan
+
+This homework focuses on semantics of concurrency and mutual exclusion 
+operations. You will write programs that make use of these facilities 
+and also implement extensions to these facilities.
+
+This homework is due 04/1/2018 11:59 pm after which it will be considered late. 
+Homework submissions after 04/1/2018 11:59 pm will incur a 100% penalty.
+
+
+Instructions:
+
+1. Attempt All questions. For these questions, you will need to read textbook 
+   chapter 9 that is available from Pages->Textbook.
+2. Clone a fresh copy of the Forklang interpreter for all programming-related 
+   questions in this homework. Make sure that this clone is up-to-date.
+3. Clone Forklang by using our instructions available at the Downloading and Installing 
+   the Interpreter Framework. However, instead of the Arithlang link in step 1 use the 
+   Forklang link that is https://github.com/hridesh/forklang.
+4. Extend the Forklang interpreter for questions that require an extension.
+5. For all other questions, write your answers in hw9.scm and save it at 
+   src/forklang/examples/hw9.scm
+6. Export your homework solution as an archive file (File->Export->General->archive).
+7. Attach the archive file.
+8. Provide the complete project as submission, not just the src directory.
+9. Correct indentation and style are important for understanding your solution and 
+    points will be deducted for sloppy code.
+
+
+
+(10 points)
+Q1. Goal of this question is to understand data races in multithreaded programs 
+and use lock and unlock expressions to avoid data races.
+
+Note: This question must NOT be discussed among your study group, or on the Canvas 
+discussion board. Each student must solve it independently using materials covered
+in lectures and in your textbook.
+
+Data races are one of the notorious problems in concurrent programming because they 
+are difficult to detect and reproduce.
+
+A data race happens when two or more threads that share a memory location, access it 
+without synchronization and one of these accesses writes to the memory location. 
+Data race can result in different results for the same program. Accesses to shared 
+memory locations can be synchronized by requiring acquiring a lock before accessing 
+the shared location and releasing the lock after the access is done.
+
+To illustrate, consider the program in the file example1.scm in the examples directory
+of the Forklang interpreter.
+
+In that program, both subexpressions of the fork expression share a memory location 
+x and both of these threads write to variable x (increase its value). According to the 
+definition above, such a program, has a data race on location x and depending on 
+scheduling of the threads the value of the location x can be either 1 or 2. That is, 
+if thread one evaluates (deref x) and then the scheduler switches to thread two to 
+evaluate its  (deref x) then both threads have the value of x as 0. Then each thread 
+increases the value 0 of x by 1, resulting in value 1 for x. However, in a different 
+scheduling first thread can run and finish, setting x to 1, and then the second 
+thread can run setting value of x to 2. So, without proper synchronization among 
+accesses to x in these two threads, the program can evaluate to value 1 or 2 for x. 
+
+We can see that effect by running that program several times as shown below, and 
+in some rare circumstances (such as the last run below), it will produce different
+results.
+
+$ run example1.scm
+$ (example1)
+1
+$ (example1)
+1
+$ (example1)
+1
+$ (example1)
+1
+$ (example1)
+1
+$ (example1)
+2
+
+Copy that program over to hw9.scm and modify it using the lock and unlock expressions 
+such that the function “example1” does not have data races.
+
+
+
+
+
+
+
+(10 points)
+Q2. Goal of this question is to understand data races in multi-threaded programs 
+and use lock and unlock expressions to avoid data races.
+
+Review the program in the file bank.scm in the examples directory of the Forklang 
+interpreter to understand its behavior. Also, notice the usage of the program below.
+
+$ run bank.scm
+$ (banktest)
+(200 200)
+$ (banktest)
+(200 200)
+$ (banktest)
+(200 101)
+
+Copy that program over to hw9.scm and modify it using the lock and unlock expressions 
+such that the test function banktest does not have data race.
+
+
+
+
+
+
+
+(30 points)
+Q3. This problem is about mutual exclusion and lock-based mechanisms for obtaining
+mutually exclusive access to resources.
+
+Forklang supports locking and unlocking of locks to synchronize accesses (read 
+and write) to memory. Languages like Java provide higher-level synchronization 
+mechanisms such as synchronized methods or blocks. A synchronized method of an 
+object locks the object at the beginning of the execution of the method and 
+unlocks it before returning from the method. Similarly, a synchronized block 
+locks the object upon entering the block and unlocks it when exiting the block.
+
+
+Extend Forklang with a synchronized expression that has the following syntax:
+
+syncexp: '(' 'synchronized' exp exp ')'  ;
+
+Semantically, a synchronized expression (synchronized exp1 exp2) treats exp1 as 
+a lock and exp2 as a critical section during which mutual exclusion is needed. 
+Similar to the lock expression, it evaluates exp1 to a location and acquires 
+the lock.  Then the synchronization expression evaluates exp2 while holding the 
+lock. The lock is released when the evaluation of exp2 is done. Value of a 
+synchronized expression is the value of exp2.
+
+The following are some simple examples of using the synchronized expression that 
+illustrate its syntax.
+
+$ (define x (ref 0))
+$ (synchronized x (deref x))
+0
+$ (synchronized x (set! x 2))
+2
+$ (synchronized x (set! x 2))
+2
+
+To illustrate the semantics of synchronized expression further, consider the 
+interaction transcript below.
+
+$ (define x (ref 0))
+$ (fork (set! x (+ 1 (deref x))) (set! x (+ 1 (deref x))) )
+(1 1)
+$ (fork (set! x (+ 1 (deref x))) (set! x (+ 1 (deref x))) )
+(2 3)
+$ (fork (set! x (+ 1 (deref x))) (set! x (+ 1 (deref x))) )
+(4 5)
+
+Notice that there is a data race between two expressions run by the fork.
+In fact, in the first execution of the fork expression you can see this data
+race. The value of one thread is overwritten by the other. 
+
+We can modify this expression to use sychronized expression as follows. 
+
+(fork 
+	(synchronized x (set! x (+ 1 (deref x)))) 
+	(synchronized x (set! x (+ 1 (deref x))))
+)
+
+Executing this modified expression leads to correct behavior.
+
+$ (define x (ref 0))
+$ (fork (synchronized x (set! x (+ 1 (deref x)))) (synchronized x (set! x (+ 1 (deref x)))))
+(1 2)
+$ (fork (synchronized x (set! x (+ 1 (deref x)))) (synchronized x (set! x (+ 1 (deref x)))))
+(3 4)
+$ (fork (synchronized x (set! x (+ 1 (deref x)))) (synchronized x (set! x (+ 1 (deref x)))))
+(5 6)
+
+
+
+
+
+(10 points)
+Q4. Goal of this question is to understand erroneous usage of lock/unlock operations
+in a multithreaded program. 
+
+Note: This question must NOT be discussed among your study group, or on the Canvas 
+discussion board. Each student must solve it independently using materials covered
+in lectures and in your textbook.
+
+Review the program in the file lockit.scm in the examples directory of the Forklang 
+interpreter to understand its code. Also, run the program to observe its runtime
+behavior.
+
+Copy that program over to hw9.scm and fix the concurrency problem in this program so 
+that it behaves correctly. The expected behavior is shown below.
+
+$ run lockit.scm
+$ (lockit)
+(2 6)
+
+
+After you copy the program over to hw9.scm, you may be able to test it as follows.
+
+$ run hw9.scm
+$ (lockit)
+(2 6)
+
+
+
+
+
+
+(20 points)
+Q5. This problem is about mutual exclusion and lock-based mechanisms for obtaining
+mutually exclusive access to resources.
+
+The lock expression currently supported by Forklang is a blocking operation, i.e. 
+locking a memory location blocks if the lock is held by some other concurrency activity.
+It is often useful to be able to test if a lock is available, and acquire it if it is.
+Among others, this allows deadlock avoidance strategies to be implemented in code.
+
+Extend the Forklang language to support a nonblocking lock expression lock? that tries to
+acquire a lock. If the lock acquisition succeeds, then the lock expression returns #t 
+otherwise it returns #f. 
+
+The following are some examples of using the non-blocking lock expression in combination
+with other standard lock expressions. 
+
+$ (define r (ref 42))
+$ (lock? r)
+#t
+$ (lock? r)
+#f
+$ (unlock r)
+loc:0
+$ (lock? r)
+#t
+$ (unlock r)
+loc:0
+$ (lock r)
+loc:0
+$ (lock? r)
+#f
+$ (fork (lock? r) (lock? r))
+(#f #f)
+$ (unlock r)
+loc:0
+$ (fork (lock? r) (lock? r))
+(#t #f)
+$ (define r2 (ref 342))
+$ (define f (lambda () r2))
+$ (fork (lock? (f)) (lock? (f)))
+(#t #f)
+$ (define seq (lambda (f s) s))
+$ (define r3 (ref 541))
+$ (fork (seq (lock? r3) (unlock r3)) (seq (lock? r3) (unlock r3)))
+(loc:2 loc:2)
+$ (lock? r3)
+#t
+$ (unlock r3)
+loc:2
+
