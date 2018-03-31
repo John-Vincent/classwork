@@ -1,5 +1,5 @@
-PROJ=reflang
-FOLDER=hw8/
+PROJ=forklang
+FOLDER=hw9/
 
 FILES =  $(addprefix ${FOLDER}${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpreter Value Printer Reader Evaluator Heap))
 
