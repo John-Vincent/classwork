@@ -6,12 +6,13 @@
 \usepackage{tikz}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
+\usepackage{enumitem}
 
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
-\newcommand\classname{}
-\newcommand\assignment{}
+\newcommand\classname{coms 352}
+\newcommand\assignment{assignment 7}
 
 
 \newcounter{excounter}
@@ -38,8 +39,98 @@
   \vskip 2em
 
 
-  \begin{question}
-  \end{question}
+  \begin{subquestion}{8.13}
+    \begin{subquestion}{contiguous}
+      \begin{enumerate}[label=(\alph*)]
+        \item External fragmentation is a real problem for contiguous memory organization because
+          there can end up being many small holes in main memory but not a single hole large enough for
+          the current requested allocation. This then requires memory compaction.
+        \item Internal fragmentation isn't a problem with continuous allocation because the exact amount of
+          memory request is allocated in main memory
+        \item since memory is protected by giving a limit to the about of address that are accessible after the index
+          of the allocated section it is not possible to share portions of memory between processes
+      \end{enumerate}
+    \end{subquestion}
+    \begin{subquestion}{segmentation}
+      \begin{enumerate}[label=(\alph*)]
+        \item External fragmentation can still occurs with segmentation but its less likely than contiguous since
+          the memory can be broken up into separate small segments allowing a single allocation to be fulfilled
+          by multiple small holes of free memory.
+        \item Internal fragmentation isn't a problem with pure segmentation because the exact amount of
+          memory request is allocated in main memory potentially in multiple segments
+        \item different processes can share a segments of their memory with each other allowing shared
+          memory between processes.
+      \end{enumerate}
+    \end{subquestion}
+    \begin{subquestion}{paging}
+      \begin{enumerate}[label=(\alph*)]
+        \item external fragmentation is not possible with paging since the memory is split into a specific number
+          of pages.
+        \item Internal fragmentation is a problem with paging because if you have a page size of 1024 and
+          something needs to allocate 800 you have to allocate the whole 1024 causing 224 unused bytes.
+        \item different processes can share pages of memory with each other allowing shared
+          memory between processes.
+      \end{enumerate}
+    \end{subquestion}
+  \end{subquestion}
 
+  \begin{subquestion}{8.28}
+    \begin{enumerate}[label=(\alph*)]
+      \item 649
+      \item 2310 (this is out of the segment)
+      \item 590 (this is out of the segment)
+      \item 1727
+      \item 2064 (out of the segment)
+    \end{enumerate}
+  \end{subquestion}
 
+  \begin{subquestion}{8.29}
+    this allows multilevel paging like the 4 level paging found in Linux.
+  \end{subquestion}
+
+  \begin{subquestion}{9.3}
+    \begin{enumerate}
+      \item 0x9EF = 0x0EF
+      \item 0x111 = 0x211
+      \item 0x700 = 0xD00
+      \item 0x0FF = 0xEFF
+    \end{enumerate}
+  \end{subquestion}
+
+  \begin{subquestion}{9.8}
+    \begin{subquestion}{1 frame}
+      20 page faults for all
+    \end{subquestion}
+    \begin{subquestion}{2 frames}
+      18 page faults for LRU
+      18 page faults for FIFO
+      15 page faults for optimal
+    \end{subquestion}
+    \begin{subquestion}{3 frames}
+      15 page faults for LRU
+      16 page faults for FIFO
+      12 page faults for optimal
+    \end{subquestion}
+    \begin{subquestion}{4 frames}
+      10 page faults for LRU
+      14 page faults for FIFO
+      10 page faults for optimal
+    \end{subquestion}
+    \begin{subquestion}{5 frames}
+      8 page faults for LRU
+      10 page faults for FIFO
+      8 page faults for optimal
+    \end{subquestion}
+    \begin{subquestion}{6 frames}
+      7 page faults for LRU
+      10 page faults for FIFO
+      7 page faults for optimal
+    \end{subquestion}
+    \begin{subquestion}{7 frames}
+      since there are 7 frames and only 7 unique pages referenced all of the algorithms will behave the same
+      since they will just fill the empty frames with the pages as they are referenced and there will
+      never bee a need to replace a page in a frame. there will be 7 page faults for all of them as they
+      fill them empty frames with the pages.
+    \end{subquestion}
+  \end{subquestion}
 \end{document}
