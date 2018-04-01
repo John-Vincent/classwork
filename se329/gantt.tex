@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{pgfgantt}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{}
+\newcommand\assignment{}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+  \begin{ganttchart}[y unit title=0.4cm,
+    y unit chart=0.5cm,
+    vgrid,hgrid,
+    title label anchor/.style={below=-1.6ex},
+    title left shift=.05,
+    title right shift=-.05,
+    title height=1,
+    bar/.style={fill=gray!50},
+    incomplete/.style={fill=white},
+    progress label text={},
+    bar height=0.7,
+    group right shift=0,
+    group top shift=.6,
+    group height=.3]{1}{14}
+    %labels
+    \gantttitlelist{1,...,14}{1}\\
+    %tasks
+    \ganttbar{login page}{1}{2} \\
+    \ganttbar{registration page}{3}{3} \\
+    \ganttbar{error page}{4}{4} \\
+    \ganttbar{home page}{5}{5} \\
+    \ganttbar{device registration page}{5}{6}\\
+    \ganttbar{device status page}{7}{7} \\
+    \ganttbar{view devices page}{8}{8} \\
+    \ganttbar{test server}{9}{10}\\
+    \ganttbar{Motion Detection}{1}{2} \\
+    \ganttbar{pi internet connection}{1}{1}\\
+    \ganttbar{pi server communication}{2}{2}\\
+    \ganttbar{pi program on startup}{3}{3}\\
+    \ganttbar{set up servo}{4}{5}\\
+    \ganttbar{range sensors}{6}{6}\\
+    \ganttbar{motion detection testing}{7}{8}\\
+    \ganttbar{face recognition}{9}{10} \\
+    \ganttbar{integration testing}{11}{12}\\
+    \ganttbar{documentation}{13}{14} \\
+  \end{ganttchart}\\
+
+\end{document}

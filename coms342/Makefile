@@ -8,6 +8,9 @@ FILES =  $(addprefix ${FOLDER}${PROJ}/build/${PROJ}/, $(addsuffix .class, AST En
 default: makebin ${FILES} copyScripts
 	@echo done
 
+build:
+	@cd ${FOLDER}${PROJ}; ant
+
 run:
 	@cd ${FOLDER}${PROJ}; java -cp lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER:build ${PROJ}/Interpreter || true
 

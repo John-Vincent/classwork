@@ -8,9 +8,9 @@ import forklang.Env;
 /**
  * This class hierarchy represents expressions in the abstract syntax tree
  * manipulated by this interpreter.
- * 
+ *
  * @author hridesh
- * 
+ *
  */
 @SuppressWarnings("rawtypes")
 public interface AST {
@@ -29,11 +29,11 @@ public interface AST {
 		public Exp e() {
 			return _e;
 		}
-		
+
 		public List<DefineDecl> decls() {
 			return _decls;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -41,6 +41,25 @@ public interface AST {
 	public static abstract class Exp extends ASTNode {
 
 	}
+
+  public static class SyncExp extends Exp{
+    Exp lock;
+    Exp crit;
+    public SyncExp(Exp lock, Exp crit){
+      this.lock = lock;
+      this.crit = crit;
+    }
+    @Override
+    public Object accept(Visitor visitor, Env env) {
+            return visitor.visit(this, env);
+    }
+    public Exp getLock(){
+      return lock;
+    }
+    public Exp getCrit(){
+      return crit;
+    }
+  }
 
 	public static class VarExp extends Exp {
 		String _name;
@@ -52,14 +71,14 @@ public interface AST {
 		public String name() {
 			return _name;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
 
 	public static class UnitExp extends Exp {
-		
+
 		public UnitExp() {}
 
 		public Object accept(Visitor visitor, Env env) {
@@ -78,7 +97,7 @@ public interface AST {
 		public double v() {
 			return _val;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -94,7 +113,7 @@ public interface AST {
 		public String v() {
 			return _val;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -110,7 +129,7 @@ public interface AST {
 		public boolean v() {
 			return _val;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -161,7 +180,7 @@ public interface AST {
 		public void add(Exp e) {
 			_rest.add(e);
 		}
-		
+
 	}
 
 	public static class AddExp extends CompoundArithExp {
@@ -180,7 +199,7 @@ public interface AST {
 		public AddExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -203,7 +222,7 @@ public interface AST {
 		public SubExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -225,7 +244,7 @@ public interface AST {
 		public DivExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -247,113 +266,113 @@ public interface AST {
 		public MultExp(Exp left, Exp right) {
 			super(left, right);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
-	 * A let expression has the syntax 
-	 * 
+	 * A let expression has the syntax
+	 *
 	 *  (let ((name expression)* ) expression)
-	 *  
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class LetExp extends Exp {
 		List<String> _names;
-		List<Exp> _value_exps; 
+		List<Exp> _value_exps;
 		Exp _body;
-		
+
 		public LetExp(List<String> names, List<Exp> value_exps, Exp body) {
 			_names = names;
 			_value_exps = value_exps;
 			_body = body;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
-		
+
 		public List<String> names() { return _names; }
-		
+
 		public List<Exp> value_exps() { return _value_exps; }
 
 		public Exp body() { return _body; }
 
 	}
-	
+
 	/**
-	 * A define declaration has the syntax 
-	 * 
+	 * A define declaration has the syntax
+	 *
 	 *  (define name expression)
-	 *  
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class DefineDecl extends Exp {
 		String _name;
-		Exp _value_exp; 
-		
+		Exp _value_exp;
+
 		public DefineDecl(String name, Exp value_exp) {
 			_name = name;
 			_value_exp = value_exp;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
-		
+
 		public String name() { return _name; }
-		
+
 		public Exp value_exp() { return _value_exp; }
 
 	}
-	
+
 	/**
 	 * An anonymous procedure declaration has the syntax
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
-	public static class LambdaExp extends Exp {		
+	public static class LambdaExp extends Exp {
 		List<String> _formals;
 		Exp _body;
-		
+
 		public LambdaExp(List<String> formals, Exp body) {
 			_formals = formals;
 			_body = body;
 		}
-		
+
 		public List<String> formals() { return _formals; }
-		
+
 		public Exp body() { return _body; }
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
 	 * A call expression has the syntax
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class CallExp extends Exp {
-		Exp _operator; 
+		Exp _operator;
 		List<Exp> _operands;
-		
+
 		public CallExp(Exp operator, List<Exp> operands) {
-			_operator = operator; 
+			_operator = operator;
 			_operands = operands;
 		}
-		
+
 		public Exp operator() { return _operator; }
 
 		public List<Exp> operands() { return _operands; }
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -361,37 +380,37 @@ public interface AST {
 
 	/**
 	 * An if expression has the syntax
-	 * 
+	 *
 	 * (if conditional_expression true_expression false_expression)
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class IfExp extends Exp {
-		Exp _conditional; 
-		Exp _then_exp; 
-		Exp _else_exp; 
-		
+		Exp _conditional;
+		Exp _then_exp;
+		Exp _else_exp;
+
 		public IfExp(Exp conditional, Exp then_exp, Exp else_exp) {
 			_conditional = conditional;
-			_then_exp = then_exp; 
-			_else_exp = else_exp; 
+			_then_exp = then_exp;
+			_else_exp = else_exp;
 		}
-		
+
 		public Exp conditional() { return _conditional; }
 		public Exp then_exp() { return _then_exp; }
 		public Exp else_exp() { return _else_exp; }
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
 	 * A less expression has the syntax
-	 * 
+	 *
 	 * ( < first_expression second_expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
@@ -399,18 +418,18 @@ public interface AST {
 		public LessExp(Exp first_exp, Exp second_exp) {
 			super(first_exp, second_exp);
 		}
-				
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	public static abstract class BinaryComparator extends Exp {
-		private Exp _first_exp; 
-		private Exp _second_exp; 
+		private Exp _first_exp;
+		private Exp _second_exp;
 		BinaryComparator(Exp first_exp, Exp second_exp) {
 			_first_exp = first_exp;
-			_second_exp = second_exp; 
+			_second_exp = second_exp;
 		}
 		public Exp first_exp() { return _first_exp; }
 		public Exp second_exp() { return _second_exp; }
@@ -418,9 +437,9 @@ public interface AST {
 
 	/**
 	 * An equal expression has the syntax
-	 * 
+	 *
 	 * ( == first_expression second_expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
@@ -428,7 +447,7 @@ public interface AST {
 		public EqualExp(Exp first_exp, Exp second_exp) {
 			super(first_exp, second_exp);
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -436,9 +455,9 @@ public interface AST {
 
 	/**
 	 * A greater expression has the syntax
-	 * 
+	 *
 	 * ( > first_expression second_expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
@@ -446,7 +465,7 @@ public interface AST {
 		public GreaterExp(Exp first_exp, Exp second_exp) {
 			super(first_exp, second_exp);
 		}
-				
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
@@ -454,14 +473,14 @@ public interface AST {
 
 	/**
 	 * A car expression has the syntax
-	 * 
+	 *
 	 * ( car expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class CarExp extends Exp {
-		private Exp _arg; 
+		private Exp _arg;
 		public CarExp(Exp arg){
 			_arg = arg;
 		}
@@ -470,17 +489,17 @@ public interface AST {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
 	 * A cdr expression has the syntax
-	 * 
+	 *
 	 * ( car expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class CdrExp extends Exp {
-		private Exp _arg; 
+		private Exp _arg;
 		public CdrExp(Exp arg){
 			_arg = arg;
 		}
@@ -489,18 +508,18 @@ public interface AST {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
 	 * A cons expression has the syntax
-	 * 
+	 *
 	 * ( cons expression expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class ConsExp extends Exp {
-		private Exp _fst; 
-		private Exp _snd; 
+		private Exp _fst;
+		private Exp _snd;
 		public ConsExp(Exp fst, Exp snd){
 			_fst = fst;
 			_snd = snd;
@@ -514,14 +533,14 @@ public interface AST {
 
 	/**
 	 * A list expression has the syntax
-	 * 
+	 *
 	 * ( list expression* )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class ListExp extends Exp {
-		private List<Exp> _elems; 
+		private List<Exp> _elems;
 		public ListExp(List<Exp> elems){
 			_elems = elems;
 		}
@@ -530,17 +549,17 @@ public interface AST {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	/**
 	 * A null expression has the syntax
-	 * 
+	 *
 	 * ( null? expression )
-	 * 
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class NullExp extends Exp {
-		private Exp _arg; 
+		private Exp _arg;
 		public NullExp(Exp arg){
 			_arg = arg;
 		}
@@ -562,7 +581,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsNumberExp extends Exp {
     	private Exp e;
     	public IsNumberExp(Exp e){
@@ -575,7 +594,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsStringExp extends Exp {
     	private Exp e;
     	public IsStringExp(Exp e){
@@ -588,7 +607,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsProcedureExp extends Exp {
     	private Exp e;
     	public IsProcedureExp(Exp e){
@@ -601,7 +620,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsUnitExp extends Exp {
     	private Exp e;
     	public IsUnitExp(Exp e){
@@ -614,7 +633,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsPairExp extends Exp {
     	private Exp e;
     	public IsPairExp(Exp e){
@@ -627,7 +646,7 @@ public interface AST {
     		return visitor.visit(this, env);
     	}
     }
-    
+
     public static class IsListExp extends Exp {
     	private Exp e;
     	public IsListExp(Exp e){
@@ -661,7 +680,7 @@ public interface AST {
 	 *
 	 */
 	public static class EvalExp extends Exp {
-		private Exp _code; 
+		private Exp _code;
 		public EvalExp(Exp code){
 			_code = code;
 		}
@@ -677,7 +696,7 @@ public interface AST {
 	 *
 	 */
 	public static class ReadExp extends Exp {
-		private Exp _file; 
+		private Exp _file;
 		public ReadExp(Exp file){
 			_file = file;
 		}
@@ -688,30 +707,30 @@ public interface AST {
 	}
 
 	/**
-	 * A letrec expression has the syntax 
-	 * 
+	 * A letrec expression has the syntax
+	 *
 	 *  (letrec ((name expression)* ) expression)
-	 *  
+	 *
 	 * @author hridesh
 	 *
 	 */
 	public static class LetrecExp extends Exp {
 		List<String> _names;
-		List<Exp> _fun_exps; 
+		List<Exp> _fun_exps;
 		Exp _body;
-		
+
 		public LetrecExp(List<String> names, List<Exp> fun_exps, Exp body) {
 			_names = names;
 			_fun_exps = fun_exps;
 			_body = body;
 		}
-		
+
 		public Object accept(Visitor visitor, Env env) {
 			return visitor.visit(this, env);
 		}
-		
+
 		public List<String> names() { return _names; }
-		
+
 		public List<Exp> fun_exps() { return _fun_exps; }
 
 		public Exp body() { return _body; }
@@ -719,10 +738,10 @@ public interface AST {
 	}
 
     /**
-     * A ref expression has the syntax 
-     * 
+     * A ref expression has the syntax
+     *
      *  (ref expression)
-     *  
+     *
      * @author hridesh
      *
      */
@@ -742,10 +761,10 @@ public interface AST {
     }
 
     /**
-     * A deref expression has the syntax 
-     * 
+     * A deref expression has the syntax
+     *
      *  (deref expression)
-     *  
+     *
      * @author hridesh
      *
      */
@@ -765,10 +784,10 @@ public interface AST {
     }
 
     /**
-     * An assign expression has the syntax 
-     * 
+     * An assign expression has the syntax
+     *
      *  (set! expression expression)
-     *  
+     *
      * @author hridesh
      *
      */
@@ -791,10 +810,10 @@ public interface AST {
     }
 
     /**
-     * A free expression has the syntax 
-     * 
+     * A free expression has the syntax
+     *
      *  (free expression)
-     *  
+     *
      * @author hridesh
      *
      */
@@ -814,10 +833,10 @@ public interface AST {
     }
 
     /**
-     * A fork expression has the syntax 
-     * 
+     * A fork expression has the syntax
+     *
      *  (fork expression+)
-     *  
+     *
      */
     public static class ForkExp extends Exp {
         private Exp _fst_exp;
@@ -838,31 +857,34 @@ public interface AST {
     }
 
     /**
-     * A lock expression has the syntax 
-     * 
+     * A lock expression has the syntax
+     *
      *  (lock expression)
-     *  
+     *
      */
     public static class LockExp extends Exp {
         private Exp _value_exp;
-
-        public LockExp(Exp value_exp) {
+        private boolean blocking;
+        public LockExp(Exp value_exp, boolean blocking) {
                 _value_exp = value_exp;
+                this.blocking = blocking;
         }
 
         public Object accept(Visitor visitor, Env env) {
                 return visitor.visit(this, env);
         }
 
+        public boolean isBlocking(){return this.blocking;}
+
         public Exp value_exp() { return _value_exp; }
 
     }
 
     /**
-     * An unlock expression has the syntax 
-     * 
+     * An unlock expression has the syntax
+     *
      *  (unlock expression)
-     *  
+     *
      */
     public static class UnlockExp extends Exp {
         private Exp _value_exp;
@@ -885,7 +907,7 @@ public interface AST {
 			return visitor.visit(this, env);
 		}
 	}
-	
+
 	public interface Visitor <T> {
 		// This interface should contain a signature for each concrete AST node.
 		public T visit(AST.AddExp e, Env env);
@@ -899,36 +921,37 @@ public interface AST {
 		public T visit(AST.Program p, Env env);
 		public T visit(AST.SubExp e, Env env);
 		public T visit(AST.VarExp e, Env env);
-		public T visit(AST.LetExp e, Env env); 
-		public T visit(AST.DefineDecl d, Env env); 
-		public T visit(AST.ReadExp e, Env env); 
-		public T visit(AST.EvalExp e, Env env); 
-		public T visit(AST.LambdaExp e, Env env); 
-		public T visit(AST.CallExp e, Env env); 
-		public T visit(AST.LetrecExp e, Env env); 
-		public T visit(AST.IfExp e, Env env); 
-		public T visit(AST.LessExp e, Env env); 
-		public T visit(AST.EqualExp e, Env env); 
-		public T visit(AST.GreaterExp e, Env env); 
-		public T visit(AST.CarExp e, Env env); 
-		public T visit(AST.CdrExp e, Env env); 
-		public T visit(AST.ConsExp e, Env env); 
-		public T visit(AST.ListExp e, Env env); 
-		public T visit(AST.NullExp e, Env env); 
-        public T visit(AST.IsNullExp e, Env env); 
-        public T visit(AST.IsProcedureExp e, Env env); 
-        public T visit(AST.IsListExp e, Env env); 
-        public T visit(AST.IsPairExp e, Env env); 
-        public T visit(AST.IsUnitExp e, Env env); 
-        public T visit(AST.IsNumberExp e, Env env); 
-        public T visit(AST.IsStringExp e, Env env); 
-        public T visit(AST.IsBooleanExp e, Env env); 
-		public T visit(AST.RefExp e, Env env); 
-		public T visit(AST.DerefExp e, Env env); 
-		public T visit(AST.AssignExp e, Env env); 
+		public T visit(AST.LetExp e, Env env);
+		public T visit(AST.DefineDecl d, Env env);
+		public T visit(AST.ReadExp e, Env env);
+		public T visit(AST.EvalExp e, Env env);
+		public T visit(AST.LambdaExp e, Env env);
+		public T visit(AST.CallExp e, Env env);
+		public T visit(AST.LetrecExp e, Env env);
+		public T visit(AST.IfExp e, Env env);
+		public T visit(AST.LessExp e, Env env);
+		public T visit(AST.EqualExp e, Env env);
+		public T visit(AST.GreaterExp e, Env env);
+		public T visit(AST.CarExp e, Env env);
+		public T visit(AST.CdrExp e, Env env);
+		public T visit(AST.ConsExp e, Env env);
+		public T visit(AST.ListExp e, Env env);
+		public T visit(AST.NullExp e, Env env);
+        public T visit(AST.IsNullExp e, Env env);
+        public T visit(AST.IsProcedureExp e, Env env);
+        public T visit(AST.IsListExp e, Env env);
+        public T visit(AST.IsPairExp e, Env env);
+        public T visit(AST.IsUnitExp e, Env env);
+        public T visit(AST.IsNumberExp e, Env env);
+        public T visit(AST.IsStringExp e, Env env);
+        public T visit(AST.IsBooleanExp e, Env env);
+		public T visit(AST.RefExp e, Env env);
+		public T visit(AST.DerefExp e, Env env);
+		public T visit(AST.AssignExp e, Env env);
 		public T visit(AST.FreeExp e, Env env);
-		public T visit(AST.ForkExp e, Env env); 
-		public T visit(AST.LockExp e, Env env); 
-		public T visit(AST.UnlockExp e, Env env); 
-	}	
+		public T visit(AST.ForkExp e, Env env);
+		public T visit(AST.LockExp e, Env env);
+		public T visit(AST.UnlockExp e, Env env);
+    public T visit(AST.SyncExp e, Env env);
+	}
 }

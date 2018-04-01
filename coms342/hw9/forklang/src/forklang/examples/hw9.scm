@@ -34,25 +34,33 @@
 
 (define getbalance
 	(lambda (acc)
-		(acc #f)
+		(seq3 (lock (acc #t)) (acc #f) (unlock (acc #t)))
 	)
 )
 
 (define withdraw
 	(lambda (acc amount)
-		(set!
-			(acc #t)
-			(- (acc #f) amount)
-		)
+    (seq3
+      (lock (acc #t))
+      (set!
+  			(acc #t)
+  			(- (acc #f) amount)
+  		)
+      (unlock (acc #t))
+    )
 	)
 )
 
 (define deposit
 	(lambda (acc amount)
-		(set!
-			(acc #t)
-			(+ (acc #f) amount)
-		)
+    (seq3
+      (lock (acc #t))
+      (set!
+        (acc #t)
+        (+ (acc #f) amount)
+      )
+      (unlock (acc #t))
+    )
 	)
 )
 
@@ -61,6 +69,7 @@
 (define B (account 200))
 
 (define seq2 (lambda (f1 f2) f2))
+(define seq3 (lambda (f1 f2 f3) f2))
 (define seq4 (lambda (f1 f2 f3 f4) f4))
 (define banktest
 	(lambda ()
@@ -70,6 +79,53 @@
 				(seq4 (withdraw B 101) (withdraw A 101) (deposit B 101) (deposit A 101))
 			)
 			(list (getbalance A) (getbalance B))
+		)
+	)
+)
+
+
+(define resource1 (ref 42))
+(define resource2 (ref 342))
+
+(define factorial
+   (lambda (n)
+   	(if (= n 0) 1
+   		(* n (factorial (- n 1)))
+   	)
+   )
+)
+
+(define lock12
+	(lambda (f arg)
+		(let
+			((l1 (lock resource1))
+			 (l2 (lock resource2))
+			 (result (f arg))
+			 (ul1 (unlock resource1))
+			 (ul2 (unlock resource2)))
+			result
+		)
+	)
+)
+
+(define lock21
+	(lambda (f arg)
+		(let
+			((l1 (lock resource2))
+			 (l2 (lock resource1))
+			 (result (f arg))
+			 (ul1 (unlock resource2))
+			 (ul2 (unlock resource1)))
+			result
+		)
+	)
+)
+
+(define lockit
+	(lambda ()
+		(fork
+			(factorial 2)
+			(factorial 3)
 		)
 	)
 )

@@ -28,8 +28,8 @@ COMS342_DIR = ./coms342/funclang/
 COMS342_FILE = 4
 COMS342_MODE = pdf
 
-SE329_DIR = ./se329/hw2/
-SE329_FILE = hw2
+SE329_DIR = ./se329/
+SE329_FILE = gantt
 SE329_MODE = pdf
 
 STAT330_DIR = ./stat330/hw1/
