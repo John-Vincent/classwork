@@ -3,6 +3,7 @@
 #include <string.h>
 #include <errno.h>
 #include "../headers/utils.h"
+#include "../headers/network.h"
 
 int parse_args(int argc, char** argv, char** address, char** time_interval);
 
@@ -13,7 +14,7 @@ char *generate_request(char* filepath, char* hostname, char* time_interval, int 
 int main(int argc, char** argv){
   char *address = NULL, *hostname, *filepath;
   char *time_interval = NULL;
-  char *request = NULL;
+  char *request = NULL, *response = NULL;
   int header, port = 80, tmp;
 
   header = parse_args(argc, argv, &address, &time_interval);
@@ -45,9 +46,23 @@ int main(int argc, char** argv){
 
   request = generate_request(filepath, hostname, time_interval, header);
 
+  if(time_interval){
+    free(time_interval);
+  }
 
-  free(time_interval);
-  free(request);
+  if(send_request(hostname, port, request, &response)){
+    return -1;
+  }
+
+  printf("%s", response);
+
+  if(response){
+    free(response);
+  }
+  if(request){
+    free(request);
+  }
+  return 0;
 }
 
 

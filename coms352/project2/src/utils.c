@@ -21,7 +21,3 @@ char *get_time(char* offset){
 
   return ans;
 }
-
-int print_file(char *file, char *payload){
-  
-}
