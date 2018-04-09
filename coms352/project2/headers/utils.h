@@ -3,6 +3,6 @@
 
 char *get_time(char* offset);
 
-int print_file(char *file, char *payload);
+unsigned long get_line(char **line, int sock);
 
 #endif

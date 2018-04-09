@@ -35,6 +35,3 @@ clean:
 makebin:
 	@[ -d bin ] || echo "making bin folder"
 	@[ -d bin ] || mkdir -p bin/objects
-
-run: $(EXE)
-	@$(EXE)

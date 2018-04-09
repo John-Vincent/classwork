@@ -21,3 +21,9 @@ char *get_time(char* offset){
 
   return ans;
 }
+
+unsigned long get_line(char **line, int sock){
+  unsigned long count = 0;
+  //TODO
+  return count;
+}
