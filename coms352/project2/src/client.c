@@ -147,8 +147,7 @@ int parse_url(char *address, char* hostname, char* filepath, int* port){
 int read_write_message(int sock){
   char *buff;
   char *line = NULL;
-  int size, chunked;
-  size_t n = 0;
+  int size, chunked, i;
   long chunk_size;
   FILE *file;
 
@@ -164,8 +163,8 @@ int read_write_message(int sock){
   //reads http header
   while(1){
     //need to write my own get_line
-    size = get_line(&line, sock);
-    if(size < 0){
+    i = get_line(&line, sock);
+    if(i < 0){
       perror("failed to read line");
       close(sock);
       fclose(file);
@@ -176,41 +175,47 @@ int read_write_message(int sock){
     }
     if(sscanf(line, "Content-Length: %d", &size)){
       chunked = 0;
-    } else if(strcmp("Transfer-Encoding: chunked", line) == 0){
+    } else if(strncmp("Transfer-Encoding: chunked", line, 26) == 0){
       chunked = 1;
     } else if(strcmp("\r\n", line) == 0 || strcmp("\n", line) == 0){
       break;
     }
     free(line);
     line = NULL;
-    n = 0;
   }
 
-  //reads chunked body
+  //reads chunked body: with chunked messages no end file was being sent causing read to hang
   if(chunked){
     chunk_size = 1;
     while(chunk_size != 0){
       free(line);
       line = NULL;
-      n = 0;
       if((size = get_line(&line, sock)) == -1){
         perror("failed to read line");
         break;
+      }
+      for(i = 0; i < size; i++){
+        if(line[i] == '\r' || line[i] == '\n'){
+          line[i] = '\0';
+          break;
+        }
       }
       chunk_size = strtol(line, NULL, 16);
       if(chunk_size != 0){
         if((buff = malloc(chunk_size + 3)) == NULL){
           perror("error allocating space for buffer");
         }
-        n = 0;
-        while((size = read(sock, buff + n, chunk_size - n)) != chunk_size - n){
+        i = 0;
+        chunk_size += 2;
+        while(i < chunk_size){
+          size = read(sock, buff + i, chunk_size - i);
           if(size == -1){
             perror("failed to read from socket");
             close(sock);
             fclose(file);
             return -1;
           }
-          size += n;
+          i += size;
         }
         if(fwrite(buff, 1, chunk_size, file) == 0 && ferror(file) == -1){
           perror("file write error");
@@ -234,6 +239,8 @@ int read_write_message(int sock){
     }
     free(buff);
   }
+
+  fflush(file);
 
   close(sock);
   fclose(file);

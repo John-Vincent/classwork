@@ -3,6 +3,6 @@
 
 char *get_time(char* offset);
 
-unsigned long get_line(char **line, int sock);
+long get_line(char **line, int sock);
 
 #endif
