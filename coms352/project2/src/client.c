@@ -178,6 +178,8 @@ int read_write_message(int sock){
     } else if(strncmp("Transfer-Encoding: chunked", line, 26) == 0){
       chunked = 1;
     } else if(strcmp("\r\n", line) == 0 || strcmp("\n", line) == 0){
+      free(line);
+      line = NULL;
       break;
     }
     free(line);
@@ -188,8 +190,6 @@ int read_write_message(int sock){
   if(chunked){
     chunk_size = 1;
     while(chunk_size != 0){
-      free(line);
-      line = NULL;
       if((size = get_line(&line, sock)) == -1){
         perror("failed to read line");
         break;
@@ -222,6 +222,10 @@ int read_write_message(int sock){
           break;
         }
         free(buff);
+        free(line);
+      } else{
+        free(buff);
+        free(line);
       }
     }
   } else{ //reads normal body with specified content-length
