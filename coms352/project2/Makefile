@@ -1,8 +1,8 @@
 C_COMP = gcc
 C_FLAGS = -Werror -Wall -ggdb
 C_LINKS = -lrt -lpthread
-SERVER_FILES = $(addprefix bin/objects/, $(addsuffix .o, server))
-SERVER_HEADERS = $(addprefix headers/, $(addsuffix .h, ))
+SERVER_FILES = $(addprefix bin/objects/, $(addsuffix .o, server network utils))
+SERVER_HEADERS = $(addprefix headers/, $(addsuffix .h, network utils))
 CLIENT_FILES = $(addprefix bin/objects/, $(addsuffix .o, client utils network))
 CLIENT_HEADERS = $(addprefix headers/, $(addsuffix .h, utils network))
 

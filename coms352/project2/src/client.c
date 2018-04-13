@@ -7,12 +7,49 @@
 #include "../headers/network.h"
 #define BUF_SIZE 1024
 
+/**
+ * this function parses the arguments into the program
+ * @param  argc                    the number of arguments
+ * @param  argv                    the array of string arguments
+ * @param  address                 a pointer to fill with the address string
+ * @param  time_interval           pointer to the string that should be filled with the time offset string
+ * @return
+ * @author Collin Vincent collinvincent96@gmail.com
+ * @date   2018-04-13T21:19:25+000
+ */
 int parse_args(int argc, char** argv, char** address, char** time_interval);
 
+/**
+ * takes the url and breaks it into the key components for connecting to and requesting from the server
+ * @param  address                 the raw address
+ * @param  hostname                string to be filled with hostname
+ * @param  filepath                string to be filled with file path
+ * @param  port                    int to be filled with port number
+ * @return
+ * @author Collin Vincent collinvincent96@gmail.com
+ * @date   2018-04-13T21:21:09+000
+ */
 int parse_url(char *address, char* hostname, char* filepath, int* port);
 
+/**
+ * creates the address string from all the different components
+ * @param  filepath                the filepath
+ * @param  hostname                the hostname of the server
+ * @param  time_interval           the time offset
+ * @param  header                  if its a header only request
+ * @return
+ * @author Collin Vincent collinvincent96@gmail.com
+ * @date   2018-04-13T21:22:39+000
+ */
 char *generate_request(char* filepath, char* hostname, char* time_interval, int header);
 
+/**
+ * this function sends the request and the parese the response and saves it to the response.txt file
+ * @param  sock                    integer representing the socket connection
+ * @return
+ * @author Collin Vincent collinvincent96@gmail.com
+ * @date   2018-04-13T21:24:22+000
+ */
 int read_write_message(int sock);
 
 int main(int argc, char** argv){
@@ -147,7 +184,7 @@ int parse_url(char *address, char* hostname, char* filepath, int* port){
 int read_write_message(int sock){
   char *buff;
   char *line = NULL;
-  int size, chunked, i;
+  int size, chunked = 0, body = 0, i;
   long chunk_size;
   FILE *file;
 
@@ -165,6 +202,7 @@ int read_write_message(int sock){
     //need to write my own get_line
     i = get_line(&line, sock);
     if(i < 0){
+      printf("%s\n", line);
       perror("failed to read line");
       close(sock);
       fclose(file);
@@ -175,8 +213,10 @@ int read_write_message(int sock){
     }
     if(sscanf(line, "Content-Length: %d", &size)){
       chunked = 0;
+      body = 1;
     } else if(strncmp("Transfer-Encoding: chunked", line, 26) == 0){
       chunked = 1;
+      body = 0;
     } else if(strcmp("\r\n", line) == 0 || strcmp("\n", line) == 0){
       free(line);
       line = NULL;
@@ -228,7 +268,7 @@ int read_write_message(int sock){
         free(line);
       }
     }
-  } else{ //reads normal body with specified content-length
+  } else if(body){ //reads normal body with specified content-length
     if((buff = malloc(size + 3)) == NULL){
       perror("error allocating space for buffer");
     }
