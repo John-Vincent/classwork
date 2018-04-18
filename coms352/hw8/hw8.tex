@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 352}
+\newcommand\assignment{Homework 8}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{subquestion}{11.9}
+    One problem is that a process could aquire a right lock to the new file in the same location but a different process could aquire a write lock to the old file in the same location,
+    allowing both processes to write to the same disk locations at the same time. If links to the old files want to be preserved after deletion you could add a flag to the inode that would
+    mark it as deleted and not allow writing to files marked as deleted.
+  \end{subquestion}
+
+  \begin{subquestion}{11.12}
+    a text editor is an example of an application that would access files sequentailly because it reads the files from start to end in order every time in order to display them properly.
+    A database is an example of an application that would randomly access a file, based on the queries it receives it will have to access a random sector of the underlying file that
+    is used to store the data.
+  \end{subquestion}
+
+  \begin{subquestion}{11.17}
+    with different copies there are problems with the files diverging from each other and no longer really being the same file after multiple updates. However this keeps
+    the files from getting being saved in an incorrect state by multiple users editing them at the same time, also keeps another user from messing up your files while still
+    being able to access your version of the file. With both users having the same copy it prevents the file from diverging into different states but also requires more management
+    by the system to prevent saving the file incorrectly when multiple users are editing it. this way also uses less space on the disk since there aren't multiple copies being saved.
+  \end{subquestion}
+
+  \begin{subquestion}{12.13}
+    the obvious benifit of this system would be a reduction in interal fragmentation since you could more closely allocate the exact amount of space that you would need to store your file.
+    The free space management would have to add a way to keep track of the physical sub-blocks that are allocated for every block that has some free sub-blocks as well.
+  \end{subquestion}
+
+  \begin{subquestion}{12.16}
+    96 KB files or less can be allocated directly, $8$KB$ = 8192$ bytes $8192/4= 2048, 2048 * 8192 = 16MB, 2048^2 * 8192 = 32GB, 2048^3 * 8192 = 64TB$ so the max is going to be
+    a summation of all of the values making $64TB 32GB 16MB 96KB$ the max file size of the system.
+  \end{subquestion}
+
+  \begin{subquestion}{12.17}
+    in order to relocate a file on disk the file would have to be read part by part into main memory then written to its new location. this is an expensive process which is one
+    reason why its often avoided.
+  \end{subquestion}
+
+  \begin{subquestion}{7}
+  \end{subquestion}
+
+\end{document}

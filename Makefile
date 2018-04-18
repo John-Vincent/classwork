@@ -37,7 +37,7 @@ STAT330_FILE = hw1
 STAT330_MODE = pdf
 
 COMS352_DIR = ./coms352/hw7/
-COMS352_FILE = hw7
+COMS352_FILE = hw8
 COMS352_MODE = pdf
 
 C_DIR = ./coms352/hw5/
