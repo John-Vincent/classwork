@@ -39,13 +39,13 @@
 
 
   \begin{subquestion}{11.9}
-    One problem is that a process could aquire a right lock to the new file in the same location but a different process could aquire a write lock to the old file in the same location,
+    One problem is that a process could acquire a right lock to the new file in the same location but a different process could acquire a write lock to the old file in the same location,
     allowing both processes to write to the same disk locations at the same time. If links to the old files want to be preserved after deletion you could add a flag to the inode that would
     mark it as deleted and not allow writing to files marked as deleted.
   \end{subquestion}
 
   \begin{subquestion}{11.12}
-    a text editor is an example of an application that would access files sequentailly because it reads the files from start to end in order every time in order to display them properly.
+    a text editor is an example of an application that would access files sequentially because it reads the files from start to end in order every time in order to display them properly.
     A database is an example of an application that would randomly access a file, based on the queries it receives it will have to access a random sector of the underlying file that
     is used to store the data.
   \end{subquestion}
@@ -58,7 +58,7 @@
   \end{subquestion}
 
   \begin{subquestion}{12.13}
-    the obvious benifit of this system would be a reduction in interal fragmentation since you could more closely allocate the exact amount of space that you would need to store your file.
+    the obvious benefit of this system would be a reduction in integral fragmentation since you could more closely allocate the exact amount of space that you would need to store your file.
     The free space management would have to add a way to keep track of the physical sub-blocks that are allocated for every block that has some free sub-blocks as well.
   \end{subquestion}
 
@@ -69,10 +69,13 @@
 
   \begin{subquestion}{12.17}
     in order to relocate a file on disk the file would have to be read part by part into main memory then written to its new location. this is an expensive process which is one
-    reason why its often avoided.
+    reason why its often avoided. another reason is that having contiguous files on the disk isn't really necessary many files can be split into different blocks without much
+    negative affect on performance.
   \end{subquestion}
 
   \begin{subquestion}{7}
+    every single time the parent process opens the file first completes its task and exits then the child gets to open the file complete its task and exit.
+    it seems like they don't really share the file but rather are forced to take turns with it like any other two processes would.
   \end{subquestion}
 
 \end{document}

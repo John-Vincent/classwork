@@ -36,12 +36,12 @@ STAT330_DIR = ./stat330/hw1/
 STAT330_FILE = hw1
 STAT330_MODE = pdf
 
-COMS352_DIR = ./coms352/hw7/
+COMS352_DIR = ./coms352/hw8/
 COMS352_FILE = hw8
 COMS352_MODE = pdf
 
-C_DIR = ./coms352/hw5/
-C_FILE = bin/question6
+C_DIR = ./coms352/hw8/
+C_FILE = bin/test
 C_MODE = exe
 
 default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE)))

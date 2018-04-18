@@ -1,7 +1,7 @@
-PROJ=forklang
-FOLDER=hw9/
+PROJ=typelang
+FOLDER=hw10/
 
-FILES =  $(addprefix ${FOLDER}${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpreter Value Printer Reader Evaluator Heap))
+FILES =  $(addprefix ${FOLDER}${PROJ}/build/${PROJ}/, $(addsuffix .class, AST Env Interpreter Value Printer Reader Evaluator Heap Checker))
 
 
 
@@ -12,7 +12,7 @@ build:
 	@cd ${FOLDER}${PROJ}; ant
 
 run:
-	@cd ${FOLDER}${PROJ}; java -cp lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER:build ${PROJ}/Interpreter || true
+	@cd ${FOLDER}${PROJ}; java -cp lib/antlr-4.5-complete.jar:org.eclipse.jdt.launching.JRE_CONTAINER:build ${PROJ}/Checker || true
 
 clean:
 	@rm -r ${FOLDER}${PROJ}/build

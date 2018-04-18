@@ -1,0 +1,57 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 342}
+\newcommand\assignment{Homework 10}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+  {\bf \classname \hspace{1cm} \assignment\hfill \name}
+  \vskip 2em
+
+
+  \begin{question}
+    \begin{enumerate}[label=\alph*]
+      \item (num -> (num -> bool))\\
+      this is a function that takes a num and resolves to a function that takes a num argument that resolves to a boolean
+      \item Type error: The condition should have boolean type, found num in (if x #t #f)\\
+      this type is an error because you are trying to use a number as a boolean
+      \item (num -> (num -> bool))\\
+      this function is just like the first.
+      \item (num -> (num -> num))\\
+      this is a function with a number parameter which resolves to a function with a number parameter which resolves to a number.
+      \item Type error: The then and else expressions should have the same type, then has type (num -> (num -> bool)) else has type (num -> (num -> num))
+      this is a type error because both branches of the if statement must resolve to the same type and they don't
+    \end{enumerate}
+  \end{question}
+
+
+\end{document}
