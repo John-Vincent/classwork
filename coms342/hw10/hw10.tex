@@ -7,6 +7,7 @@
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \usepackage{enumitem}
+\usepackage{adjustbox}
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
@@ -17,6 +18,7 @@
 \newcounter{excounter}
 \setcounter{excounter}{1}
 \newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newcommand\tab{\hspace{2mm}}
 \newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
 \newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
 
@@ -39,19 +41,194 @@
 
 
   \begin{question}
-    \begin{enumerate}[label=\alph*]
-      \item (num -> (num -> bool))\\
+    \begin{enumerate}[label=\alph*)]
+      \item (num -\textgreater (num -\textgreater bool))\\
       this is a function that takes a num and resolves to a function that takes a num argument that resolves to a boolean
-      \item Type error: The condition should have boolean type, found num in (if x #t #f)\\
+      \item Type error: The condition should have boolean type, found num in (if x \#t \#f)\\
       this type is an error because you are trying to use a number as a boolean
-      \item (num -> (num -> bool))\\
+      \item (num -\textgreater (num -\textgreater bool))\\
       this function is just like the first.
-      \item (num -> (num -> num))\\
+      \item (num -\textgreater (num -\textgreater num))\\
       this is a function with a number parameter which resolves to a function with a number parameter which resolves to a number.
-      \item Type error: The then and else expressions should have the same type, then has type (num -> (num -> bool)) else has type (num -> (num -> num))
+      \item Type error: The then and else expressions should have the same type, then has type (num -\textgreater (num -\textgreater bool)) else has type (num -\textgreater (num -\textgreater num))
       this is a type error because both branches of the if statement must resolve to the same type and they don't
     \end{enumerate}
   \end{question}
 
+  \begin{question}
+    \begin{subquestion}{a}
+      \vspace{-1.2cm}
+      \begin{gather*}
+        var_0 = x,\tab t_0 = num,\tab var_1 = y,\tab t_1 = num\\
+        e_{body1} = (LetExp\tab y\tab num\tab (NumExp\tab 5) e_{body2}),\tab e_{body2} = (AddExp (VarExp\tab x) (VarExp\tab y))\\
+        get(tenv_0, x) = num,\tab get(tenv_1, y) = num\\\hline
+        tenv_0\vdash (VarExp\tab x):num,\tab tenv_1\vdash(VarExp\tab y):num\\\hline
+        tenv_1\vdash e_{body2}:num\\
+        tenv_0\vdash e_{body1}: num\\
+        tenv_1 = (ExtendedEnv\tab y\tab num\tab (tenv_0))\\
+        tenv_0 = (ExtendedEnv\tab x\tab num\tab (EmptyEnv))\\\hline
+        (tenv_0)\vdash(LetExp\tab y\tab num\tab (NumExp\tab 5)\tab e_{body2}): num\\\hline
+        (EmptyEnv)\vdash(LetExp\tab x\tab num\tab (NumExp\tab 2)\tab e_{body1}): num
+      \end{gather*}
+    \end{subquestion}
+    \clearpage
+    \begin{subquestion}{b}
+      \vspace{-1.43cm}
+      \begin{gather*}
+        var_0 = x,\tab t_0 = num,\tab var_1 = z\tab, t_1 = (num->num),\tab var_2 = y,\tab t_2 = num\\
+        e_{body1} = (LetExp\tab z\tab (num->num)\tab e_{f}\tab e_{body3})\\
+        e_{f} = (LambdaExp\tab y\tab num\tab e_{body2})\\
+        e_{body2} = (AddExp\tab (VarExp\tab x)(VarExp\tab y))\\
+        e_{body3} = (CallExp\tab e_f\tab (NumExp\tab 5))\\
+        get(tenv_0,x) = num,\tab get(tenv_2, y) = num,\tab get(tenv_1, z) = (num->num)\\\hline
+        \hspace{-1cm}tenv_0\vdash (VarExp\tab x):num,\tab tenv_1\vdash (VarExp\tab z):(num->num),\tab tenv_2\vdash (VarExp\tab y):num\\
+        tenv_2 = (ExtendedEnv\tab y\tab num\tab tenv_1)\\
+        tenv_1 = (ExtendedEnv\tab z\tab (num->num)\tab tenv_0)\\
+        tenv_0 = (ExtendedEnv\tab x\tab num\tab (EmptyEnv))\\\hline
+        tenv_2\vdash e_{body2}: num\\\hline
+        tenv_2\vdash e_{f}: (num->num)\\\hline
+        tenv_1\vdash e_{body3}: num\\\hline
+        tenv_0\vdash e_{body1}: num\\\hline
+        (EmptyEnv)\vdash (LetExp x\tab num\tab (NumExp\tab 2)\tab e_{body1}): num
+      \end{gather*}
+    \end{subquestion}
+    \begin{subquestion}{c}
+      \vspace{-1.43cm}
+      \begin{gather*}
+        var_0 = x,\tab t_0 = num,\tab var_1=y,\tab t_1=num\\
+        tenv_1 = (ExtendedEnv\tab y\tab num\tab tenv_0)\\
+        tenv_0 = (ExtendedEnv\tab x\tab num\tab (EmptyEnv))\\
+        e_{f} = (LambdaExp x\tab y\tab num\tab num\tab e_{body1})\\
+        e_{body1} = (AddExp\tab (VarExp\tab x)\tab e_{body2})\\
+        e_{body2} = (AddExp\tab (VarExp\tab y)\tab (VarExp\tab x))\\
+        get(tenv_0, x)= num,\tab get(tenv_1, y)=num\\\hline
+        tenv_0\vdash (VarExp\tab x):num,\tab tenv_1\vdash (VarExp\tab y):num\\\hline
+        tenv_1\vdash e_{body2}:num\\\hline
+        tenv_1\vdash e_{body1}:num\\\hline
+        tenv_1\vdash e_{f}:(num\tab num->num)\\\hline
+        (EmptyEnv)\vdash(CallExp\tab e_f\tab (NumExp\tab 1)(NumExp\tab 2)): num
+      \end{gather*}
+    \end{subquestion}
+    \begin{subquestion}{d}
+      \vspace{-1.43cm}
+      \begin{gather*}
+        var_0 = x,\tab t_0 = num,\tab var_1 = y,\tab t_1 = num\tab var_2 = f,\tab t_2 = (num->(num->num)\\
+        tenv_2 = (ExtendedEnv\tab y\tab num\tab tenv_1)\\
+        tenv_1 = (ExtendedEnv\tab x\tab num\tab tenv_0)\\
+        tenv_0 = (ExtendedEnv\tab f\tab (num->(num->num))\tab (EmptyEnv))\\
+        e_{f1} = (LambdaExp\tab y\tab num\tab e_{body1})\\
+        e_{f2} = (LambdaExp\tab x\tab num\tab e_{f1})\\
+        e_{body1} = (AddExp\tab (VarExp\tab x)\tab (VarExp\tab y))\\
+        get(tenv_0, f) = (num->(num->num)),\tab get(tenv_1, x) = x,\tab get(tenv_2, y) = y\\\hline
+        \hspace{-2cm}tenv_0\vdash(VarExp\tab f):(num->(num->num)),\tab tenv_1\vdash(VarExp\tab x):num,\tab tenv_2\vdash(VarExp\tab y):num\\\hline
+        tenv_2\vdash e_{body1}:num\\\hline
+        tenv_1\vdash e_{f1}:(num->num)\\\hline
+        tenv_0\vdash e_{f2}:(num->(num->num))\\\hline
+        (EmptyEnv)\vdash (LetExp\tab f\tab t_2\tab e_{f2}\tab (VarExp\tab f)): (num->(num->num))
+      \end{gather*}
+    \end{subquestion}
+    \begin{subquestion}{e}
+      \vspace{-1.43cm}
+      \begin{gather*}
+        var_0 = a,\tab t_0=num\\
+        tenv_0 = (ExtendedEnv\tab a\tab Ref\tab num\tab (EmptyEnv))\\
+        e_{body} = (AssignExp\tab a\tab Ref\tab num\tab  e_{body1})\\
+        e_{body1} = (DerefExp a)\\
+        get(tenv_0, a) = Ref\tab num\\\hline
+        tenv_0\vdash a: Ref\tab num\\\hline
+        tenv_0\vdash e_{body1}: num\\\hline
+        tenv_0\vdash e_{body}: Ref\tab num\\\hline
+        (EmptyEnv)\vdash(LetExp\tab a\tab (Ref\tab num)\tab (RefExp\tab (NumExp\tab 2)num)\tab e{body}):(Ref\tab num)
+      \end{gather*}
+    \end{subquestion}
+  \end{question}
+
+  \begin{question}
+    \begin{tabular}{l|l}
+      ErrorT & atomic\\
+      UnitT & atomic\\
+      BoolT & atomic\\
+      StringT & atomic\\
+      NumT & atomic\\
+      PairT & compound\\
+      ListT & compound\\
+      FuncT & compound\\
+      RefT & compound
+    \end{tabular}
+  \end{question}
+  \clearpage
+  \begin{question}
+    \begin{adjustbox}{width=\textwidth}
+      \begin{tabular}{l|l}
+        \hline
+        VarExp & when the variable has not been defined\\
+               & (+ 3 a)\\
+               & Type Error: Variable a has not been declared in a\\\hline
+        LetExp & when the declared type of a variable being defined and the expression defining it do not match\\
+               & (let ((a:num \#t)) a)\\
+               & Type error: The declared type of the 0 let variable and the actual type mismatch, expect num found bool in (let ( (a \#t)) a )\\\hline
+        CallExp & when the first argument is not a function\\
+                & (3)\\
+                & Type error: Expect a function type in the call expression, found num in (3.0 )\\\hline
+        CallExp & when there is a improper number of arguments\\
+                & ((lambda (x:num) x) 2 3)\\
+                & Type error: The number of arguments expected is 1 found 2 in ((lambda ( x ) x) 2.0 3.0 )\\\hline
+        CallExp & when the arguments are the wrong type\\
+                & ((lambda (x:num) x) \#t)\\
+                & Type error: The expected type of the 0 argument is num found bool in ((lambda ( x ) x) \#t )\\\hline
+        LetrecExp & when the expression defining a variable does not match the given type\\
+                  & (letrec ((x:num \#t)) x)\\
+                  & Type error: The expected type of the 0 variable is num found bool in (letrec ( (x \#t)) x )\\\hline
+        IfExp & when the branch decider isn't a boolean type\\
+              & (if 2 3 4)\\
+              & Type error: The condition should have boolean type, found num in (if 2.0 3.0 4.0)\\\hline
+        IfExp & when two branch paths have different types\\
+              & (if \#t 3 \#f)\\
+              & Type error: The then and else expressions should have the same type, then has type num else has type bool in (if \#t 3.0 \#f)\\\hline
+        CarExp & when the argument is not a Pair\\
+               & (car 2)\\
+               & Type error: The car expect an expression of type Pair, found num in (car 2.0)\\\hline
+        CdrExp & when the argument is not a Pair\\
+               & (cdr 2)\\
+               & Type error: The cdr expect an expression of type Pair, found num in (car 2.0)\\\hline
+        ListExp & when there is a list member that doesn't fit the type\\
+                & (list : num 2 3 \#t)\\
+                & Type error: The 2 expression should have type num found bool in (list 2.0 3.0 \#t )\\\hline
+        NullExp & when there is a non list type passed\\
+                & (null? 2)\\
+                & Type error: The null? expects an expression of type List, found num in (null? 2.0)\\\hline
+        RefExp & when there is a different type than the one declared used to create the ref\\
+               & (ref : \#t)\\
+               & Type error: The Ref expression expects type num found bool in (ref \#t)\\\hline
+        DerefExp & when there is not a reference passed as the first argument\\
+                 & (deref 2)\\
+                 & Type error: The deference expression expects a reference type found num in (deref 2.0)\\\hline
+        AssignExp & when the first argument is not a reference\\
+                  & (set! 2 2)\\
+                  & Type error: The lhs of the assignment expression expects a reference type found num in (set! 2.0 2.0)\\\hline
+        AssignExp & when the right hand expression is not the same as the reference being set\\
+                  & (set! (ref : num 3) \#t)\\
+                  & Type error: The inner type of the reference type is num the rhs type is bool in (set! (ref 3.0) \#t)\\\hline
+        FreeExp & when the argument is not a reference\\
+                & (free 2)\\
+                & Type error: The free expression expects a reference type found num in (free 2.0)\\\hline
+        BinaryComparator & when the first argument is not a number\\
+                         & (\textless \#t 2)\\
+                         & Type error: The first argument of a binary expression should be num Type, found bool in (> \#t 2.0)\\\hline
+        BinaryComparator & when the second argument is not a number\\
+                         & (\textgreater 3 \#t)\\
+                         & Type error: The second argument of a binary expression should be num Type, found bool in (> 3.0 \#t)\\\hline
+        ErrorExp & when an error is found\\
+                 & to be honest i searched in the directory for the creation of an ErrorExp\\
+                 & and it was only referenced in the AST definition of the class and the visitors\\
+                 & so I'm not sure i think that it might have been functionally removed from the language\\
+                 & Type error: Encountered an error type + the error type\\\hline
+        CompoundArithExp & when one of the operands is not a number\\
+                         & (+ 2 \#t)\\
+                         & Type error: expected num found bool in (+ 2.0 \#t )\\\hline
+      \end{tabular}
+    \end{adjustbox}
+
+  \end{question}
 
 \end{document}
