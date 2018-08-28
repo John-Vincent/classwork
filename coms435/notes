@@ -1,0 +1,14 @@
+Book
+Mining of Massiv Data Sets -- Rajaraman & Ullman & Leskovic
+
+--8/21/18--
+
+most algorithms are based on three probablisitc hypotheticals
+  1) toss a coin x times
+  2) roll a dice x times
+  3) pick a random element from set x
+
+the sample space is the set of possible outcomes the sample point is a specific
+observed outcome.
+
+any subset of the sample space omega is called an Event E

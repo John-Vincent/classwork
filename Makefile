@@ -4,8 +4,8 @@ COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
 COMS321_MODE = pdf
 
-COMS331_DIR = ./coms331/hw13/
-COMS331_FILE = hw13
+COMS331_DIR = ./coms331/hw3/
+COMS331_FILE = hw3
 COMS331_MODE = pdf
 
 COMS311_2_DIR = ./coms311/project1/
@@ -39,6 +39,10 @@ STAT330_MODE = pdf
 COMS352_DIR = ./coms352/hw8/
 COMS352_FILE = hw8
 COMS352_MODE = pdf
+
+COMS435_DIR = ./coms435/
+COMS435_FILE = notes
+COMS435_MODE = pdf
 
 C_DIR = ./coms352/hw8/
 C_FILE = bin/test

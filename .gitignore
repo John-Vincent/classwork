@@ -1,6 +1,7 @@
 *bin/
 coms311/project2/*.txt
 coms342/*/build
-*.tex.bak
+*.bak
+
 
 !*problems.pdf
