@@ -1,3 +1,6 @@
 [submodule "arithlang"]
 	path = coms342/arithlang
 	url = myserver:~/repos/coms342
+[submodule "sdmay"]
+    path = coms491/project
+    url = git@git.ece.iastate.edu:sd/sdmay19-21.git
