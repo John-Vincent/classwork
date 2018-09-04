@@ -34,3 +34,26 @@ JUnit testing is a large portion of this class
         3) team based attempt to minimize risk of deployed code.
         4) testing is a mental state where you are constantly aware of what should be done and how to do things right. testing comes as a natural part of the development because its the best way you know how to develop.
 
+9/4/18
+
+    components of a test case
+        RIPR model
+            Reach
+            Infect
+            Propagate
+            Reveal
+        prefix values, test case values, post-fix values, and expected results necessary for a complete execution + evaluation of the software
+        prefix values
+            these are inputs needed to get the program into the state to start the test. "navigate to the homepage" type shit
+        post-fix values
+            these are inputs needed to be entered after the test case values to show the results of the test. "got back an look at the workflow history"
+        test case values
+            inputs to conduct the test.
+        exit values
+            values or commands to terminate the program or return it to a working state.
+        expected results - test oracle (sounds like a shitty java framework)
+            results of the post-fix values produced by this test-case
+    
+    test suite / test set
+        a group of test cases.
+    like 30 minutes on mocking objects and why you might need to do it for a test.    

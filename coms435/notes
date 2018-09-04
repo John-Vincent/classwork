@@ -12,3 +12,38 @@ the sample space is the set of possible outcomes the sample point is a specific
 observed outcome.
 
 any subset of the sample space omega is called an Event E
+
+
+--8/30/18--
+
+markovs inequality 
+    P[x>v] <= e[x]/v
+    p[x>alpha e[x]] <= 1/alpha
+
+chebyshev inequality
+    p[|x-e[x]| >= delta] <= var(x) / delta^2
+
+chernoffs bound
+    let x_1 .... x_m be independent random variables
+    that take values [0,1] and E[x_1]=E[x_2] = e[X_m] = p
+    p[|x/m - p| > p delta] <= 2e^(-delta^2mp/2)
+    e[x/m] = p
+
+exp
+    toss a fair coin n times
+        p[we see > 2n/3 heads]
+        e[x] = n/2
+        varience(x) = sum 1 to n (var(x_i))
+        var(x_i) = (1-.5)^2 * 1/2 + (0-.5)^2 * 1/2 = 1/4
+        var(x) = sum 1 to n (var(x_i)) = n/4
+
+        with markovs bound
+            p[ x > 2n/3 ] <= (n/2)/(2n/3) = 3/4
+
+        with chebyshev inequality
+            p [ | x - e(x) | >= delta ] <= var(x)/delta^2
+            p [ x-n/2 > n/6 ] 
+            p [ x > 2n/3 ] <= p[ | x-n/2 | >= n/6 ] <= (n/4) / ( n^2 / 36 ) = 9/n
+
+        with chernoffs bound
+            p[x > 2n/3 ] = p[ x/2 > 2/3 ] <= p[ | x/2 -1/2 | >= 1/6 ] = p[ |x/n - 1/2| >= 1/2 * 1/3 ] <= 2e^(-1/9 * n * 1/2 * 1/2) = 2e^(-n/36) 
