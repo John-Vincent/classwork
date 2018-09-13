@@ -1,0 +1,318 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "funclang (2)",
+                "projectName": "funclang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question4/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (4)",
+                "projectName": "funclang (4)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question8/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (6)",
+                "projectName": "funclang (6)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question3/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (8)",
+                "projectName": "funclang (8)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question7/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "varlang",
+                "projectName": "varlang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/varlang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang",
+                "projectName": "funclang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question1/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (10)",
+                "projectName": "funclang (10)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (3)",
+                "projectName": "funclang (3)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question6/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (5)",
+                "projectName": "funclang (5)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question2/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (7)",
+                "projectName": "funclang (7)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question5/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (9)",
+                "projectName": "funclang (9)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw7/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "forklang (2)",
+                "projectName": "forklang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/forklang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "forklang",
+                "projectName": "forklang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw9/forklang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "arithlang",
+                "projectName": "arithlang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/arithlang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "reflang",
+                "projectName": "reflang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw8/reflang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "varlang (2)",
+                "projectName": "varlang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw3",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "typelang",
+                "projectName": "typelang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw10/typelang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "funclang (2)",
+                "projectName": "funclang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question4/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (4)",
+                "projectName": "funclang (4)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question8/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (6)",
+                "projectName": "funclang (6)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question3/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (8)",
+                "projectName": "funclang (8)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question7/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "varlang",
+                "projectName": "varlang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/varlang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang",
+                "projectName": "funclang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question1/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (10)",
+                "projectName": "funclang (10)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (3)",
+                "projectName": "funclang (3)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question6/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (5)",
+                "projectName": "funclang (5)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question2/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (7)",
+                "projectName": "funclang (7)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw6/question5/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "funclang (9)",
+                "projectName": "funclang (9)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw7/funclang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "forklang (2)",
+                "projectName": "forklang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/forklang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "forklang",
+                "projectName": "forklang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw9/forklang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "arithlang",
+                "projectName": "arithlang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/arithlang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "reflang",
+                "projectName": "reflang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw8/reflang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "varlang (2)",
+                "projectName": "varlang (2)",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw3",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            },
+            {
+                "name": "typelang",
+                "projectName": "typelang",
+                "workingDirectory": "/home/collin/Documents/classwork/coms342/hw10/typelang",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

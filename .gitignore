@@ -2,6 +2,7 @@
 coms311/project2/*.txt
 coms342/*/build
 *.bak
+*build
 
 
 !*problems.pdf

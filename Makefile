@@ -1,4 +1,4 @@
-CUR = COMS342
+CUR = COMS417
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -43,6 +43,10 @@ COMS352_MODE = pdf
 COMS435_DIR = ./coms435/
 COMS435_FILE = notes
 COMS435_MODE = pdf
+
+COMS417_DIR = ./coms417/hw1/
+COMS417_FILE = hw1
+COMS417_MODE = pdf
 
 C_DIR = ./coms352/hw8/
 C_FILE = bin/test

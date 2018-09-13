@@ -10,9 +10,12 @@ JUnit testing is a large portion of this class
         3) its a job requirement in today's market agile forces you to do testing
 
     types of issues
-        1) software fault static defect, basically you can't code for shit:                                                      actual != expected && incorrect internal state && doesn't run
-        2) software error, incorrect internal state. your program runs but it doesn't do its job:                                actual output != expected output && incorrect internal state
-        3) software failure, external error. basically someone tried to use your software in a way you didn't design it to work: actual output != expected output
+        1) software fault static defect, basically you can't code for shit:
+            actual != expected && incorrect internal state && doesn't run
+        2) software error, incorrect internal state. your program runs but it doesn't do its job:
+            actual output != expected output && incorrect internal state
+        3) software failure, external error. basically someone tried to use your software in a way you didn't design it to work:
+            actual output != expected output
 
     a fault is inherently also an error and a failure
     a error is also a failure
@@ -24,7 +27,7 @@ JUnit testing is a large portion of this class
     Validation:
         the process of evaluating software at the end of development to ensure compliance with intended usage
 
-    Verification: 
+    Verification:
         the process of determining whether the products of a given phase of the development process fulfill the requirements established during the previous phase.
 
     Beizer 5 levels of testing
@@ -53,7 +56,7 @@ JUnit testing is a large portion of this class
             values or commands to terminate the program or return it to a working state.
         expected results - test oracle (sounds like a shitty java framework)
             results of the post-fix values produced by this test-case
-    
+
     test suite / test set
         a group of test cases.
-    like 30 minutes on mocking objects and why you might need to do it for a test.    
+    like 30 minutes on mocking objects and why you might need to do it for a test.
