@@ -1,9 +1,9 @@
 Book
-Mining of Massiv Data Sets -- Rajaraman & Ullman & Leskovic
+Mining of Massive Data Sets -- Rajaraman & Ullman & Leskovic
 
 --8/21/18--
 
-most algorithms are based on three probablisitc hypotheticals
+most algorithms are based on three probabilistic hypothetical
   1) toss a coin x times
   2) roll a dice x times
   3) pick a random element from set x
@@ -16,7 +16,7 @@ any subset of the sample space omega is called an Event E
 
 --8/30/18--
 
-markovs inequality 
+Markov inequality 
     P[x>v] <= e[x]/v
     p[x>alpha e[x]] <= 1/alpha
 
@@ -33,11 +33,11 @@ exp
     toss a fair coin n times
         p[we see > 2n/3 heads]
         e[x] = n/2
-        varience(x) = sum 1 to n (var(x_i))
+        variance(x) = sum 1 to n (var(x_i))
         var(x_i) = (1-.5)^2 * 1/2 + (0-.5)^2 * 1/2 = 1/4
         var(x) = sum 1 to n (var(x_i)) = n/4
 
-        with markovs bound
+        with Markov bound
             p[ x > 2n/3 ] <= (n/2)/(2n/3) = 3/4
 
         with chebyshev inequality
@@ -47,3 +47,12 @@ exp
 
         with chernoffs bound
             p[x > 2n/3 ] = p[ x/2 > 2/3 ] <= p[ | x/2 -1/2 | >= 1/6 ] = p[ |x/n - 1/2| >= 1/2 * 1/3 ] <= 2e^(-1/9 * n * 1/2 * 1/2) = 2e^(-n/36) 
+
+--9/6/18--
+
+ lost a bunch of notes due to aspell
+
+ Bloom filter 
+
+
+    probabilistic data structure that allows for compressed data sets that are operatable. 
