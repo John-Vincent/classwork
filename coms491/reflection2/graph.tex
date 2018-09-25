@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{}
+\newcommand\assignment{}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+  \begin{tikzpicture}
+      \node at (0, 12) [rectangle,draw] (a) {Clarify};
+      \node at (0, 9) [rectangle,draw] (b) {Brainstorm};
+      \node at (0, 6) [rectangle,draw] (c) {Research};
+      \node at (0, 3) [rectangle,draw] (d) {Design/Create};
+      \node at (0, 0) [rectangle,draw] (e) {Test};
+      \node at (3, 0) [rectangle,draw] (f) {Retrospective};
+      \draw[->]
+        (a) edge (b);
+  \end{tikzpicture}
+\end{document}

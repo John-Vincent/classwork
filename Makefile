@@ -1,4 +1,4 @@
-CUR = COMS417
+CUR = COMS491
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -47,6 +47,10 @@ COMS435_MODE = pdf
 COMS417_DIR = ./coms417/hw1/
 COMS417_FILE = hw1
 COMS417_MODE = pdf
+
+COMS491_DIR = ./coms491/reflection2/
+COMS491_FILE = graph
+COMS491_MODE = pdf
 
 C_DIR = ./coms352/hw8/
 C_FILE = bin/test
