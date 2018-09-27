@@ -95,3 +95,21 @@ count min sketch
         pr [^t_x < tx + en] >= 1-delta
         q = 2e
         approximate heavy hitter = { x | ^t_c >=2en}
+
+--9/27/18--
+build a data structure that can answer (d is a set of documents, m is number of documents, n is size of documents)
+    Sim(di,dy)
+
+pre-compute all similarities-> P(m^2) memory o(1) time
+store all document vectors O(MN) Memory O(M) time
+
+Random Permutation
+    pi = {1...m}->{1...n}
+    Min(pi[D_a]) = Min[ pi[x] | x in D_a ]
+    Max(pi[D_a]) = Max[ pi[x] | x in D_a ]
+
+in class observation
+    if pi(x) = 1 where
+    x in D_a intersect D_b
+    then min[pi(D_a)] = min[pi(D_b)]
+
