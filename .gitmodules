@@ -4,3 +4,9 @@
 [submodule "sdmay"]
     path = coms491/project
     url = git@git.ece.iastate.edu:sd/sdmay19-21.git
+[submodule "microservice"]
+    path = se339/hw1/microservice
+    url = https://github.com/ewolff/microservice.git
+[submodule "pa1"]
+    path = coms435/pa1
+    url = git@github.com:John-Vincent/bloomFilters.git
