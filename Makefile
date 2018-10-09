@@ -1,4 +1,4 @@
-CUR = COMS491
+CUR = COMS417
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -44,9 +44,9 @@ COMS435_DIR = ./coms435/
 COMS435_FILE = notes
 COMS435_MODE = pdf
 
-COMS417_DIR = ./coms417/hw1/
-COMS417_FILE = hw1
-COMS417_MODE = pdf
+COMS417_DIR = ./coms417/hw2/java/
+COMS417_FILE = $(addprefix bin/, DataDrivenMinTest Min )
+COMS417_MODE = class
 
 COMS491_DIR = ./coms491/reflection2/
 COMS491_FILE = graph
@@ -66,7 +66,7 @@ default: $(addprefix $($(CUR)_DIR), $(addsuffix .$($(CUR)_MODE), $($(CUR)_FILE))
 	@rm $($(CUR)_DIR)bin/*.log $($(CUR)_DIR)bin/latexgarbage.txt
 
 $($(CUR)_DIR)bin/%.class: $($(CUR)_DIR)%.java | makebin
-	@javac -Werror -d $($(CUR)_DIR)bin/ -cp $($(CUR)_DIR)bin:$($(CUR)_DIR) -Xlint $<
+	@javac -Werror -d $($(CUR)_DIR)bin/ -cp ${CLASSPATH}:$($(CUR)_DIR)bin:$($(CUR)_DIR) -Xlint $<
 
 $($(CUR)_DIR)bin/%.exe: $($(CUR)_DIR)%.c | makebin
 	@gcc -Werror -Wall -o $@ $< -lrt -lpthread
