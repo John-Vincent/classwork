@@ -10,3 +10,6 @@
 [submodule "pa1"]
     path = coms435/pa1
     url = git@github.com:John-Vincent/bloomFilters.git
+[submodule "pa2"]
+    path = coms435/pa2
+    url = git@github.com:John-Vincent/JaccardSimilarity.git
