@@ -13,3 +13,6 @@
 [submodule "pa2"]
     path = coms435/pa2
     url = git@github.com:John-Vincent/JaccardSimilarity.git
+[submodule "CS417-TestingProject"]
+    path = coms417/CS417-TestingProject
+    url = git@github.com:Desseler/CS417-TestingProject.git
