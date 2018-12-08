@@ -3,6 +3,6 @@ coms311/project2/*.txt
 coms342/*/build
 *.bak
 *build
-
+mongo
 
 !*problems.pdf

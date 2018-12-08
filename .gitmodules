@@ -19,3 +19,6 @@
 [submodule "fleetManagement"]
 	path = se339/fleetManagement
 	url = ssh://vm-user@se329-05.ece.iastate.edu/home/vm-user/git/fleetManagement.git
+[submodule "pa4"]
+    path = coms435/pa4
+    url = git@github.com:ryanmcc13/PA4.git

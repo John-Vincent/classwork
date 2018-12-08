@@ -1,0 +1,80 @@
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] MongoDB starting : pid=20750 port=27017 dbpath=/home/collin/Documents/classwork/se339/mongo 64-bit host=homebase
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] db version v4.0.4
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] git version: f288a3bdf201007f3693c58e140056adf8b04839
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1  11 Sep 2018
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] allocator: tcmalloc
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] modules: none
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] build environment:
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten]     distarch: x86_64
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten]     target_arch: x86_64
+2018-12-03T23:37:30.344-0600 I CONTROL  [initandlisten] options: { processManagement: { fork: true }, storage: { dbPath: "mongo" }, systemLog: { destination: "file", path: "deeznuts" } }
+2018-12-03T23:37:30.344-0600 I STORAGE  [initandlisten] Detected data files in /home/collin/Documents/classwork/se339/mongo created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2018-12-03T23:37:30.344-0600 I STORAGE  [initandlisten] 
+2018-12-03T23:37:30.344-0600 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2018-12-03T23:37:30.344-0600 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2018-12-03T23:37:30.344-0600 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=15545M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2018-12-03T23:37:30.962-0600 I STORAGE  [initandlisten] WiredTiger message [1543901850:962124][20750:0x7f059fc74480], txn-recover: Main recovery loop: starting at 1/22272 to 2/256
+2018-12-03T23:37:31.011-0600 I STORAGE  [initandlisten] WiredTiger message [1543901851:11597][20750:0x7f059fc74480], txn-recover: Recovering log 1 through 2
+2018-12-03T23:37:31.088-0600 I STORAGE  [initandlisten] WiredTiger message [1543901851:88878][20750:0x7f059fc74480], txn-recover: Recovering log 2 through 2
+2018-12-03T23:37:31.118-0600 I STORAGE  [initandlisten] WiredTiger message [1543901851:118572][20750:0x7f059fc74480], txn-recover: Set global recovery timestamp: 0
+2018-12-03T23:37:31.565-0600 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] 
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] 
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2018-12-03T23:37:31.732-0600 I CONTROL  [initandlisten] 
+2018-12-03T23:37:31.843-0600 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/home/collin/Documents/classwork/se339/mongo/diagnostic.data'
+2018-12-03T23:37:31.844-0600 I NETWORK  [initandlisten] waiting for connections on port 27017
+2018-12-03T23:37:40.983-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:52526 #1 (1 connection now open)
+2018-12-03T23:37:40.999-0600 I NETWORK  [conn1] received client metadata from 127.0.0.1:52526 conn1: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.4" }, os: { type: "Linux", name: "Arch", architecture: "x86_64", version: "rolling" } }
+2018-12-03T23:37:41.226-0600 I COMMAND  [conn1] command admin.$cmd appName: "MongoDB Shell" command: replSetGetStatus { replSetGetStatus: 1.0, forShell: 1.0, $db: "admin" } numYields:0 ok:0 errMsg:"not running with --replSet" errName:NoReplicationEnabled errCode:76 reslen:122 locks:{} protocol:op_msg 223ms
+2018-12-03T23:37:44.485-0600 I NETWORK  [conn1] end connection 127.0.0.1:52526 (0 connections now open)
+2018-12-03T23:38:42.919-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53054 #2 (1 connection now open)
+2018-12-03T23:38:42.939-0600 I NETWORK  [conn2] received client metadata from 127.0.0.1:53054 conn2: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.4" }, os: { type: "Linux", name: "Arch", architecture: "x86_64", version: "rolling" } }
+2018-12-03T23:38:53.325-0600 I NETWORK  [conn2] end connection 127.0.0.1:53054 (0 connections now open)
+2018-12-03T23:40:04.585-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53730 #3 (1 connection now open)
+2018-12-03T23:40:04.588-0600 I NETWORK  [conn3] received client metadata from 127.0.0.1:53730 conn3: { driver: { name: "nodejs", version: "2.2.33" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.18.16-arch1-1-ARCH" }, platform: "Node.js v10.12.0, LE, mongodb-core: 2.1.17" }
+2018-12-03T23:40:04.596-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53732 #4 (2 connections now open)
+2018-12-03T23:40:04.597-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53734 #5 (3 connections now open)
+2018-12-03T23:40:04.597-0600 I STORAGE  [conn5] createCollection: fleetManagement.examples with generated UUID: d9111b81-be03-4dd8-97f2-25e9afdc10ab
+2018-12-03T23:40:04.597-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53736 #6 (4 connections now open)
+2018-12-03T23:40:05.312-0600 I INDEX    [conn5] build index on: fleetManagement.examples properties: { v: 2, key: { uid: 1 }, name: "uid_1", ns: "fleetManagement.examples", background: true }
+2018-12-03T23:40:05.312-0600 I INDEX    [conn5] build index done.  scanned 0 total records. 0 secs
+2018-12-03T23:40:05.313-0600 I STORAGE  [conn4] createCollection: fleetManagement.managers with generated UUID: 28a659c6-10b9-40f5-9acd-ddc2d8165cc3
+2018-12-03T23:40:05.978-0600 I INDEX    [conn4] build index on: fleetManagement.managers properties: { v: 2, key: { username: 1 }, name: "username_1", ns: "fleetManagement.managers", background: true }
+2018-12-03T23:40:05.978-0600 I STORAGE  [conn3] createCollection: fleetManagement.vehicles with generated UUID: 6fd67fe8-48a0-4e48-abe5-9b4bdacbebcb
+2018-12-03T23:40:05.978-0600 I COMMAND  [conn5] command fleetManagement.$cmd command: createIndexes { createIndexes: "examples", indexes: [ { name: "uid_1", key: { uid: 1 }, background: true } ], $db: "fleetManagement" } numYields:0 reslen:129 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 3, W: 2 }, acquireWaitCount: { W: 1 }, timeAcquiringMicros: { W: 665297 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 1380ms
+2018-12-03T23:40:06.639-0600 I INDEX    [conn3] build index on: fleetManagement.vehicles properties: { v: 2, key: { vid: 1 }, name: "vid_1", ns: "fleetManagement.vehicles", background: true }
+2018-12-03T23:40:06.640-0600 I STORAGE  [conn6] createCollection: fleetManagement.datas with generated UUID: eff6fac2-fef0-4026-b7df-511c03aa0860
+2018-12-03T23:40:07.195-0600 I INDEX    [conn6] build index on: fleetManagement.datas properties: { v: 2, key: { did: 1 }, name: "did_1", ns: "fleetManagement.datas", background: true }
+2018-12-03T23:40:07.195-0600 I INDEX    [conn6] build index done.  scanned 0 total records. 0 secs
+2018-12-03T23:40:07.195-0600 I INDEX    [conn3] build index done.  scanned 0 total records. 0 secs
+2018-12-03T23:40:07.195-0600 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+2018-12-03T23:40:07.195-0600 I COMMAND  [conn6] command fleetManagement.$cmd command: createIndexes { createIndexes: "datas", indexes: [ { name: "did_1", key: { did: 1 }, background: true } ], $db: "fleetManagement" } numYields:0 reslen:129 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 3, W: 2 }, acquireWaitCount: { w: 1, W: 2 }, timeAcquiringMicros: { w: 714761, W: 1327109 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 2597ms
+2018-12-03T23:40:07.195-0600 I COMMAND  [conn3] command fleetManagement.$cmd command: createIndexes { createIndexes: "vehicles", indexes: [ { name: "vid_1", key: { vid: 1 }, background: true } ], $db: "fleetManagement" } numYields:0 reslen:129 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 3, W: 2 }, acquireWaitCount: { w: 2, W: 2 }, timeAcquiringMicros: { w: 1270049, W: 665533 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 2597ms
+2018-12-03T23:40:07.195-0600 I COMMAND  [conn4] command fleetManagement.$cmd command: createIndexes { createIndexes: "managers", indexes: [ { name: "username_1", key: { username: 1 }, background: true } ], $db: "fleetManagement" } numYields:0 reslen:129 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 3, W: 2 }, acquireWaitCount: { w: 2, W: 2 }, timeAcquiringMicros: { w: 1932233, W: 375 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 2597ms
+2018-12-03T23:40:07.426-0600 I INDEX    [conn4] build index on: fleetManagement.vehicles properties: { v: 2, key: { data.did: 1 }, name: "data.did_1", ns: "fleetManagement.vehicles", background: true }
+2018-12-03T23:40:07.426-0600 I INDEX    [conn4] build index done.  scanned 0 total records. 0 secs
+2018-12-03T23:40:07.427-0600 I COMMAND  [conn4] command fleetManagement.$cmd command: createIndexes { createIndexes: "vehicles", indexes: [ { name: "data.did_1", key: { data.did: 1 }, background: true } ], $db: "fleetManagement" } numYields:0 reslen:129 locks:{ Global: { acquireCount: { r: 2, w: 2 } }, Database: { acquireCount: { w: 3, W: 2 } }, Collection: { acquireCount: { w: 2 } } } protocol:op_query 230ms
+2018-12-03T23:40:22.266-0600 I NETWORK  [listener] connection accepted from 127.0.0.1:53896 #7 (5 connections now open)
+2018-12-03T23:40:22.286-0600 I NETWORK  [conn7] received client metadata from 127.0.0.1:53896 conn7: { application: { name: "MongoDB Shell" }, driver: { name: "MongoDB Internal Client", version: "4.0.4" }, os: { type: "Linux", name: "Arch", architecture: "x86_64", version: "rolling" } }
+2018-12-04T00:17:06.680-0600 I NETWORK  [conn7] end connection 127.0.0.1:53896 (4 connections now open)
+2018-12-04T00:17:12.707-0600 I NETWORK  [conn6] end connection 127.0.0.1:53736 (3 connections now open)
+2018-12-04T00:17:12.707-0600 I NETWORK  [conn4] end connection 127.0.0.1:53732 (2 connections now open)
+2018-12-04T00:17:12.707-0600 I NETWORK  [conn5] end connection 127.0.0.1:53734 (1 connection now open)
+2018-12-04T00:17:12.707-0600 I NETWORK  [conn3] end connection 127.0.0.1:53730 (0 connections now open)
+2018-12-05T22:39:25.769-0600 I CONTROL  [signalProcessingThread] got signal 1 (Hangup), will terminate after current cmd ends
+2018-12-05T22:39:25.770-0600 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2018-12-05T22:39:25.770-0600 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2018-12-05T22:39:25.785-0600 I CONTROL  [signalProcessingThread] Shutting down free monitoring
+2018-12-05T22:39:25.787-0600 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+2018-12-05T22:39:25.954-0600 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+2018-12-05T22:39:27.036-0600 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2018-12-05T22:39:27.036-0600 I CONTROL  [signalProcessingThread] now exiting
+2018-12-05T22:39:27.037-0600 I CONTROL  [signalProcessingThread] shutting down with code:0
