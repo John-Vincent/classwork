@@ -1,4 +1,4 @@
-CUR = COMS417
+CUR = JAVA
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -51,6 +51,14 @@ COMS417_MODE = class
 COMS491_DIR = ./coms491/reflection2/
 COMS491_FILE = graph
 COMS491_MODE = pdf
+
+COMS486_DIR = ./coms486/hw1/
+COMS486_FILE = hw1
+COMS486_MODE = pdf
+
+JAVA_DIR = ./coms486/hw1/
+JAVA_FILE = $(addprefix bin/, Server Client)
+JAVA_MODE = class
 
 C_DIR = ./coms352/hw8/
 C_FILE = bin/test

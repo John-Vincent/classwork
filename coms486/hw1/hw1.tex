@@ -1,0 +1,103 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Intro to Computer Networking}
+\newcommand\assignment{Assignment 1}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+    {\bf \classname \hspace{1cm} \assignment\hfill \name}
+    \vskip 2em
+
+
+    \begin{question}
+        \begin{subquestion}{a}
+            $d_{prop} = m/s$
+        \end{subquestion}
+        \begin{subquestion}{b}
+            $d_{trans} = L/R$ 
+        \end{subquestion}
+        \begin{subquestion}{c}
+            $t = L/R + m/s$ 
+        \end{subquestion}
+        \begin{subquestion}{d}
+            \begin{align}
+                t &= \frac{L}{R} +\frac{m}{s}\\
+                  &= \frac{120}{112*1024} + \frac{10}{2*10^8}\\
+                  &= 0.00104631 + 5*10^{-8}\\
+                  &= 0.00104636 seconds
+            \end{align}
+        \end{subquestion}
+    \end{question}
+
+    \begin{question}
+        \setcounter{equation}{0}
+        \begin{align}
+            t &= 2*\frac{L}{R_{program}} + d_{prop} + \frac{L}{R_{network}}\\
+              &= 2*\frac{112*8}{64 * 1024} + 0.002 + \frac{112*8}{10*1024^2}\\
+              &= 0.0294 seconds
+        \end{align}
+    \end{question}
+
+    \begin{question}
+        \setcounter{equation}{0}
+        \begin{align}
+            d_{queue} &= \text{bits being transfered} + \text{bits to be transfered} \\
+                      &= \frac{x}{R} + \frac{L*n}{R} 
+        \end{align}
+    \end{question}
+    
+    \clearpage
+
+    \begin{question}
+        \begin{subquestion}{a}
+        \setcounter{equation}{0}
+            \begin{align}
+                t_{one} &= \frac{8*10^6}{4194304}\\
+                        &= 1.905 seconds \\\\
+                t_{total} &= 3\frac{8*10^6}{4194304}\\
+                          &= 5.697 seconds
+            \end{align}
+        \end{subquestion}
+        \begin{subquestion}{b}
+        \setcounter{equation}{0}
+            \begin{align}
+                t_{one} &= \frac{20000}{4194304}\\
+                        &= 0.00475\\
+                t_{two} &= 2*\frac{20000}{4194304}\\
+                        &= 0.0095\\
+                t_{total} &= 3*400*\frac{20000}{4194304}\\
+                          &= 5.7225
+            \end{align}
+        \end{subquestion}
+    \end{question}
+
+\end{document}

@@ -22,3 +22,6 @@
 [submodule "pa4"]
     path = coms435/pa4
     url = git@github.com:ryanmcc13/PA4.git
+[submodule "coms540/repo"]
+	path = coms540/repo
+	url = git@github.com:John-Vincent/coms540.git
