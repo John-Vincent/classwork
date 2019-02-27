@@ -1,4 +1,4 @@
-CUR=COMS540
+CUR=COMS574
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -52,13 +52,17 @@ COMS491_DIR = ./coms491/reflection2/
 COMS491_FILE = graph
 COMS491_MODE = pdf
 
-COMS486_DIR = ./coms486/hw1/
-COMS486_FILE = hw1
+COMS486_DIR = ./coms486/hw2/
+COMS486_FILE = hw2
 COMS486_MODE = pdf
 
 COMS540_DIR = ./coms540/hw0/
 COMS540_FILE = hw0
 COMS540_MODE = pdf
+
+COMS574_DIR = ./coms574/hw2/
+COMS574_FILE = hw2
+COMS574_MODE = pdf
 
 JAVA_DIR = ./coms486/hw1/
 JAVA_FILE = $(addprefix bin/, Server Client)
