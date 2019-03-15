@@ -6,7 +6,7 @@
 \usepackage{tikz}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
-
+\usepackage{listings}
 
 %edit this for each class
 \newcommand\name{John Collin Vincent}
@@ -52,30 +52,122 @@
             State 0\\
             \hline
             $decl \rightarrow \bullet TYPE\ list\ ;$\\
+            $goto(0,TYPE)=1$\\
             \hline
         \end{tabular}
 
-        \hspace{.3in}
-        \begin{tabular}{|c|}
+        &\begin{tabular}{|c|}
             \hline
             State 1\\
             \hline
             $decl \rightarrow TYPE\ \bullet list\ ;$\\
             $list \rightarrow \bullet list\ ,\ IDENT$\\
             $list \rightarrow \bullet IDENT$\\
+            $goto(1,list)=2$\\
+            $goto(1,IDENT)=3$\\
             \hline
         \end{tabular}
 
-        \hspace{.3in}
-        \begin{tabular}{|c|}
+        &\begin{tabular}{|c|}
             \hline
             State 2\\
             \hline
             $decl \rightarrow TYPE\ list\ \bullet ;$\\
             $list \rightarrow list\ \bullet ,\ IDENT$\\
+            $goto(2,',')=5$\\
+            $goto(2,';')=4$\\
+            \hline
+        \end{tabular}\\\\
+
+        \begin{tabular}{|c|}
+            \hline
+            State 3\\
+            \hline
+            $list \rightarrow IDENT \bullet$\\
             \hline
         \end{tabular}
+
+        &\begin{tabular}{|c|}
+            \hline
+            State 4\\
+            \hline
+            $decl \rightarrow TYPE\ list\ ; \bullet$\\
+            \hline
+        \end{tabular}
+
+        &\begin{tabular}{|c|}
+            \hline
+            State 5\\
+            \hline
+            $list \rightarrow list\ , \bullet\ IDENT$\\
+            $goto(5,IDENT)=6$\\
+            \hline
+        \end{tabular}\\\\
+
+        &\begin{tabular}{|c|}
+            \hline
+            State 6\\
+            \hline
+            $list \rightarrow list\ ,\ IDENT\bullet$\\
+            \hline
+        \end{tabular}
+    \end{tabular}\\
+
+    \vskip 2em
+    \centering
+    \begin{tabular}{ r|c|c|c|c|c|c }
+        \multicolumn{1}{c}{States} & \multicolumn{5}{c}{Actions} & go-to \\
+          & ,  & ;  & IDENT & TYPE & \$ & list\\
+        \hline
+        0 &    &    &    & s1 &    & \\
+        1 &    &    & s3 &    &    & g2\\
+        2 & s5 & s4 &    &    &    & \\
+        3 & r3 & r3 & r3 & r3 & r3 &\\
+        4 &    &    &    &    & accept &\\
+        5 &    &    & s6 &    &    &\\
+        6 & r2 & r2 & r2 & r2 & r2 &
     \end{tabular}
+  \end{question}
+
+  \clearpage
+
+  \begin{question}
+    $decl \rightarrow TYPE\ list\ ;$\\
+    $list \rightarrow IDENT\ list'$\\
+    $list' \rightarrow \epsilon$\\
+    $list' \rightarrow ,\ IDENT\ list'$\\
+    \begin{verbatim}
+        decl()
+        {
+            if next == TYPE
+                match(TYPE)
+                list()
+                match(';')
+            else
+                error()
+        }
+
+        list()
+        {
+            if next == IDENT
+                match(IDENT)
+                list'()
+            else
+                error()
+        }
+
+        list'()
+        {
+            if next == ','
+                match(',')
+                match(IDENT)
+                list'()
+            else if next == ';'
+                return
+            else
+                error()
+        }
+    \end{verbatim}
   \end{question}
 
 \end{document}
