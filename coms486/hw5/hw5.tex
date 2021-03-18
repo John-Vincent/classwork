@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+
+%edit this for each class
+\newcommand\name{John Collin Vincent}
+\newcommand\classname{Com S 486}
+\newcommand\assignment{Homework 5}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+
+    {\bf \classname \hspace{1cm} \assignment\hfill \name}
+    \vskip 2em
+
+
+    \begin{question}
+        A and B will detect the collision at time 200. A will then start rebroadcasting at time $200 + Backoff_A$, A will then take
+        $ 512 * 8 + 64 = 4160 $ bit time to fully transmit its message. B will detect that the channel is busy after its backoff time 
+        and will have to wait for A to finish. B will then start at $ 4360 + Backoff_A + Backoff_B$
+    \end{question}
+
+    \begin{question}
+        Since B will only start broadcasting if it thinks the channel is idle the worst case scenario for when B will start is time $t=199$
+        the first bit of B will arrive at A at time $t=399$. A will detect a collision up to time $t=576$ so in the case that B collides with
+        A, A will always detect the collision.
+    \end{question}
+
+    \begin{question}
+        Instead of making 3 tables I'm just going to list all of the entries and specify the event that 
+        causes the entry to be added after the switch receives the packet\\
+        \begin{tabular}{ r | c | c | c }
+                 added after  & \multicolumn{3}{ | c }{Switch Table}\\
+                        & MAC & Interface & Timestamp\\\hline
+                $i$     & $A$ & $I_A$ & $i + D_{prop}(A)$\\
+                $ii$    & $C$ & $I_C$ & $ii + D_{prop}(C)$\\
+                $iii$   & $B$ & $I_B$ & $iii + D_{prop}(B)$ 
+        \end{tabular}
+    \end{question}
+
+    \begin{question}
+        The first thing the computer will do is use DHCP to obtain an IP address by constructing a message in an 
+        Ethernet frame and setting it to the broadcast address 255.255.255.255. Your computer will get back
+        a IP address from the DHCP server and a lease time that the IP is valid for, as well as the first hop 
+        address for the network, and network sub-net mask. It will then use ARP to get the hardware address
+        for the first hop router and DNS server. Then the IP of the website will be resolved through DNS.
+        After that a TCP connection will be established to the web server. The TCP connection will be used
+        to facilitate the HTTP request and response from the server.
+    \end{question}
+
+    \begin{question}
+        signal 1: (1, -1, 1, -1, 1, -1, 1, -1)\\
+        signal 2: (-1, 1, -1, 1, -1, 1, -1, 1)
+    \end{question}
+
+    \begin{question}
+        the bit time for just sending the payload will be $512 * 8 + 64$\\
+        the time for sending the RTS, CTS, and ACK will be be 3 times the minimum packet size $3 * (512 + 64)$\\
+        $time = 3*\text{SIFS} + \text{DIFS} + 512 * 8 + 3 * 512 + 4*64$\\
+        $time = 3*\text{SIFS} + \text{DIFS} + 5888$
+    \end{question}
+
+\end{document}

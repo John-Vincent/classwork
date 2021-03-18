@@ -1,4 +1,4 @@
-CUR=COMS540
+CUR=COMS486
 
 COMS321_DIR = ./coms321/hw11/
 COMS321_FILE = hw11
@@ -52,8 +52,8 @@ COMS491_DIR = ./coms491/reflection2/
 COMS491_FILE = graph
 COMS491_MODE = pdf
 
-COMS486_DIR = ./coms486/hw2/
-COMS486_FILE = hw2
+COMS486_DIR = ./coms486/hw5/
+COMS486_FILE = hw5
 COMS486_MODE = pdf
 
 COMS540_DIR = ./coms540/hw1/

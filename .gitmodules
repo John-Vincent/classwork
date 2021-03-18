@@ -25,3 +25,9 @@
 [submodule "coms540/repo"]
 	path = coms540/repo
 	url = git@github.com:John-Vincent/coms540.git
+[submodule "schat"]
+	path = schat
+	url = git@github.com:John-Vincent/schat.git
+[submodule "coms486/schat"]
+	path = coms486/schat
+	url = git@github.com:John-Vincent/schat.git

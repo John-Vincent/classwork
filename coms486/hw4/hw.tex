@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage{mathtools}
+\usepackage{mdframed}
+\usepackage{fullpage}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+
+%edit this for each class
+\newcommand\name{Matt Bechtel}
+\newcommand\classname{}
+\newcommand\assignment{}
+
+
+\newcounter{excounter}
+\setcounter{excounter}{1}
+\newcommand\ques[2]{\vskip 1em  \noindent\textbf{\arabic{excounter}\addtocounter{excounter}{1}.} \emph{#1} \noindent#2}
+\newenvironment{question}{\ques{}\begin{quote}}{\end{quote}}
+\newenvironment{subquestion}[1]{#1) \begin{quote}}{\end{quote}}
+
+\pagestyle{fancy}
+\rfoot{\name, page \thepage/\pageref{LastPage}}
+\cfoot{}
+\rhead{}
+\lhead{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\begin{document}
+
+\begin{verbatim}
+Matt Bechtel 
+CS 486
+HW 2
+\end{verbatim}
+  
+
+
+    \begin{question}
+    \end{question}
+
+    \begin{question}
+    \end{question}
+    
+    \begin{question}
+        \begin{enumerate}[label=(\alph*)]
+            \item eBGP
+            \item 1a
+            \item 1a
+        \end{enumerate}
+    \end{question}
+
+    \begin{question}
+        Data = black, Parity = red\\\\
+        \begin{tabular}{ | l | l | l | l | l |}
+            \hline
+            1 & 0 & 1 & 1 & \color{red}{1}\\ \hline
+            0 & 1 & 0 & 0 & \color{red}{1}\\ \hline
+            1 & 0 & 1 & 1 & \color{red}{1}\\ \hline
+            1 & 1 & 1 & 1 & \color{red}{0}\\ \hline
+            \color{red}{1} & \color{red}{0} & \color{red}{1} & \color{red}{1} & \color{red}{1} \\ \hline
+        \end{tabular}
+
+        Data transimitted (with parity): 1011{\color{red}1} 0100{\color{red}1} 1011{\color{red}1} 1111{\color{red}0} {\color{red}10111}
+    \end{question}
+
+    \begin{question}
+        a. Remainder R is 1001\\
+        b. Remainder R is 0101\\
+    \end{question}
+
+    \begin{question}
+        \begin{enumerate}[label=(\alph*)]
+            \item Probability that A sends frame successfully: $p_A(1 - p_A)$\\
+                  Probability that B sends frame successfully: $p_B(1 - p_B)$\\
+                  Probability that A or B sends successfully: $(p_A + p_B)(1 - (p_A + p_B))$\\
+                  Probability that A and B collide: $p_A(1 - p_A) * p_B(1 - p_B)$\\
+                  Probability that neither A or B sends successfully: $1 - (p_A + p_B)(1 - (p_A + p_B))$
+            \item A's average throughput is the probability of A sending successfully times the number of frames to send. Since the number
+                  of frames is unlimited will just call this $p_A$. For B it is the same situation, we'll call it $p_B$.
+        \end{enumerate}
+    \end{question}
+\end{document}
